@@ -570,3 +570,57 @@ BETTER HIERARCHY
 choose hierarchy.
 
 The site's sophistication should come from taste, not complexity.
+
+## Component Density Rule
+
+The approved Fancy Components, Magic UI and ReactBits components form
+the interaction library for atreyakamat.dev.
+
+They are NOT a checklist of effects that must appear simultaneously.
+
+Every major viewport may contain:
+
+- ONE primary expressive interaction
+- ONE optional supporting microinteraction
+- otherwise normal typography, photography and whitespace
+
+Never place two competing animated text treatments in the same viewport.
+
+Never use:
+Morphing Text + Comic Text + ASCII Text + Curved Loop
+together merely because they are available.
+
+All third-party components must inherit the atreyakamat.dev visual system:
+
+Porcelain  #F7F5EF
+Ink        #151515
+Aqua       #32D6C5
+Vermilion  #F05A3C
+
+and the approved editorial serif + grotesk typography system.
+
+Effects must feel authored for this website rather than imported from
+a component library.
+
+DESKTOP ENHANCEMENTS:
+Smooth Cursor
+Gravity
+full Parallax Floating
+advanced SVG-path animation
+
+MOBILE FALLBACK:
+native cursor
+static/low-motion physics
+reduced parallax
+touch-first interactions
+poster-first video loading
+
+prefers-reduced-motion:
+disable all non-essential continuous animation.
+
+Performance rule:
+No animation library or component may be loaded globally when it is
+only required by one route.
+
+Route-level and component-level lazy loading are required for heavier
+interactive components.
