@@ -24,14 +24,14 @@ export const CleanHeader: React.FC = () => {
           <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[#0d9488]" title="Available for projects" />
         </RouteLink>
 
-        <nav className="hidden items-center gap-4 sm:gap-6 font-medium text-slate-600 md:flex">
+        <nav className="hidden items-center gap-4 font-medium text-slate-600 sm:gap-6 md:flex">
           {navItems.map((item) => {
             const active = path === item.to;
             return (
               <RouteLink
                 key={item.to}
                 to={item.to}
-                className={`transition-colors hover:text-[#111113] ${active ? 'text-[#111113] font-semibold' : ''}`}
+                className={`relative px-1 py-1 transition-colors after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-[#111113] after:transition-transform hover:text-[#111113] hover:after:scale-x-100 ${active ? 'text-[#111113] font-semibold after:scale-x-100' : ''}`}
               >
                 {item.label}
               </RouteLink>

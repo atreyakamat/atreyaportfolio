@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { ArrowLeft, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { RouteLink } from '../app/router';
 import { getAdjacentProjects, getProject } from '../content/projects';
+import { updateSeo } from '../lib/seo';
 import { PageShell } from './PageShell';
 
 interface ProjectDetailPageProps {
@@ -11,15 +13,30 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
   const project = getProject(slug);
   const adjacent = project ? getAdjacentProjects(slug) : { previous: undefined, next: undefined };
 
+  useEffect(() => {
+    if (!project) {
+      updateSeo({
+        title: 'Project not found',
+        description: 'The requested project could not be found in the portfolio archive.',
+        path: `/projects/${slug}`,
+      });
+      return;
+    }
+
+    updateSeo({
+      title: project.title,
+      description: project.shortDescription,
+      path: `/projects/${project.slug}`,
+    });
+  }, [project, slug]);
+
   if (!project) {
     return (
       <PageShell className="px-6">
-        <section className="mx-auto max-w-4xl rounded-3xl border border-black/10 bg-white p-10 shadow-sm">
+        <section className="mx-auto max-w-4xl rounded-[2rem] border border-black/10 bg-white p-10 shadow-sm">
           <p className="text-sm font-mono uppercase tracking-[0.35em] text-[#0d9488]">Project not found</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-tight text-[#111113]">The requested project is not available yet.</h1>
-          <p className="mt-4 text-base leading-7 text-slate-600">
-            Return to the project archive and choose a different case study to explore.
-          </p>
+          <p className="mt-4 text-base leading-7 text-slate-600">Return to the project archive and choose a different case study to explore.</p>
           <RouteLink to="/projects" className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#111113] hover:text-[#0d9488]">
             <ArrowLeft className="h-4 w-4" />
             Back to projects
@@ -37,8 +54,8 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
           Back to projects
         </RouteLink>
 
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_0.8fr]">
-          <div className="space-y-6 rounded-3xl border border-black/10 bg-white p-8 shadow-sm">
+        <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
+          <div className="space-y-6 rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_20px_70px_rgba(21,21,21,0.05)]">
             <div className="space-y-3">
               <p className="text-sm font-mono uppercase tracking-[0.35em] text-[#0d9488]">{project.category}</p>
               <h1 className="text-4xl font-semibold tracking-tight text-[#111113] sm:text-5xl">{project.title}</h1>
@@ -47,31 +64,29 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
 
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
-                <span key={tag} className="rounded-full border border-black/10 bg-[#fafaf8] px-3 py-1 text-[11px] font-mono uppercase tracking-[0.24em] text-slate-500">
-                  {tag}
-                </span>
+                <span key={tag} className="rounded-full border border-black/10 bg-[#fafaf8] px-3 py-1 text-[11px] font-mono uppercase tracking-[0.24em] text-slate-500">{tag}</span>
               ))}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-black/10 bg-[#fafaf8] p-5">
+              <div className="rounded-[1.25rem] border border-black/10 bg-[#fafaf8] p-5">
                 <p className="text-[11px] font-mono uppercase tracking-[0.24em] text-slate-500">Role</p>
                 <p className="mt-2 text-sm text-[#111113]">{project.role.join(' · ')}</p>
               </div>
-              <div className="rounded-2xl border border-black/10 bg-[#fafaf8] p-5">
+              <div className="rounded-[1.25rem] border border-black/10 bg-[#fafaf8] p-5">
                 <p className="text-[11px] font-mono uppercase tracking-[0.24em] text-slate-500">Year</p>
                 <p className="mt-2 text-sm text-[#111113]">{project.year}</p>
               </div>
             </div>
           </div>
 
-          <aside className="space-y-5 rounded-3xl border border-black/10 bg-[#f7f5ef] p-8 shadow-sm">
+          <aside className="space-y-5 rounded-[2rem] border border-black/10 bg-[#f7f5ef] p-8 shadow-sm">
             <div>
               <p className="text-[11px] font-mono uppercase tracking-[0.24em] text-slate-500">Status</p>
               <p className="mt-2 text-lg font-semibold text-[#111113]">{project.status}</p>
             </div>
             <div>
-              <p className="text-[11px] font-mono uppercase tracking-[0.24em] text-slate-500">What changed</p>
+              <p className="text-[11px] font-mono uppercase tracking-[0.24em] text-slate-500">Problem</p>
               <p className="mt-2 text-sm leading-7 text-slate-600">{project.problem}</p>
             </div>
             {project.links?.live && (
@@ -84,8 +99,8 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          <div className="rounded-3xl border border-black/10 bg-white p-8 shadow-sm">
-            <h2 className="text-2xl font-semibold tracking-tight text-[#111113]">Contribution</h2>
+          <div className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-sm">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#111113]">What I built</h2>
             <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-600">
               {project.contribution.map((point) => (
                 <li key={point} className="flex gap-3">
@@ -96,11 +111,11 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-black/10 bg-white p-8 shadow-sm">
-            <h2 className="text-2xl font-semibold tracking-tight text-[#111113]">Why it mattered</h2>
+          <div className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-sm">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#111113]">Key decisions</h2>
             <div className="mt-5 space-y-4">
               {project.decisions.map((decision) => (
-                <div key={decision.decision} className="rounded-2xl border border-black/10 bg-[#fafaf8] p-4">
+                <div key={decision.decision} className="rounded-[1.25rem] border border-black/10 bg-[#fafaf8] p-4">
                   <p className="text-sm font-semibold text-[#111113]">{decision.decision}</p>
                   <p className="mt-2 text-sm leading-7 text-slate-600">{decision.why}</p>
                 </div>
@@ -109,7 +124,40 @@ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 rounded-3xl border border-black/10 bg-[#f7f5ef] p-8 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <div className="grid gap-8 lg:grid-cols-3">
+          <div className="rounded-[2rem] border border-black/10 bg-[#f7f5ef] p-8">
+            <h2 className="text-xl font-semibold text-[#111113]">Approach</h2>
+            <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
+              {project.walkthrough.map((step) => (
+                <li key={step.title}>
+                  <p className="font-semibold text-[#111113]">{step.title}</p>
+                  <p className="mt-1">{step.body}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-[2rem] border border-black/10 bg-[#f7f5ef] p-8">
+            <h2 className="text-xl font-semibold text-[#111113]">Technology</h2>
+            <div className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
+              {project.stack.map((group) => (
+                <div key={group.label}>
+                  <p className="font-semibold text-[#111113]">{group.label}</p>
+                  <p>{group.items.join(' · ')}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[2rem] border border-black/10 bg-[#f7f5ef] p-8">
+            <h2 className="text-xl font-semibold text-[#111113]">Outcome</h2>
+            <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
+              {project.outcomes.map((outcome) => (
+                <li key={outcome}>{outcome}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 rounded-[2rem] border border-black/10 bg-[#f7f5ef] p-8 shadow-sm sm:flex-row sm:items-center sm:justify-between">
           {adjacent.previous ? (
             <RouteLink to={`/projects/${adjacent.previous.slug}`} className="inline-flex items-center gap-2 text-sm font-medium text-[#111113] hover:text-[#0d9488]">
               <ArrowLeft className="h-4 w-4" />

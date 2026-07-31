@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import { Briefcase, MapPin } from 'lucide-react';
 import { experience } from '../content/experience';
+import { updateSeo } from '../lib/seo';
 import { PageShell } from './PageShell';
 
 export function ExperiencePage() {
+  useEffect(() => {
+    updateSeo({
+      title: 'Experience',
+      description: 'Professional experience spanning product work, software engineering, leadership and community building.',
+      path: '/experience',
+    });
+  }, []);
   return (
     <PageShell className="px-6">
       <section className="mx-auto flex max-w-6xl flex-col gap-10">
@@ -11,16 +20,16 @@ export function ExperiencePage() {
             EXPERIENCE // BUILDING IN PUBLIC
           </span>
           <h1 className="text-4xl font-bold tracking-tight text-[#111113] sm:text-5xl">
-            A track record rooted in product execution, software craft and collaborative building.
+            A track record shaped by execution, leadership and the willingness to work across product and systems.
           </h1>
           <p className="text-base leading-7 text-slate-600">
-            The work spans internships, student-led leadership, founder-led ventures and systems-oriented product development.
+            The work spans internships, community leadership, founder-led ventures and high-context software delivery.
           </p>
         </div>
 
         <div className="space-y-5">
           {experience.map((item) => (
-            <article key={item.id} className="rounded-3xl border border-black/10 bg-white p-8 shadow-sm">
+            <article key={item.id} className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_20px_70px_rgba(21,21,21,0.05)]">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-sm font-medium text-[#0d9488]">
@@ -40,7 +49,7 @@ export function ExperiencePage() {
                   <p className="max-w-2xl text-base leading-7 text-slate-600">{item.summary}</p>
                 </div>
 
-                <div className="rounded-2xl border border-black/10 bg-[#fafaf8] px-4 py-3 text-sm font-mono uppercase tracking-[0.24em] text-slate-500">
+                <div className="rounded-[1.25rem] border border-black/10 bg-[#fafaf8] px-4 py-3 text-sm font-mono uppercase tracking-[0.24em] text-slate-500">
                   {item.period}
                 </div>
               </div>

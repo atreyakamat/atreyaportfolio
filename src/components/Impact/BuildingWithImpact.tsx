@@ -20,12 +20,19 @@ export const BuildingWithImpact: React.FC = () => {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="space-y-5">
             <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#32d6c5]">BUILDING WITH IMPACT</p>
-            <h2 className="text-4xl font-semibold leading-[0.92] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+            <h2 className="font-serif text-4xl font-semibold leading-[0.92] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
               Building work that is useful, legible and durable.
             </h2>
             <p className="max-w-xl text-base leading-8 text-white/75">
               The work moves between product surfaces, infrastructure thinking, AI-assisted workflows and the small details that make software feel calm rather than noisy.
             </p>
+            <div className="flex flex-wrap gap-2 pt-2">
+              {['Systems thinking', 'Product rigor', 'Implementation detail', 'Thoughtful motion'].map((item) => (
+                <span key={item} className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80">
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="relative min-h-[320px] rounded-[2rem] border border-white/10 bg-[#f7f5ef] p-6 text-[#111113]">
@@ -70,6 +77,7 @@ export const BuildingWithImpact: React.FC = () => {
                     <path d="M110 15C160 15 200 55 200 110C200 165 160 205 110 205C60 205 20 165 20 110C20 55 60 15 110 15" fill="none" stroke="#32d6c5" strokeWidth="1.5" strokeDasharray="4 6" />
                   </svg>
                 </motion.div>
+                <div className="absolute inset-[26%] rounded-full border border-[#32d6c5]/20" />
               </div>
             </div>
           </div>
