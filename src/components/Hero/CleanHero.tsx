@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { HERO_DATA } from '../../data/personalData';
 import { ArrowDown, MapPin } from 'lucide-react';
 
 export const CleanHero: React.FC = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const grainStyle = useMemo(
+    () => ({
+      backgroundImage: `radial-gradient(circle at 20% 20%, rgba(50,214,197,0.16), transparent 22%), radial-gradient(circle at 80% 0%, rgba(240,90,60,0.12), transparent 22%), repeating-linear-gradient(0deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 4px)`,
+    }),
+    [],
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / 30;
-    const y = (e.clientY - rect.top - rect.height / 2) / 30;
+    const x = (e.clientX - rect.left - rect.width / 2) / 32;
+    const y = (e.clientY - rect.top - rect.height / 2) / 32;
     setMousePos({ x, y });
   };
 
@@ -19,87 +25,74 @@ export const CleanHero: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen pt-28 pb-16 px-6 max-w-7xl mx-auto flex flex-col justify-between select-none relative font-sans">
-      
-      <div className="my-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
-        {/* LEFT COLUMN: Clean Identity Card Intro */}
-        <div className="lg:col-span-7 space-y-6">
-          
-          <div className="inline-flex items-center gap-2 text-xs font-mono text-[#0d9488] bg-[#0d9488]/10 px-3 py-1 rounded-full border border-[#0d9488]/20">
-            <span className="w-2 h-2 rounded-full bg-[#0d9488]" />
-            <span>PRIMARY DIGITAL IDENTITY CARD</span>
-          </div>
-
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold font-display text-[#111113] tracking-tight leading-[0.95]">
-            Hi, I'm Atreya.
-          </h1>
-
-          <p className="text-2xl sm:text-4xl font-display font-medium text-[#111113]/90 leading-tight">
-            I build, design,<br className="hidden sm:inline" />
-            teach and experiment.
-          </p>
-
-          <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed font-sans">
-            Engineer by profession. Creative by instinct. Curious about almost everything.
-          </p>
-
-          <div className="flex flex-wrap items-center gap-6 pt-2 font-mono text-xs">
-            <span className="flex items-center gap-1.5 text-slate-500">
-              <MapPin className="w-4 h-4 text-[#0d9488]" /> {HERO_DATA.location}
-            </span>
-
-            <button
-              onClick={handleScrollToWork}
-              className="px-6 py-3.5 bg-[#111113] text-white font-sans font-medium text-xs rounded-full hover:bg-[#0d9488] transition-all flex items-center gap-2 cursor-pointer shadow-md group"
-            >
-              <span>Explore my work</span>
-              <ArrowDown className="w-4 h-4 text-[#2dd4bf] group-hover:translate-y-0.5 transition-transform" />
-            </button>
-          </div>
-
-        </div>
-
-        {/* RIGHT COLUMN: Large Editorial Portrait Photograph */}
-        <div
-          onMouseMove={handleMouseMove}
-          onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
-          className="lg:col-span-5 relative flex justify-center items-center"
-        >
-          {/* Atmospheric Soft Turquoise Aura Glow */}
-          <div className="absolute -inset-4 bg-gradient-to-tr from-[#0d9488]/30 via-[#06b6d4]/20 to-transparent rounded-3xl blur-3xl opacity-80 pointer-events-none" />
-
-          {/* Portrait Container with Parallax Tilt */}
-          <motion.div
-            animate={{
-              x: mousePos.x,
-              y: mousePos.y
-            }}
-            transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-            className="relative w-full max-w-md rounded-2xl overflow-hidden border border-black/10 shadow-2xl bg-[#ffffff]"
-          >
-            <img
-              src={HERO_DATA.portraitUrl}
-              alt="Atreya Kamat"
-              className="w-full h-auto aspect-[4/5] object-cover object-center filter grayscale-[10%] contrast-[105%] hover:grayscale-0 transition-all duration-700"
-            />
-            
-            {/* Subtle Overlay Label */}
-            <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-xl border border-black/5 font-mono text-[11px] flex justify-between items-center text-[#111113]">
-              <span className="font-bold">ATREYA KAMAT</span>
-              <span className="text-[#0d9488]">GOA // 2026</span>
+    <section className="relative min-h-[88vh] overflow-hidden px-6 py-24 sm:py-28 lg:px-8">
+      <div className="container-shell relative z-10 flex min-h-[80vh] flex-col justify-between">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <div className="max-w-2xl space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#32d6c5]/30 bg-[#32d6c5]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#0d9488]">
+              <span className="h-2 w-2 rounded-full bg-[#0d9488]" />
+              BUILD + PERSONAL
             </div>
-          </motion.div>
+
+            <div className="space-y-4">
+              <p className="text-sm font-medium uppercase tracking-[0.35em] text-slate-500">Atreya Kamat</p>
+              <h1 className="text-5xl font-semibold leading-[0.9] tracking-[-0.03em] text-[#111113] sm:text-6xl lg:text-8xl">
+                I make useful things happen.
+              </h1>
+              <p className="max-w-xl text-lg leading-8 text-slate-700 sm:text-xl">
+                Software engineer and product builder creating thoughtful digital products, systems and interfaces.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <button
+                onClick={handleScrollToWork}
+                className="inline-flex items-center gap-2 rounded-full bg-[#111113] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0d9488]"
+              >
+                <span>Explore projects</span>
+                <ArrowDown className="h-4 w-4" />
+              </button>
+              <a href="/resume" className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-5 py-3 text-sm font-semibold text-[#111113] transition-all duration-300 hover:border-[#32d6c5] hover:text-[#0d9488]">
+                <span>View resume</span>
+              </a>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-5 border-t border-black/10 pt-6 text-sm text-slate-600">
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-[#0d9488]" />
+                {HERO_DATA.location}
+              </span>
+              <span>Product engineering · systems thinking · design-conscious build</span>
+            </div>
+          </div>
+
+          <div
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
+            className="relative mx-auto flex w-full max-w-[430px] items-center justify-center"
+          >
+            <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-[#32d6c5]/20 via-transparent to-[#f05a3c]/10 blur-3xl" />
+            <motion.div
+              animate={{ x: mousePos.x, y: mousePos.y }}
+              transition={{ type: 'spring', stiffness: 180, damping: 24 }}
+              className="relative w-full overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-[0_35px_80px_rgba(21,21,21,0.08)]"
+            >
+              <div className="absolute inset-0 opacity-80" style={grainStyle} />
+              <img
+                src={HERO_DATA.portraitUrl}
+                alt="Atreya Kamat"
+                className="relative aspect-[4/5] w-full object-cover object-center"
+              />
+              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-black/5 bg-white/85 px-4 py-3 backdrop-blur-sm">
+                <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500">
+                  <span>Atreya Kamat</span>
+                  <span className="text-[#0d9488]">Goa · 2026</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
-
       </div>
-
-      {/* Hero Footer Hint */}
-      <div className="pt-8 border-t border-black/5 flex justify-between items-center text-xs font-mono text-slate-400">
-        <span>BUILD ✦ CREATE ✦ TEACH ✦ SPEAK ✦ EXPERIMENT</span>
-        <span>SCROLL FOR OVERVIEW ↓</span>
-      </div>
-
     </section>
   );
 };

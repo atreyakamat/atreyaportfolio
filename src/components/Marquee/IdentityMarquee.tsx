@@ -2,23 +2,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export const IdentityMarquee: React.FC = () => {
-  const marqueeItems = [
-    "BUILD", "✦", "CREATE", "✦", "TEACH", "✦", "SPEAK", "✦", "EXPERIMENT", "✦"
-  ];
+  const marqueeItems = ['BUILD', '•', 'PERSONAL', '•', 'PRODUCT', '•', 'SYSTEMS', '•', 'CRAFT', '•'];
 
   return (
-    <section className="py-8 bg-[#111113] text-white overflow-hidden select-none border-y border-black/10">
-      <div className="flex whitespace-nowrap">
+    <section className="border-y border-black/10 bg-[#111113] py-8 text-white">
+      <div className="overflow-hidden whitespace-nowrap">
         <motion.div
           animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="flex items-center space-x-8 text-2xl sm:text-4xl md:text-5xl font-display font-bold tracking-wider opacity-90"
+          transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
+          className="flex items-center space-x-8 text-2xl font-semibold tracking-[0.28em] text-white/90 sm:text-3xl md:text-4xl"
         >
           {marqueeItems.concat(marqueeItems).concat(marqueeItems).map((item, idx) => (
-            <span
-              key={idx}
-              className={item === "✦" ? "text-[#2dd4bf] text-xl sm:text-3xl" : "hover:text-[#2dd4bf] transition-colors"}
-            >
+            <span key={idx} className={item === '•' ? 'text-[#32d6c5] text-xl sm:text-2xl' : ''}>
               {item}
             </span>
           ))}
