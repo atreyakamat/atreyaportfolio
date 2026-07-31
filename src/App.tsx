@@ -1,38 +1,37 @@
-import { CleanHeader } from './components/Navigation/CleanHeader';
-import { CleanHero } from './components/Hero/CleanHero';
-import { IdentityMarquee } from './components/Marquee/IdentityMarquee';
-import { HumanAbout } from './components/About/HumanAbout';
-import { ThingsIDoPillars } from './components/Pillars/ThingsIDoPillars';
-import { SelectedWorkGrid } from './components/Work/SelectedWorkGrid';
-import { StraightforwardExperience } from './components/Experience/StraightforwardExperience';
-import { HumanNow } from './components/Now/HumanNow';
-import { EcosystemSection } from './components/Ecosystem/EcosystemSection';
-import { SimpleContact } from './components/Contact/SimpleContact';
-import { CleanFooter } from './components/Footer/CleanFooter';
+import { useRouter } from './app/router';
+import { AboutPage } from './pages/AboutPage';
+import { ContactPage } from './pages/ContactPage';
+import { ExperiencePage } from './pages/ExperiencePage';
+import { HomePage } from './pages/HomePage';
+import { ProjectDetailPage } from './pages/ProjectDetailPage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { ResumePage } from './pages/ResumePage';
+import { SkillsPage } from './pages/SkillsPage';
 
 export function App() {
-  return (
-    <div className="min-h-screen bg-[#fafaf8] text-[#111113] relative selection:bg-[#0d9488] selection:text-white font-sans">
-      {/* Tiny Header Nav */}
-      <CleanHeader />
+  const { path } = useRouter();
 
-      {/* Main Flow */}
-      <main className="relative z-10">
-        <CleanHero />
-        <IdentityMarquee />
-        <HumanAbout />
-        <ThingsIDoPillars />
-        <SelectedWorkGrid />
-        <StraightforwardExperience />
-        <HumanNow />
-        <EcosystemSection />
-        <SimpleContact />
-      </main>
+  if (path.startsWith('/projects/')) {
+    const slug = path.replace('/projects/', '');
+    return <ProjectDetailPage slug={slug} />;
+  }
 
-      {/* Footer */}
-      <CleanFooter />
-    </div>
-  );
+  switch (path) {
+    case '/projects':
+      return <ProjectsPage />;
+    case '/experience':
+      return <ExperiencePage />;
+    case '/skills':
+      return <SkillsPage />;
+    case '/about':
+      return <AboutPage />;
+    case '/resume':
+      return <ResumePage />;
+    case '/contact':
+      return <ContactPage />;
+    default:
+      return <HomePage />;
+  }
 }
 
 export default App;

@@ -1,28 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-warm-white: #fafaf8;
-  --color-pure-white: #ffffff;
-  --color-soft-[#111113]: #111113;
-  --color-charcoal-muted: #4a4a50;
-  
-  --color-turquoise: #0d9488;
-  --color-turquoise-bright: #06b6d4;
-  --color-turquoise-glow: rgba(13, 148, 136, 0.12);
-  
-  --font-mono: "JetBrains Mono", monospace;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-display: "Plus Jakarta Sans", "Inter", sans-serif;
+  --color-porcelain: #f7f5ef;
+  --color-ink: #151515;
+  --color-aqua: #32d6c5;
+  --color-vermilion: #f05a3c;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
 }
 
 @layer base {
   :root {
-    --bg-main: #fafaf8;
+    color-scheme: light;
+    --bg-main: #f7f5ef;
     --bg-card: #ffffff;
-    --text-primary: #111113;
-    --text-secondary: #52525b;
-    --turquoise-primary: #0d9488;
-    --turquoise-light: #2dd4bf;
+    --text-primary: #151515;
+    --text-secondary: #666864;
+    --accent-aqua: #32d6c5;
+    --accent-vermilion: #f05a3c;
   }
 
   html {
@@ -30,45 +26,49 @@
   }
 
   body {
-    background-color: #fafaf8;
-    color: #111113;
+    margin: 0;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    selection-background-color: #0d9488;
-    selection-color: #ffffff;
+    text-rendering: optimizeLegibility;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 
   ::selection {
-    background: #0d9488;
+    background: var(--accent-aqua);
     color: #ffffff;
   }
 }
 
-/* Atmospheric Turquoise Glow Utility */
-.turquoise-glow {
-  background: radial-gradient(circle at center, rgba(13, 148, 136, 0.15) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 80%);
+@layer utilities {
+  .surface-soft {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(247,245,239,0.96));
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
-.turquoise-light-aura {
-  box-shadow: 0 20px 60px -15px rgba(13, 148, 136, 0.2);
-}
-
-/* Custom Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fafaf8;
+  background: #f7f5ef;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(13, 148, 136, 0.25);
+  background: rgba(50, 214, 197, 0.35);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(13, 148, 136, 0.5);
+  background: rgba(50, 214, 197, 0.6);
 }
