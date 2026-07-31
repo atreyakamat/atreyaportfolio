@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
-import { Briefcase, MapPin } from 'lucide-react';
+import { RouteLink } from '../app/router';
 import { experience } from '../content/experience';
 import { updateSeo } from '../lib/seo';
 import { PageShell } from './PageShell';
+import { InteractiveButton } from '../components/ui/InteractiveButton';
+import { FileText } from 'lucide-react';
 
 export function ExperiencePage() {
   useEffect(() => {
@@ -12,58 +14,87 @@ export function ExperiencePage() {
       path: '/experience',
     });
   }, []);
+
   return (
-    <PageShell className="px-6">
-      <section className="mx-auto flex max-w-6xl flex-col gap-10">
-        <div className="max-w-3xl space-y-4">
-          <span className="block text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#0d9488]">
-            EXPERIENCE // BUILDING IN PUBLIC
+    <PageShell className="px-6 py-12">
+      <section className="mx-auto max-w-4xl space-y-16">
+        {/* Page Header */}
+        <div className="space-y-4 max-w-2xl">
+          <span className="block text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#087f78]">
+            PROFESSIONAL HISTORY // EDITORIAL CV
           </span>
-          <h1 className="text-4xl font-bold tracking-tight text-[#111113] sm:text-5xl">
-            A track record shaped by execution, leadership and the willingness to work across product and systems.
+          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#151515] sm:text-5xl lg:text-6xl">
+            Experience & Execution
           </h1>
-          <p className="text-base leading-7 text-slate-600">
-            The work spans internships, community leadership, founder-led ventures and high-context software delivery.
+          <p className="text-base leading-relaxed text-slate-700">
+            A chronological summary of engineering roles, product ownership, student leadership and technical contributions.
           </p>
         </div>
 
-        <div className="space-y-5">
+        {/* Chronological Timeline */}
+        <div className="relative border-l border-black/15 pl-6 sm:pl-8 space-y-12">
           {experience.map((item) => (
-            <article key={item.id} className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_20px_70px_rgba(21,21,21,0.05)]">
-              <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm font-medium text-[#0d9488]">
-                    <Briefcase className="h-4 w-4" />
-                    {item.role}
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-semibold tracking-tight text-[#111113]">{item.organization}</h2>
-                    <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-500">
-                      {item.type && <span>{item.type}</span>}
-                      <span className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
-                        {item.location}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="max-w-2xl text-base leading-7 text-slate-600">{item.summary}</p>
+            <article key={item.id} className="relative space-y-4">
+              {/* Timeline Dot */}
+              <span className="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-[#151515] bg-[#32d6c5]" />
+
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-black/5 pb-3">
+                <div>
+                  <h2 className="font-serif text-2xl font-bold text-[#151515]">
+                    {item.role} <span className="font-sans text-lg font-normal text-slate-500">at {item.organization}</span>
+                  </h2>
+                  <p className="text-xs font-mono uppercase tracking-wider text-[#087f78] mt-1">
+                    {item.location} {item.type ? `· ${item.type}` : ''}
+                  </p>
                 </div>
 
-                <div className="rounded-[1.25rem] border border-black/10 bg-[#fafaf8] px-4 py-3 text-sm font-mono uppercase tracking-[0.24em] text-slate-500">
+                <span className="inline-block font-mono text-xs font-semibold uppercase tracking-widest text-slate-600 rounded-md bg-[#F7F5EF] px-3 py-1 border border-black/5">
                   {item.period}
-                </div>
+                </span>
               </div>
 
-              <ul className="mt-6 space-y-3 text-sm leading-7 text-slate-600">
+              <p className="text-sm leading-relaxed text-slate-700 font-medium">
+                {item.summary}
+              </p>
+
+              <ul className="space-y-2 text-sm text-slate-600 leading-relaxed pt-1">
                 {item.contributions.map((contribution) => (
-                  <li key={contribution} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#0d9488]" />
+                  <li key={contribution} className="flex gap-2.5 items-start">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#151515]" />
                     <span>{contribution}</span>
                   </li>
                 ))}
               </ul>
+
+              {item.relatedProjectSlugs && item.relatedProjectSlugs.length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-2">
+                  <span className="text-xs font-mono text-slate-500 uppercase tracking-wider self-center">Related Work:</span>
+                  {item.relatedProjectSlugs.map((slug) => (
+                    <RouteLink
+                      key={slug}
+                      to={`/projects/${slug}`}
+                      className="text-xs font-mono font-semibold uppercase tracking-wider text-[#087f78] underline hover:text-[#151515]"
+                    >
+                      {slug}
+                    </RouteLink>
+                  ))}
+                </div>
+              )}
             </article>
           ))}
+        </div>
+
+        {/* Formal Resume Link */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-black/10 bg-[#F7F5EF] p-8">
+          <div>
+            <h3 className="font-serif text-2xl font-bold text-[#151515]">Need the formal document?</h3>
+            <p className="text-sm text-slate-600 mt-1">View or download the official single-page PDF resume.</p>
+          </div>
+          <RouteLink to="/resume">
+            <InteractiveButton variant="primary" icon={<FileText className="h-4 w-4" />}>
+              View Formal Resume
+            </InteractiveButton>
+          </RouteLink>
         </div>
       </section>
     </PageShell>

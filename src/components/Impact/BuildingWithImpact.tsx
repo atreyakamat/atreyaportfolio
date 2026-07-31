@@ -1,84 +1,88 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Cpu, Globe, Layers3, Sparkles, Workflow } from 'lucide-react';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
-const iconMap = [
-  { icon: Cpu, label: 'systems' },
-  { icon: Globe, label: 'web' },
-  { icon: Layers3, label: 'product' },
-  { icon: Sparkles, label: 'ai' },
-  { icon: Workflow, label: 'ops' },
+const techStack = [
+  { name: 'React', label: 'REACT' },
+  { name: 'TypeScript', label: 'TS' },
+  { name: 'Electron', label: 'ELECTRON' },
+  { name: 'Node.js', label: 'NODE' },
+  { name: 'Docker', label: 'DOCKER' },
+  { name: 'PostgreSQL', label: 'POSTGRES' },
+  { name: 'Python', label: 'PYTHON' },
+  { name: 'AI Tooling', label: 'AI' },
 ];
 
 export const BuildingWithImpact: React.FC = () => {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="section-shell px-6 lg:px-8">
-      <div className="container-shell overflow-hidden rounded-[2.5rem] border border-black/10 bg-[#111113] p-8 text-white shadow-[0_24px_80px_rgba(21,21,21,0.16)] sm:p-10 lg:p-14">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="space-y-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#32d6c5]">BUILDING WITH IMPACT</p>
-            <h2 className="font-serif text-4xl font-semibold leading-[0.92] tracking-[-0.03em] sm:text-5xl lg:text-6xl">
+    <section className="section-shell px-6 lg:px-8 py-24 bg-[#F7F5EF]">
+      <div className="container-shell relative overflow-hidden rounded-[2.5rem] border border-black/10 bg-[#151515] p-8 text-white shadow-2xl sm:p-12 lg:p-16">
+        {/* Poster Background Typography */}
+        <div className="relative z-10 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+          <div className="space-y-6 max-w-xl">
+            <span className="text-xs font-semibold uppercase tracking-[0.35em] text-[#32d6c5]">
+              SYSTEMS & CRAFT
+            </span>
+            <h2 className="font-serif text-4xl font-semibold leading-[0.95] tracking-[-0.03em] text-white sm:text-5xl lg:text-6xl">
               Building work that is useful, legible and durable.
             </h2>
-            <p className="max-w-xl text-base leading-8 text-white/75">
-              The work moves between product surfaces, infrastructure thinking, AI-assisted workflows and the small details that make software feel calm rather than noisy.
+            <p className="text-base leading-8 text-white/75">
+              Moving between product surfaces, infrastructure thinking, AI workflows and the small details that make software feel calm and reliable.
             </p>
             <div className="flex flex-wrap gap-2 pt-2">
-              {['Systems thinking', 'Product rigor', 'Implementation detail', 'Thoughtful motion'].map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80">
-                  {item}
+              {['Product Rigor', 'Systems Architecture', 'Clean Execution', 'Thoughtful Motion'].map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/15 bg-white/10 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/80"
+                >
+                  {tag}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="relative min-h-[320px] rounded-[2rem] border border-white/10 bg-[#f7f5ef] p-6 text-[#111113]">
-            <div className="absolute inset-0 opacity-15 [background-image:radial-gradient(circle_at_20%_20%,_#32d6c5_0_14%,_transparent_14%),radial-gradient(circle_at_80%_0%,_#f05a3c_0_16%,_transparent_16%)]" />
-            <div className="absolute left-6 top-6 text-[2.4rem] font-semibold uppercase tracking-[0.25em] text-[#111113]/70 sm:text-[3rem] lg:text-[3.6rem]">
-              BUILDING
-            </div>
-            <div className="absolute bottom-6 left-6 text-[2.4rem] font-semibold uppercase tracking-[0.25em] text-[#111113]/70 sm:text-[3rem] lg:text-[3.6rem]">
-              WITH
-            </div>
-            <div className="absolute bottom-20 right-6 text-[2.4rem] font-semibold uppercase tracking-[0.25em] text-[#111113]/70 sm:text-[3rem] lg:text-[3.6rem]">
-              IMPACT
+          {/* Studio Poster & SVG Path Marquee */}
+          <div className="relative min-h-[380px] w-full overflow-hidden rounded-[2rem] border border-white/15 bg-[#F7F5EF] p-8 text-[#151515]">
+            {/* Oversized Studio Poster Typography */}
+            <div className="absolute inset-0 flex flex-col justify-between p-6 opacity-20 select-none pointer-events-none font-serif font-black uppercase leading-none tracking-tighter text-[#151515]">
+              <span className="text-5xl sm:text-7xl lg:text-8xl">BUILDING</span>
+              <span className="text-5xl sm:text-7xl lg:text-8xl text-right">WITH</span>
+              <span className="text-5xl sm:text-7xl lg:text-8xl text-center text-[#087f78]">IMPACT</span>
             </div>
 
+            {/* Marquee Along SVG Path */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative h-40 w-40 rounded-full border border-black/10 bg-white/70 backdrop-blur sm:h-48 sm:w-48">
-                <svg viewBox="0 0 220 220" className="h-full w-full">
-                  <path id="impact-path" d="M110 15C160 15 200 55 200 110C200 165 160 205 110 205C60 205 20 165 20 110C20 55 60 15 110 15" fill="none" stroke="transparent" />
-                  {iconMap.map((item, index) => {
-                    const angle = (index / iconMap.length) * Math.PI * 2 - Math.PI / 2;
-                    const x = 110 + Math.cos(angle) * 72;
-                    const y = 110 + Math.sin(angle) * 72;
-                    const Icon = item.icon;
-                    return (
-                      <g key={item.label}>
-                        <circle cx={x} cy={y} r="18" fill="#111113" />
-                        <foreignObject x={x - 12} y={y - 12} width="24" height="24">
-                          <div className="flex h-full w-full items-center justify-center text-white">
-                            <Icon className="h-4 w-4" />
-                          </div>
-                        </foreignObject>
-                      </g>
-                    );
-                  })}
-                </svg>
-                <motion.div
-                  animate={reducedMotion ? undefined : { rotate: 360 }}
-                  transition={reducedMotion ? undefined : { duration: 26, repeat: Infinity, ease: 'linear' }}
-                  className="absolute inset-0"
-                >
-                  <svg viewBox="0 0 220 220" className="h-full w-full">
-                    <path d="M110 15C160 15 200 55 200 110C200 165 160 205 110 205C60 205 20 165 20 110C20 55 60 15 110 15" fill="none" stroke="#32d6c5" strokeWidth="1.5" strokeDasharray="4 6" />
-                  </svg>
-                </motion.div>
-                <div className="absolute inset-[26%] rounded-full border border-[#32d6c5]/20" />
-              </div>
+              <svg viewBox="0 0 500 350" className="h-full w-full max-w-lg">
+                {/* Visual Guide Path */}
+                <path
+                  id="marquee-svg-path"
+                  d="M 50,175 C 100,50 200,50 250,175 C 300,300 400,300 450,175 C 400,50 300,50 250,175 C 200,300 100,300 50,175 Z"
+                  fill="none"
+                  stroke="#32d6c5"
+                  strokeWidth="2"
+                  strokeDasharray="6 8"
+                  opacity="0.6"
+                />
+
+                {/* Animated Text along SVG Path */}
+                <text className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] fill-[#151515]">
+                  <textPath href="#marquee-svg-path" startOffset="0%">
+                    {reducedMotion ? (
+                      techStack.map((t) => `• ${t.label} `).join(' ')
+                    ) : (
+                      <animate
+                        attributeName="startOffset"
+                        from="0%"
+                        to="100%"
+                        dur="20s"
+                        repeatCount="indefinite"
+                      />
+                    )}
+                    {techStack.map((t) => `• ${t.label} `).join(' ')} {techStack.map((t) => `• ${t.label} `).join(' ')}
+                  </textPath>
+                </text>
+              </svg>
             </div>
           </div>
         </div>

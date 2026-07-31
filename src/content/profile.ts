@@ -48,29 +48,47 @@ export const ecosystem = [
   },
 ];
 
-export const archiveItems = [
+export interface ArchiveItem {
+  label: string;
+  category: string;
+  aspect: string;
+  image: string;
+  alt: string;
+}
+
+export const archiveItems: ArchiveItem[] = [
   {
-    label: 'SparkPlus production work',
+    label: 'SparkPlus Production Engineering',
+    category: 'Work',
+    aspect: 'aspect-[4/5]',
     image: portrait,
     alt: 'Atreya Kamat working at a laptop in a bright studio space',
   },
   {
-    label: 'Goa-based product building',
+    label: 'Product Design & System Architecture',
+    category: 'Projects',
+    aspect: 'aspect-[16/9]',
     image: candid,
     alt: 'Atreya Kamat working on a laptop beside a window in Goa',
   },
   {
-    label: 'ACCESS Student Council',
+    label: 'ACCESS Student Council Leadership',
+    category: 'Community work',
+    aspect: 'aspect-[3/4]',
     image: portrait,
-    alt: 'Portrait of Atreya Kamat used as a personal archive image',
+    alt: 'Portrait of Atreya Kamat representing student leadership',
   },
   {
-    label: 'Techyothon and Tech Urja 2025',
+    label: 'Techyothon & Engineering Workshops 2025',
+    category: 'Workshops',
+    aspect: 'aspect-[4/5]',
     image: candid,
     alt: 'Atreya Kamat in a work setting, representing student leadership archive material',
   },
   {
-    label: "Stix 'N' Vibes",
+    label: "Stix 'N' Vibes Sticker Venture",
+    category: 'Creative work',
+    aspect: 'aspect-[1/1]',
     image: portrait,
     alt: 'Atreya Kamat portrait used for entrepreneurship archive material',
   },
