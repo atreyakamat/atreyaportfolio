@@ -1,0 +1,1067 @@
+﻿diff --git a/src/App.tsx b/src/App.tsx
+index cf7cb80..a0ebe5e 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,37 +1,54 @@
++import { Suspense, lazy } from 'react';
+ import { useRouter } from './app/router';
+-import { AboutPage } from './pages/AboutPage';
+-import { ContactPage } from './pages/ContactPage';
+-import { ExperiencePage } from './pages/ExperiencePage';
+-import { HomePage } from './pages/HomePage';
+-import { ProjectDetailPage } from './pages/ProjectDetailPage';
+-import { ProjectsPage } from './pages/ProjectsPage';
+-import { ResumePage } from './pages/ResumePage';
+-import { SkillsPage } from './pages/SkillsPage';
++import { ErrorBoundary } from './pages/ErrorBoundary';
++import { LoadingPage } from './pages/LoadingPage';
++import { NotFoundPage } from './pages/NotFoundPage';
++
++const HomePage = lazy(() => import('./pages/HomePage').then((module) => ({ default: module.HomePage })));
++const AboutPage = lazy(() => import('./pages/AboutPage').then((module) => ({ default: module.AboutPage })));
++const ContactPage = lazy(() => import('./pages/ContactPage').then((module) => ({ default: module.ContactPage })));
++const ExperiencePage = lazy(() => import('./pages/ExperiencePage').then((module) => ({ default: module.ExperiencePage })));
++const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then((module) => ({ default: module.ProjectsPage })));
++const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage').then((module) => ({ default: module.ProjectDetailPage })));
++const ResumePage = lazy(() => import('./pages/ResumePage').then((module) => ({ default: module.ResumePage })));
++const SkillsPage = lazy(() => import('./pages/SkillsPage').then((module) => ({ default: module.SkillsPage })));
+ 
+ export function App() {
+   const { path } = useRouter();
+ 
+-  if (path.startsWith('/projects/')) {
+-    const slug = path.replace('/projects/', '');
+-    return <ProjectDetailPage slug={slug} />;
+-  }
++  const renderRoute = () => {
++    if (path.startsWith('/projects/')) {
++      const slug = path.replace('/projects/', '');
++      return <ProjectDetailPage slug={slug} />;
++    }
++
++    switch (path) {
++      case '/projects':
++        return <ProjectsPage />;
++      case '/experience':
++        return <ExperiencePage />;
++      case '/skills':
++        return <SkillsPage />;
++      case '/about':
++        return <AboutPage />;
++      case '/resume':
++        return <ResumePage />;
++      case '/contact':
++        return <ContactPage />;
++      case '/':
++        return <HomePage />;
++      default:
++        return <NotFoundPage />;
++    }
++  };
+ 
+-  switch (path) {
+-    case '/projects':
+-      return <ProjectsPage />;
+-    case '/experience':
+-      return <ExperiencePage />;
+-    case '/skills':
+-      return <SkillsPage />;
+-    case '/about':
+-      return <AboutPage />;
+-    case '/resume':
+-      return <ResumePage />;
+-    case '/contact':
+-      return <ContactPage />;
+-    default:
+-      return <HomePage />;
+-  }
++  return (
++    <ErrorBoundary>
++      <Suspense fallback={<LoadingPage />}>
++        {renderRoute()}
++      </Suspense>
++    </ErrorBoundary>
++  );
+ }
+ 
+ export default App;
+diff --git a/src/main.tsx b/src/main.tsx
+index 8a6210f..9dd514f 100644
+--- a/src/main.tsx
++++ b/src/main.tsx
+@@ -1,13 +1,23 @@
+ import { StrictMode } from 'react';
+ import { createRoot } from 'react-dom/client';
+-import './index.css';
+-import App from './App.tsx';
++import './styles/variables.css';
++import './styles/globals.css';
++import './styles/typography.css';
++import './styles/layout.css';
++import './styles/ui.css';
++import './styles/animations.css';
++import App from './App';
+ import { RouterProvider } from './app/router';
++import { ThemeProvider } from './app/providers/ThemeProvider';
++import { ScrollRestoration } from './app/providers/ScrollRestoration';
+ 
+ createRoot(document.getElementById('root')!).render(
+   <StrictMode>
+     <RouterProvider>
+-      <App />
++      <ThemeProvider>
++        <ScrollRestoration />
++        <App />
++      </ThemeProvider>
+     </RouterProvider>
+   </StrictMode>,
+ );
+diff --git a/src/pages/AboutPage.tsx b/src/pages/AboutPage.tsx
+index 475df9a..842b232 100644
+--- a/src/pages/AboutPage.tsx
++++ b/src/pages/AboutPage.tsx
+@@ -1,79 +1,27 @@
+ import { useEffect } from 'react';
+-import { profile } from '../content/profile';
+ import { updateSeo } from '../lib/seo';
+ import { PageShell } from './PageShell';
+-import { Backlight } from '../components/ui/Backlight';
+-import { InteractiveButton } from '../components/ui/InteractiveButton';
+-import { Mail } from 'lucide-react';
++import { PageTitle, BodyText } from '../components/layout/primitives';
++import { Placeholder } from '../components/ui/Placeholder';
+ 
+ export function AboutPage() {
+   useEffect(() => {
+     updateSeo({
+-      title: 'About Atreya Kamat',
+-      description: 'Background, human context, engineering philosophy, and community involvement of Atreya Kamat.',
++      title: 'About',
++      description: 'Scaffolded about page ready for human context and professional narrative.',
+       path: '/about',
+     });
+   }, []);
+ 
+   return (
+-    <PageShell className="px-6 py-12">
+-      <section className="mx-auto max-w-5xl space-y-16">
+-        {/* Editorial Header */}
+-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+-          <div className="space-y-6">
+-            <span className="block text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#087f78]">
+-              ABOUT // HUMAN CONTEXT
+-            </span>
+-            <h1 className="font-serif text-4xl font-bold tracking-tight text-[#151515] sm:text-5xl lg:text-6xl leading-[0.95]">
+-              Useful software, systems rigor & digital craft.
+-            </h1>
+-            <p className="text-base leading-relaxed text-slate-700">
+-              {profile.intro}
+-            </p>
+-            <div className="pt-2">
+-              <InteractiveButton href="/contact" icon={<Mail className="h-4 w-4" />}>
+-                Get In Touch
+-              </InteractiveButton>
+-            </div>
+-          </div>
+-
+-          {/* Portrait Image with Backlight */}
+-          <Backlight color="rgba(50, 214, 197, 0.3)" intensity={35}>
+-            <div className="overflow-hidden rounded-3xl border border-black/10 bg-white shadow-xl">
+-              <img
+-                src={profile.candid || profile.portrait}
+-                alt="Atreya Kamat"
+-                className="aspect-[4/5] w-full object-cover object-center"
+-              />
+-              <div className="p-4 border-t border-black/5 bg-[#F7F5EF] text-xs font-mono uppercase tracking-wider text-slate-600 flex justify-between">
+-                <span>Atreya Kamat</span>
+-                <span>Goa, India</span>
+-              </div>
+-            </div>
+-          </Backlight>
+-        </div>
+-
+-        {/* Credibility & Philosophy */}
+-        <div className="grid gap-8 md:grid-cols-2 border-t border-black/10 pt-12">
+-          <div className="space-y-4 rounded-3xl border border-black/10 bg-white p-8 shadow-sm">
+-            <h2 className="font-serif text-2xl font-bold text-[#151515]">Key Background</h2>
+-            <ul className="space-y-3 text-sm text-slate-700">
+-              {profile.credibility.map((item) => (
+-                <li key={item} className="flex gap-3">
+-                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#087f78]" />
+-                  <span>{item}</span>
+-                </li>
+-              ))}
+-            </ul>
+-          </div>
+-
+-          <div className="space-y-4 rounded-3xl border border-black/10 bg-[#F7F5EF] p-8">
+-            <h2 className="font-serif text-2xl font-bold text-[#151515]">Engineering Philosophy</h2>
+-            <p className="text-sm leading-relaxed text-slate-700">
+-              Software is best when it solves real operational bottlenecks calmly. I prioritize proof over claims, clean system design, and thoughtful user workflows.
+-            </p>
+-          </div>
+-        </div>
++    <PageShell>
++      <section className="page-shell__content">
++        <PageTitle>About</PageTitle>
++        <BodyText>This section will introduce Atreya with background, philosophy, and personal context.</BodyText>
++        <Placeholder
++          title="About section scaffold"
++          description="A dedicated about section will be implemented here with profile details, credibility markers, and core values."
++        />
+       </section>
+     </PageShell>
+   );
+diff --git a/src/pages/ContactPage.tsx b/src/pages/ContactPage.tsx
+index 1eb02e6..d5b58ef 100644
+--- a/src/pages/ContactPage.tsx
++++ b/src/pages/ContactPage.tsx
+@@ -1,128 +1,24 @@
+ import { useEffect } from 'react';
+-import { Mail, MapPin, Phone, ExternalLink } from 'lucide-react';
+-import { profile } from '../content/profile';
+ import { updateSeo } from '../lib/seo';
+ import { PageShell } from './PageShell';
+-import { TextAlongPath } from '../components/ui/TextAlongPath';
+-import { InteractiveButton } from '../components/ui/InteractiveButton';
+-import { GithubIcon, LinkedinIcon } from '../components/ui/Icons';
++import { PageTitle, BodyText } from '../components/layout/primitives';
++import { ContactSection } from '../components/sections/ContactSection';
+ 
+ export function ContactPage() {
+   useEffect(() => {
+     updateSeo({
+       title: 'Contact',
+-      description: 'Get in touch with Atreya Kamat for product work, software engineering and collaborative building.',
++      description: 'Scaffolded contact page prepared for future email, phone, and social touchpoints.',
+       path: '/contact',
+     });
+   }, []);
+ 
+   return (
+-    <PageShell className="px-6 py-8">
+-      <section className="mx-auto max-w-5xl space-y-12">
+-        {/* Expressive Fancy Components Text Along Path Header */}
+-        <div className="space-y-4 text-center">
+-          <span className="block text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#087f78]">
+-            GET IN TOUCH // OPEN FOR PROJECTS
+-          </span>
+-          <TextAlongPath text="LET'S BUILD SOMETHING USEFUL TOGETHER ΓÇó GET IN TOUCH ΓÇó ATREYA KAMAT ΓÇó " />
+-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-700">
+-            Have a product, project, or engineering role in mind? Reach out directly via email, phone, or connect on LinkedIn and GitHub.
+-          </p>
+-        </div>
+-
+-        {/* Clear Actionable Contact Cards */}
+-        <div className="grid gap-6 md:grid-cols-2">
+-          <div className="rounded-3xl border border-black/10 bg-white p-8 shadow-sm space-y-4">
+-            <div className="flex items-center gap-3">
+-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#32d6c5]/20 text-[#087f78]">
+-                <Mail className="h-5 w-5" />
+-              </div>
+-              <div>
+-                <h3 className="font-serif text-lg font-bold text-[#151515]">Direct Email</h3>
+-                <p className="text-xs text-slate-500 font-mono">{profile.email}</p>
+-              </div>
+-            </div>
+-            <p className="text-xs text-slate-600 leading-relaxed">
+-              Best route for project inquiries, engineering opportunities, or detailed collaboration proposals.
+-            </p>
+-            <div className="pt-2">
+-              <InteractiveButton href={`mailto:${profile.email}`} variant="primary">
+-                Send Email
+-              </InteractiveButton>
+-            </div>
+-          </div>
+-
+-          <div className="rounded-3xl border border-black/10 bg-white p-8 shadow-sm space-y-4">
+-            <div className="flex items-center gap-3">
+-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#32d6c5]/20 text-[#087f78]">
+-                <Phone className="h-5 w-5" />
+-              </div>
+-              <div>
+-                <h3 className="font-serif text-lg font-bold text-[#151515]">Phone & WhatsApp</h3>
+-                <p className="text-xs text-slate-500 font-mono">{profile.phone}</p>
+-              </div>
+-            </div>
+-            <p className="text-xs text-slate-600 leading-relaxed">
+-              Available for direct calls and WhatsApp messaging for urgent product discussions.
+-            </p>
+-            <div className="pt-2">
+-              <InteractiveButton href={`tel:${profile.phone}`} variant="secondary">
+-                Call / Message
+-              </InteractiveButton>
+-            </div>
+-          </div>
+-
+-          <div className="rounded-3xl border border-black/10 bg-white p-8 shadow-sm space-y-4">
+-            <div className="flex items-center gap-3">
+-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-[#151515]">
+-                <LinkedinIcon className="h-5 w-5" />
+-              </div>
+-              <div>
+-                <h3 className="font-serif text-lg font-bold text-[#151515]">LinkedIn</h3>
+-                <p className="text-xs text-slate-500">atreyakamat</p>
+-              </div>
+-            </div>
+-            <p className="text-xs text-slate-600 leading-relaxed">
+-              Professional history, endorsements, and network connections.
+-            </p>
+-            <div className="pt-2">
+-              <InteractiveButton href={profile.linkedin} target="_blank" rel="noopener noreferrer" variant="secondary">
+-                Connect on LinkedIn
+-                <ExternalLink className="h-3.5 w-3.5" />
+-              </InteractiveButton>
+-            </div>
+-          </div>
+-
+-          <div className="rounded-3xl border border-black/10 bg-white p-8 shadow-sm space-y-4">
+-            <div className="flex items-center gap-3">
+-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-[#151515]">
+-                <GithubIcon className="h-5 w-5" />
+-              </div>
+-              <div>
+-                <h3 className="font-serif text-lg font-bold text-[#151515]">GitHub</h3>
+-                <p className="text-xs text-slate-500">atreyakamat</p>
+-              </div>
+-            </div>
+-            <p className="text-xs text-slate-600 leading-relaxed">
+-              Inspect open-source repositories, activity logs, and technical codebases.
+-            </p>
+-            <div className="pt-2">
+-              <InteractiveButton href={profile.github} target="_blank" rel="noopener noreferrer" variant="secondary">
+-                View Repositories
+-                <ExternalLink className="h-3.5 w-3.5" />
+-              </InteractiveButton>
+-            </div>
+-          </div>
+-        </div>
+-
+-        {/* Location Banner */}
+-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-black/10 bg-[#F7F5EF] p-6">
+-          <div className="flex items-center gap-3">
+-            <MapPin className="h-5 w-5 text-[#087f78]" />
+-            <span className="text-sm font-semibold text-[#151515]">Based in {profile.location}</span>
+-          </div>
+-          <span className="text-xs font-mono text-slate-600">Available for remote & hybrid roles worldwide</span>
+-        </div>
++    <PageShell>
++      <section className="page-shell__content">
++        <PageTitle>Contact</PageTitle>
++        <BodyText>This page will house contact details, form actions, and connection pathways.</BodyText>
++        <ContactSection />
+       </section>
+     </PageShell>
+   );
+diff --git a/src/pages/ExperiencePage.tsx b/src/pages/ExperiencePage.tsx
+index 5452586..3a6d078 100644
+--- a/src/pages/ExperiencePage.tsx
++++ b/src/pages/ExperiencePage.tsx
+@@ -1,101 +1,24 @@
+ import { useEffect } from 'react';
+-import { RouteLink } from '../app/router';
+-import { experience } from '../content/experience';
+ import { updateSeo } from '../lib/seo';
+ import { PageShell } from './PageShell';
+-import { InteractiveButton } from '../components/ui/InteractiveButton';
+-import { FileText } from 'lucide-react';
++import { PageTitle, BodyText } from '../components/layout/primitives';
++import { ExperienceTimeline } from '../components/sections/ExperienceTimeline';
+ 
+ export function ExperiencePage() {
+   useEffect(() => {
+     updateSeo({
+       title: 'Experience',
+-      description: 'Professional experience spanning product work, software engineering, leadership and community building.',
++      description: 'Scaffolded experience page with a timeline placeholder for future professional history content.',
+       path: '/experience',
+     });
+   }, []);
+ 
+   return (
+-    <PageShell className="px-6 py-12">
+-      <section className="mx-auto max-w-4xl space-y-16">
+-        {/* Page Header */}
+-        <div className="space-y-4 max-w-2xl">
+-          <span className="block text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#087f78]">
+-            PROFESSIONAL HISTORY // EDITORIAL CV
+-          </span>
+-          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#151515] sm:text-5xl lg:text-6xl">
+-            Experience & Execution
+-          </h1>
+-          <p className="text-base leading-relaxed text-slate-700">
+-            A chronological summary of engineering roles, product ownership, student leadership and technical contributions.
+-          </p>
+-        </div>
+-
+-        {/* Chronological Timeline */}
+-        <div className="relative border-l border-black/15 pl-6 sm:pl-8 space-y-12">
+-          {experience.map((item) => (
+-            <article key={item.id} className="relative space-y-4">
+-              {/* Timeline Dot */}
+-              <span className="absolute -left-[31px] sm:-left-[39px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-[#151515] bg-[#32d6c5]" />
+-
+-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-black/5 pb-3">
+-                <div>
+-                  <h2 className="font-serif text-2xl font-bold text-[#151515]">
+-                    {item.role} <span className="font-sans text-lg font-normal text-slate-500">at {item.organization}</span>
+-                  </h2>
+-                  <p className="text-xs font-mono uppercase tracking-wider text-[#087f78] mt-1">
+-                    {item.location} {item.type ? `┬╖ ${item.type}` : ''}
+-                  </p>
+-                </div>
+-
+-                <span className="inline-block font-mono text-xs font-semibold uppercase tracking-widest text-slate-600 rounded-md bg-[#F7F5EF] px-3 py-1 border border-black/5">
+-                  {item.period}
+-                </span>
+-              </div>
+-
+-              <p className="text-sm leading-relaxed text-slate-700 font-medium">
+-                {item.summary}
+-              </p>
+-
+-              <ul className="space-y-2 text-sm text-slate-600 leading-relaxed pt-1">
+-                {item.contributions.map((contribution) => (
+-                  <li key={contribution} className="flex gap-2.5 items-start">
+-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#151515]" />
+-                    <span>{contribution}</span>
+-                  </li>
+-                ))}
+-              </ul>
+-
+-              {item.relatedProjectSlugs && item.relatedProjectSlugs.length > 0 && (
+-                <div className="flex flex-wrap gap-2 pt-2">
+-                  <span className="text-xs font-mono text-slate-500 uppercase tracking-wider self-center">Related Work:</span>
+-                  {item.relatedProjectSlugs.map((slug) => (
+-                    <RouteLink
+-                      key={slug}
+-                      to={`/projects/${slug}`}
+-                      className="text-xs font-mono font-semibold uppercase tracking-wider text-[#087f78] underline hover:text-[#151515]"
+-                    >
+-                      {slug}
+-                    </RouteLink>
+-                  ))}
+-                </div>
+-              )}
+-            </article>
+-          ))}
+-        </div>
+-
+-        {/* Formal Resume Link */}
+-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-black/10 bg-[#F7F5EF] p-8">
+-          <div>
+-            <h3 className="font-serif text-2xl font-bold text-[#151515]">Need the formal document?</h3>
+-            <p className="text-sm text-slate-600 mt-1">View or download the official single-page PDF resume.</p>
+-          </div>
+-          <RouteLink to="/resume">
+-            <InteractiveButton variant="primary" icon={<FileText className="h-4 w-4" />}>
+-              View Formal Resume
+-            </InteractiveButton>
+-          </RouteLink>
+-        </div>
++    <PageShell>
++      <section className="page-shell__content">
++        <PageTitle>Experience</PageTitle>
++        <BodyText>Timeline sections, career details, and related project references will be created here.</BodyText>
++        <ExperienceTimeline />
+       </section>
+     </PageShell>
+   );
+diff --git a/src/pages/HomePage.tsx b/src/pages/HomePage.tsx
+index 5aec6f4..f72c157 100644
+--- a/src/pages/HomePage.tsx
++++ b/src/pages/HomePage.tsx
+@@ -1,32 +1,26 @@
+ import { useEffect } from 'react';
+-import { CleanHero } from '../components/Hero/CleanHero';
+-import { IdentityMarquee } from '../components/Marquee/IdentityMarquee';
+-import { HumanAbout } from '../components/About/HumanAbout';
+-import { StackedProjectsSection } from '../components/Work/StackedProjectsSection';
+-import { LifeArchiveStrip } from '../components/Archive/LifeArchiveStrip';
+-import { BuildingWithImpact } from '../components/Impact/BuildingWithImpact';
+-import { SimpleContact } from '../components/Contact/SimpleContact';
+ import { updateSeo } from '../lib/seo';
+ import { PageShell } from './PageShell';
++import { HeroSection } from '../components/sections/HeroSection';
++import { FeaturedProjects } from '../components/sections/FeaturedProjects';
++import { LifeArchive } from '../components/sections/LifeArchive';
++import { ContactSection } from '../components/sections/ContactSection';
+ 
+ export function HomePage() {
+   useEffect(() => {
+     updateSeo({
+-      title: 'Atreya Kamat',
+-      description: 'Product builder and software engineer crafting useful products, systems and thoughtful digital experiences.',
++      title: 'Home',
++      description: 'Scaffolded homepage for Atreya Kamat with production-ready layout and placeholder sections.',
+       path: '/',
+     });
+   }, []);
+ 
+   return (
+     <PageShell>
+-      <CleanHero />
+-      <IdentityMarquee />
+-      <HumanAbout />
+-      <StackedProjectsSection />
+-      <LifeArchiveStrip />
+-      <BuildingWithImpact />
+-      <SimpleContact />
++      <HeroSection />
++      <FeaturedProjects />
++      <LifeArchive />
++      <ContactSection />
+     </PageShell>
+   );
+ }
+diff --git a/src/pages/ProjectDetailPage.tsx b/src/pages/ProjectDetailPage.tsx
+index cb699dc..9c03d83 100644
+--- a/src/pages/ProjectDetailPage.tsx
++++ b/src/pages/ProjectDetailPage.tsx
+@@ -1,201 +1,32 @@
+ import { useEffect } from 'react';
+-import { ArrowLeft, ArrowUpRight, ExternalLink } from 'lucide-react';
+-import { RouteLink } from '../app/router';
+-import { getAdjacentProjects, getProject } from '../content/projects';
+ import { updateSeo } from '../lib/seo';
+ import { PageShell } from './PageShell';
+-import { Backlight } from '../components/ui/Backlight';
+-import { TextHighlighter } from '../components/ui/TextHighlighter';
+-import { InteractiveButton } from '../components/ui/InteractiveButton';
++import { PageTitle, BodyText } from '../components/layout/primitives';
++import { Placeholder } from '../components/ui/Placeholder';
+ 
+ interface ProjectDetailPageProps {
+   slug: string;
+ }
+ 
+ export function ProjectDetailPage({ slug }: ProjectDetailPageProps) {
+-  const project = getProject(slug);
+-  const adjacent = project ? getAdjacentProjects(slug) : { previous: undefined, next: undefined };
+-
+   useEffect(() => {
+-    if (!project) {
+-      updateSeo({
+-        title: 'Project not found',
+-        description: 'The requested project could not be found in the portfolio archive.',
+-        path: `/projects/${slug}`,
+-      });
+-      return;
+-    }
+-
+     updateSeo({
+-      title: project.title,
+-      description: project.shortDescription,
+-      path: `/projects/${project.slug}`,
++      title: `Project ${slug}`,
++      description: 'Scaffolded project detail page for future case study content.',
++      path: `/projects/${slug}`,
+     });
+-  }, [project, slug]);
+-
+-  if (!project) {
+-    return (
+-      <PageShell className="px-6">
+-        <section className="mx-auto max-w-4xl py-20 text-center">
+-          <p className="text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#087f78]">Project not found</p>
+-          <h1 className="mt-4 font-serif text-4xl font-bold tracking-tight text-[#151515]">The requested project is not available yet.</h1>
+-          <p className="mt-4 text-base text-slate-600">Return to the project archive and choose a different case study to explore.</p>
+-          <div className="mt-8 flex justify-center">
+-            <RouteLink to="/projects">
+-              <InteractiveButton variant="secondary">
+-                <ArrowLeft className="h-4 w-4" />
+-                Back to projects
+-              </InteractiveButton>
+-            </RouteLink>
+-          </div>
+-        </section>
+-      </PageShell>
+-    );
+-  }
++  }, [slug]);
+ 
+   return (
+-    <PageShell className="px-6 py-12">
+-      <article className="mx-auto max-w-5xl space-y-16">
+-        {/* Navigation back */}
+-        <RouteLink to="/projects" className="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 hover:text-[#087f78]">
+-          <ArrowLeft className="h-4 w-4" />
+-          Back to all projects
+-        </RouteLink>
+-
+-        {/* Hero Section */}
+-        <header className="space-y-6">
+-          <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono uppercase tracking-widest text-[#087f78]">
+-            <span>{project.category} // {project.year}</span>
+-            <span className="rounded-full border border-black/10 bg-white px-3 py-1 text-slate-700 font-semibold">{project.status}</span>
+-          </div>
+-
+-          <h1 className="font-serif text-5xl font-bold tracking-[ -0.03em] text-[#151515] sm:text-6xl lg:text-7xl">
+-            {project.title}
+-          </h1>
+-
+-          <p className="max-w-3xl text-xl leading-relaxed text-slate-700">
+-            <TextHighlighter color="rgba(50, 214, 197, 0.25)">
+-              {project.shortDescription}
+-            </TextHighlighter>
+-          </p>
+-
+-          <div className="flex flex-wrap gap-4 pt-4">
+-            {project.links?.live && (
+-              <InteractiveButton href={project.links.live} target="_blank" rel="noopener noreferrer">
+-                Open Live Product
+-                <ExternalLink className="h-4 w-4" />
+-              </InteractiveButton>
+-            )}
+-            {project.links?.github && (
+-              <InteractiveButton href={project.links.github} target="_blank" rel="noopener noreferrer" variant="secondary">
+-                Inspect Source Code
+-              </InteractiveButton>
+-            )}
+-          </div>
+-        </header>
+-
+-        {/* Prominent Media Section */}
+-        {project.cover && (
+-          <section className="relative">
+-            <Backlight color="rgba(50, 214, 197, 0.25)" intensity={45}>
+-              <div className="overflow-hidden rounded-3xl border border-black/10 bg-[#151515] shadow-2xl">
+-                {project.cover.src ? (
+-                  <img src={project.cover.src} alt={project.cover.alt} className="aspect-[16/9] w-full object-cover" />
+-                ) : (
+-                  <div className="flex aspect-[16/9] w-full flex-col items-center justify-center p-8 text-center text-white bg-gradient-to-br from-slate-900 via-[#151515] to-[#087f78]/30">
+-                    <span className="text-xs font-mono uppercase tracking-widest text-[#32d6c5]">{project.category}</span>
+-                    <h3 className="mt-3 font-serif text-3xl font-bold">{project.title}</h3>
+-                    <p className="mt-2 text-sm text-white/70 max-w-lg">{project.fullDescription}</p>
+-                  </div>
+-                )}
+-              </div>
+-            </Backlight>
+-          </section>
+-        )}
+-
+-        {/* Editorial Body: Problem & Contribution */}
+-        <section className="grid gap-12 lg:grid-cols-[1fr_1.5fr] border-t border-black/10 pt-12">
+-          <div className="space-y-4">
+-            <h2 className="font-serif text-2xl font-bold text-[#151515]">Operational Problem</h2>
+-            <p className="text-base leading-8 text-slate-700">{project.problem}</p>
+-          </div>
+-
+-          <div className="space-y-4">
+-            <h2 className="font-serif text-2xl font-bold text-[#151515]">Key Contributions & Scope</h2>
+-            <ul className="space-y-4 text-base leading-7 text-slate-700">
+-              {project.contribution.map((point) => (
+-                <li key={point} className="flex gap-3">
+-                  <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-[#32d6c5]" />
+-                  <span>{point}</span>
+-                </li>
+-              ))}
+-            </ul>
+-          </div>
+-        </section>
+-
+-        {/* Key Decisions */}
+-        {project.decisions.length > 0 && (
+-          <section className="border-t border-black/10 pt-12 space-y-6">
+-            <h2 className="font-serif text-3xl font-bold text-[#151515]">Key Architectural Decisions</h2>
+-            <div className="grid gap-6 md:grid-cols-2">
+-              {project.decisions.map((d) => (
+-                <div key={d.decision} className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm space-y-3">
+-                  <h3 className="font-bold text-base text-[#151515]">{d.decision}</h3>
+-                  <p className="text-sm text-slate-600 leading-relaxed">{d.why}</p>
+-                  {d.tradeoff && (
+-                    <p className="text-xs text-slate-500 italic border-t border-black/5 pt-2">
+-                      Tradeoff: {d.tradeoff}
+-                    </p>
+-                  )}
+-                </div>
+-              ))}
+-            </div>
+-          </section>
+-        )}
+-
+-        {/* Tech Stack & Outcomes */}
+-        <section className="grid gap-8 md:grid-cols-2 border-t border-black/10 pt-12">
+-          <div className="space-y-4">
+-            <h2 className="font-serif text-2xl font-bold text-[#151515]">Technology Stack</h2>
+-            <div className="flex flex-wrap gap-2">
+-              {project.stack.map((g) => (
+-                <div key={g.label} className="rounded-xl border border-black/10 bg-white p-4 w-full">
+-                  <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#087f78]">{g.label}</span>
+-                  <p className="mt-1 text-sm font-medium text-slate-800">{g.items.join(' ┬╖ ')}</p>
+-                </div>
+-              ))}
+-            </div>
+-          </div>
+-
+-          <div className="space-y-4">
+-            <h2 className="font-serif text-2xl font-bold text-[#151515]">Outcomes & Verification</h2>
+-            <div className="space-y-3 text-sm text-slate-700 leading-relaxed">
+-              {project.outcomes.map((o) => (
+-                <div key={o} className="rounded-xl border border-black/10 bg-[#F7F5EF] p-4 font-medium text-slate-800">
+-                  {o}
+-                </div>
+-              ))}
+-            </div>
+-          </div>
+-        </section>
+-
+-        {/* Next / Previous Project Footer */}
+-        <footer className="flex items-center justify-between border-t border-black/10 pt-12">
+-          {adjacent.previous ? (
+-            <RouteLink to={`/projects/${adjacent.previous.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-[#151515] hover:text-[#087f78]">
+-              <ArrowLeft className="h-4 w-4" />
+-              {adjacent.previous.title}
+-            </RouteLink>
+-          ) : <div />}
+-
+-          {adjacent.next ? (
+-            <RouteLink to={`/projects/${adjacent.next.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-[#151515] hover:text-[#087f78]">
+-              {adjacent.next.title}
+-              <ArrowUpRight className="h-4 w-4" />
+-            </RouteLink>
+-          ) : <div />}
+-        </footer>
+-      </article>
++    <PageShell>
++      <section className="page-shell__content">
++        <PageTitle>Project Detail</PageTitle>
++        <BodyText>This page will display a project case study with page structure and narrative sections.</BodyText>
++        <Placeholder
++          title="Project detail scaffold"
++          description="Hero, context, problem, solution, outcomes, and media sections will be implemented here."
++        />
++      </section>
+     </PageShell>
+   );
+ }
+diff --git a/src/pages/ProjectsPage.tsx b/src/pages/ProjectsPage.tsx
+index 53268f6..a529070 100644
+--- a/src/pages/ProjectsPage.tsx
++++ b/src/pages/ProjectsPage.tsx
+@@ -1,115 +1,25 @@
+ import { useEffect } from 'react';
+-import { Sparkles } from 'lucide-react';
+-import { RouteLink } from '../app/router';
+-import { projects, statusLabels } from '../content/projects';
+ import { updateSeo } from '../lib/seo';
+ import { PageShell } from './PageShell';
+-import { InteractiveButton } from '../components/ui/InteractiveButton';
+-import { Backlight } from '../components/ui/Backlight';
++import { PageTitle } from '../components/layout/primitives';
++import { BodyText } from '../components/layout/primitives';
++import { FeaturedProjects } from '../components/sections/FeaturedProjects';
+ 
+ export function ProjectsPage() {
+   useEffect(() => {
+     updateSeo({
+       title: 'Projects',
+-      description: 'Curated archive of featured product work, systems, AI experiments and software projects.',
++      description: 'Scaffolded projects page ready for future case study sections and project filters.',
+       path: '/projects',
+     });
+   }, []);
+ 
+-  const featured = projects.filter((project) => project.featured);
+-  const archive = projects.filter((project) => !project.featured);
+-
+   return (
+-    <PageShell className="px-6 py-12">
+-      <section className="mx-auto flex max-w-6xl flex-col gap-12">
+-        {/* Header */}
+-        <div className="max-w-3xl space-y-4">
+-          <span className="block text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#087f78]">
+-            PROJECTS // CURATED ARCHIVE
+-          </span>
+-          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#151515] sm:text-5xl lg:text-6xl leading-[0.95]">
+-            Products, systems and software craft.
+-          </h1>
+-          <p className="max-w-2xl text-base leading-relaxed text-slate-700">
+-            A comprehensive index of product builds, infrastructure tools, AI applications and open-source software.
+-          </p>
+-        </div>
+-
+-        {/* Featured Projects Grid */}
+-        <div className="space-y-12">
+-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+-            {featured.map((project) => (
+-              <Backlight key={project.slug} color="rgba(50, 214, 197, 0.2)" className="h-full">
+-                <RouteLink
+-                  to={`/projects/${project.slug}`}
+-                  className="group flex h-full flex-col justify-between rounded-3xl border border-black/10 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#087f78]"
+-                >
+-                  <div className="space-y-4">
+-                    <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-slate-500">
+-                      <span className="text-[#087f78]">{project.category}</span>
+-                      <span>{project.year}</span>
+-                    </div>
+-
+-                    <div className="space-y-2">
+-                      <div className="flex items-center gap-1.5 text-xs font-medium text-[#087f78]">
+-                        <Sparkles className="h-3.5 w-3.5" />
+-                        Featured work
+-                      </div>
+-                      <h2 className="font-serif text-2xl font-bold text-[#151515] group-hover:text-[#087f78]">
+-                        {project.title}
+-                      </h2>
+-                      <p className="text-xs leading-relaxed text-slate-600">
+-                        {project.shortDescription}
+-                      </p>
+-                    </div>
+-                  </div>
+-
+-                  <div className="mt-6 space-y-4 border-t border-black/5 pt-4">
+-                    <div className="flex flex-wrap gap-1.5">
+-                      {project.tags.slice(0, 3).map((tag) => (
+-                        <span
+-                          key={tag}
+-                          className="rounded-full border border-black/10 bg-[#F7F5EF] px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-slate-600"
+-                        >
+-                          {tag}
+-                        </span>
+-                      ))}
+-                    </div>
+-                    <div className="flex items-center justify-between text-xs">
+-                      <span className="font-medium text-slate-500">{statusLabels[project.status]}</span>
+-                      <InteractiveButton variant="secondary" className="px-3 py-1.5 text-xs">
+-                        Explore
+-                      </InteractiveButton>
+-                    </div>
+-                  </div>
+-                </RouteLink>
+-              </Backlight>
+-            ))}
+-          </div>
+-
+-          {/* Additional Archive */}
+-          {archive.length > 0 && (
+-            <div className="rounded-3xl border border-black/10 bg-[#F7F5EF] p-8 space-y-6">
+-              <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-[#087f78]">
+-                <span>Full Archive</span>
+-                <span>{archive.length} additional projects</span>
+-              </div>
+-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+-                {archive.map((project) => (
+-                  <RouteLink
+-                    key={project.slug}
+-                    to={`/projects/${project.slug}`}
+-                    className="rounded-2xl border border-black/10 bg-white p-5 transition-colors hover:border-[#087f78]"
+-                  >
+-                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500">{project.category}</span>
+-                    <h3 className="mt-1 font-serif text-lg font-bold text-[#151515]">{project.title}</h3>
+-                    <p className="mt-2 text-xs text-slate-600">{project.shortDescription}</p>
+-                  </RouteLink>
+-                ))}
+-              </div>
+-            </div>
+-          )}
+-        </div>
++    <PageShell>
++      <section className="page-shell__content">
++        <PageTitle>Projects</PageTitle>
++        <BodyText>Browse featured work and a full archive of product case studies once implementation begins.</BodyText>
++        <FeaturedProjects />
+       </section>
+     </PageShell>
+   );
+diff --git a/src/pages/ResumePage.tsx b/src/pages/ResumePage.tsx
+index fb08547..930f3da 100644
+--- a/src/pages/ResumePage.tsx
++++ b/src/pages/ResumePage.tsx
+@@ -1,96 +1,25 @@
+ import { useEffect } from 'react';
+-import { Download, ExternalLink } from 'lucide-react';
+-import { profile, archiveItems } from '../content/profile';
+ import { updateSeo } from '../lib/seo';
+ import { PageShell } from './PageShell';
+-import { ParallaxFloating } from '../components/ui/ParallaxFloating';
+-import { InteractiveButton } from '../components/ui/InteractiveButton';
++import { PageTitle, BodyText } from '../components/layout/primitives';
++import { ResumePortal } from '../components/sections/ResumePortal';
+ 
+ export function ResumePage() {
+   useEffect(() => {
+     updateSeo({
+       title: 'Resume',
+-      description: 'Formal single-page PDF resume and professional summary for Atreya Kamat.',
++      description: 'Scaffolded resume page prepared for formal PDF access and professional summary content.',
+       path: '/resume',
+     });
+   }, []);
+ 
+-  const floatingItems = archiveItems.map((item, idx) => {
+-    const offsets = [
+-      { xOffset: 12, yOffset: 18, depth: 1.2, size: 'w-48 sm:w-56' },
+-      { xOffset: 82, yOffset: 22, depth: 1.8, size: 'w-44 sm:w-52' },
+-      { xOffset: 8, yOffset: 72, depth: 1.4, size: 'w-48 sm:w-56' },
+-      { xOffset: 85, yOffset: 68, depth: 2.1, size: 'w-44 sm:w-52' },
+-      { xOffset: 50, yOffset: 12, depth: 1.0, size: 'w-40 sm:w-48' },
+-    ];
+-    const pos = offsets[idx % offsets.length];
+-
+-    return {
+-      id: `floating-${idx}`,
+-      image: item.image,
+-      label: item.category,
+-      alt: item.alt,
+-      xOffset: pos.xOffset,
+-      yOffset: pos.yOffset,
+-      depth: pos.depth,
+-      size: pos.size,
+-    };
+-  });
+-
+   return (
+-    <PageShell className="px-6 py-8 overflow-hidden bg-[#F7F5EF]">
+-      <ParallaxFloating items={floatingItems}>
+-        {/* Central Focal Resume Card */}
+-        <div className="relative z-10 rounded-[2.5rem] border border-black/10 bg-white p-8 sm:p-12 shadow-[0_30px_90px_rgba(21,21,21,0.08)] space-y-8">
+-          <div className="space-y-3">
+-            <span className="block text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#087f78]">
+-              RESUME // FORMAL CURRICULUM VITAE
+-            </span>
+-            <h1 className="font-serif text-4xl font-bold tracking-tight text-[#151515] sm:text-5xl">
+-              Atreya Kamat
+-            </h1>
+-            <p className="text-base leading-relaxed text-slate-700 max-w-2xl">
+-              Software Engineer & Product Builder based in Goa, India. Specializing in web products, full-stack systems, automation, and AI workflows.
+-            </p>
+-          </div>
+-
+-          <div className="grid gap-6 sm:grid-cols-2 border-t border-black/10 pt-8">
+-            <div className="space-y-3 rounded-2xl border border-black/5 bg-[#F7F5EF] p-6">
+-              <h3 className="font-serif text-xl font-bold text-[#151515]">Direct Resume Access</h3>
+-              <p className="text-xs text-slate-600 leading-relaxed">
+-                Download or view the official single-page PDF document in browser.
+-              </p>
+-              <div className="pt-2">
+-                <InteractiveButton
+-                  href={`/${profile.resumeFileName}`}
+-                  target="_blank"
+-                  rel="noopener noreferrer"
+-                  icon={<Download className="h-4 w-4" />}
+-                >
+-                  Download PDF
+-                </InteractiveButton>
+-              </div>
+-            </div>
+-
+-            <div className="space-y-3 rounded-2xl border border-black/5 bg-[#F7F5EF] p-6">
+-              <h3 className="font-serif text-xl font-bold text-[#151515]">Profiles & Evidence</h3>
+-              <p className="text-xs text-slate-600 leading-relaxed">
+-                Verify open-source contributions, code commits, and professional endorsements.
+-              </p>
+-              <div className="flex flex-wrap gap-3 pt-2">
+-                <InteractiveButton href={profile.github} target="_blank" rel="noopener noreferrer" variant="secondary">
+-                  GitHub Profile
+-                  <ExternalLink className="h-3.5 w-3.5" />
+-                </InteractiveButton>
+-                <InteractiveButton href={profile.linkedin} target="_blank" rel="noopener noreferrer" variant="secondary">
+-                  LinkedIn
+-                  <ExternalLink className="h-3.5 w-3.5" />
+-                </InteractiveButton>
+-              </div>
+-            </div>
+-          </div>
+-        </div>
+-      </ParallaxFloating>
++    <PageShell>
++      <section className="page-shell__content">
++        <PageTitle>Resume</PageTitle>
++        <BodyText>This page will provide access to the formal resume and supporting professional assets.</BodyText>
++        <ResumePortal />
++      </section>
+     </PageShell>
+   );
+ }
+diff --git a/src/pages/SkillsPage.tsx b/src/pages/SkillsPage.tsx
+index 6db2291..cea3af0 100644
+--- a/src/pages/SkillsPage.tsx
++++ b/src/pages/SkillsPage.tsx
+@@ -1,77 +1,24 @@
+ import { useEffect } from 'react';
+-import { RouteLink } from '../app/router';
+-import { skillGroups } from '../content/skills';
+ import { updateSeo } from '../lib/seo';
+ import { PageShell } from './PageShell';
++import { PageTitle, BodyText } from '../components/layout/primitives';
++import { SkillsGrid } from '../components/sections/SkillsGrid';
+ 
+ export function SkillsPage() {
+   useEffect(() => {
+     updateSeo({
+-      title: 'Skills & Capabilities',
+-      description: 'Technical capabilities organized by systems, product, backend, AI and engineering craft with evidence links.',
++      title: 'Skills',
++      description: 'Scaffolded skills page for future capability categories, tooling systems, and evidence-driven sections.',
+       path: '/skills',
+     });
+   }, []);
+ 
+   return (
+-    <PageShell className="px-6 py-12">
+-      <section className="mx-auto max-w-5xl space-y-16">
+-        {/* Header */}
+-        <div className="space-y-4 max-w-3xl">
+-          <span className="block text-xs font-mono font-semibold uppercase tracking-[0.35em] text-[#087f78]">
+-            CAPABILITIES // TOOLING & SYSTEMS
+-          </span>
+-          <h1 className="font-serif text-4xl font-bold tracking-tight text-[#151515] sm:text-5xl lg:text-6xl">
+-            Practical capability organized by outcome.
+-          </h1>
+-          <p className="text-base leading-relaxed text-slate-700">
+-            Skills are backed by real production code and project evidence rather than arbitrary percentage bars.
+-          </p>
+-        </div>
+-
+-        {/* Skill Groups */}
+-        <div className="grid gap-8 md:grid-cols-2">
+-          {skillGroups.map((group) => (
+-            <article
+-              key={group.id}
+-              className="space-y-6 rounded-3xl border border-black/10 bg-white p-8 shadow-[0_15px_45px_rgba(21,21,21,0.04)]"
+-            >
+-              <div className="space-y-2 border-b border-black/5 pb-4">
+-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#087f78]">
+-                  {group.id}
+-                </span>
+-                <h2 className="font-serif text-2xl font-bold text-[#151515]">{group.title}</h2>
+-                <p className="text-sm text-slate-600 leading-relaxed">{group.summary}</p>
+-              </div>
+-
+-              <div className="space-y-3">
+-                {group.skills.map((skill) => (
+-                  <div
+-                    key={skill.name}
+-                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 rounded-xl border border-black/5 bg-[#F7F5EF] p-3 text-xs"
+-                  >
+-                    <span className="font-semibold text-[#151515] font-sans">{skill.name}</span>
+-
+-                    {skill.projectSlugs && skill.projectSlugs.length > 0 && (
+-                      <div className="flex flex-wrap items-center gap-1.5 font-mono text-[10px] text-slate-500">
+-                        <span>Used in:</span>
+-                        {skill.projectSlugs.map((slug) => (
+-                          <RouteLink
+-                            key={slug}
+-                            to={`/projects/${slug}`}
+-                            className="font-bold text-[#087f78] uppercase underline hover:text-[#151515]"
+-                          >
+-                            {slug}
+-                          </RouteLink>
+-                        ))}
+-                      </div>
+-                    )}
+-                  </div>
+-                ))}
+-              </div>
+-            </article>
+-          ))}
+-        </div>
++    <PageShell>
++      <section className="page-shell__content">
++        <PageTitle>Skills</PageTitle>
++        <BodyText>This page will organize capabilities, tools, and evidence into a production-ready architecture.</BodyText>
++        <SkillsGrid />
+       </section>
+     </PageShell>
+   );

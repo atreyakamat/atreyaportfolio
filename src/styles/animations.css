@@ -1,0 +1,17 @@
+.motion-safe .animate-fade-in {
+  animation: fadeIn var(--duration-medium) var(--easing-soft) both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(0.4rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.motion-safe .animate-slide-up {
+  animation: slideUp var(--duration-medium) var(--easing-soft) both;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
