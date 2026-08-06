@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { archiveItems } from '../../content/profile';
+import { archiveItems, archiveSection } from '../../content/profile';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
+
+function ArchiveCard({ item, children }: { item: (typeof archiveItems)[number]; children: ReactNode }) {
+  const className =
+    'w-[260px] overflow-hidden rounded-2xl border border-white/15 bg-white/5 p-3 shadow-xl transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#32d6c5]';
+
+  return item.href ? (
+    <a href={item.href} className={className} aria-label={item.alt}>
+      {children}
+    </a>
+  ) : (
+    <div className={className} aria-label={item.alt}>
+      {children}
+    </div>
+  );
+}
 
 export const LifeArchiveStrip: React.FC = () => {
   const reducedMotion = useReducedMotion();
@@ -11,13 +26,13 @@ export const LifeArchiveStrip: React.FC = () => {
       <div className="container-shell space-y-8">
         <div className="px-6 lg:px-8 max-w-3xl space-y-3">
           <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#32d6c5]">
-            LIFE // ARCHIVE
+            {archiveSection.label}
           </p>
           <h2 className="font-serif text-3xl font-semibold tracking-[-0.02em] text-white sm:text-4xl lg:text-5xl leading-[1.02]">
-            A visual record of building, community and craft.
+            {archiveSection.title}
           </h2>
           <p className="text-sm text-white/70">
-            Fragments from software development, workshops, student leadership and creative projects.
+            {archiveSection.description}
           </p>
         </div>
 
@@ -32,10 +47,7 @@ export const LifeArchiveStrip: React.FC = () => {
           {reducedMotion ? (
             <div className="flex flex-wrap justify-center gap-6 px-6">
               {archiveItems.map((item, idx) => (
-                <div
-                  key={`static-${idx}`}
-                  className="w-[260px] overflow-hidden rounded-2xl border border-white/15 bg-white/5 p-3 shadow-xl"
-                >
+                <ArchiveCard key={`static-${idx}`} item={item}>
                   <div className={`overflow-hidden rounded-xl bg-slate-800 ${item.aspect}`}>
                     <img
                       src={item.image}
@@ -44,12 +56,19 @@ export const LifeArchiveStrip: React.FC = () => {
                     />
                   </div>
                   <div className="mt-3 space-y-1">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#32d6c5]">
-                      {item.category}
-                    </span>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-[#32d6c5]">
+                        {item.category}
+                      </span>
+                      {item.year ? (
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-white/60">
+                          {item.year}
+                        </span>
+                      ) : null}
+                    </div>
                     <p className="text-xs font-medium text-white/90">{item.label}</p>
                   </div>
-                </div>
+                </ArchiveCard>
               ))}
             </div>
           ) : (
@@ -59,10 +78,7 @@ export const LifeArchiveStrip: React.FC = () => {
               className="flex items-center gap-8 pr-8"
             >
               {[...archiveItems, ...archiveItems].map((item, index) => (
-                <div
-                  key={`${item.label}-${index}`}
-                  className="group relative shrink-0 overflow-hidden rounded-2xl border border-white/15 bg-white/5 p-3 transition-transform duration-300 hover:border-[#32d6c5]/50 w-[240px] sm:w-[300px]"
-                >
+                <ArchiveCard key={`${item.label}-${index}`} item={item}>
                   <div className={`overflow-hidden rounded-xl bg-slate-900 ${item.aspect}`}>
                     <img
                       src={item.image}
@@ -71,12 +87,19 @@ export const LifeArchiveStrip: React.FC = () => {
                     />
                   </div>
                   <div className="mt-3 space-y-1">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#32d6c5]">
-                      {item.category}
-                    </span>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#32d6c5]">
+                        {item.category}
+                      </span>
+                      {item.year ? (
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-white/60">
+                          {item.year}
+                        </span>
+                      ) : null}
+                    </div>
                     <p className="text-xs font-medium text-white/90">{item.label}</p>
                   </div>
-                </div>
+                </ArchiveCard>
               ))}
             </motion.div>
           )}

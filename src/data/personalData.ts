@@ -171,6 +171,12 @@ export const NOW_DATA = {
   learning: "Advanced 3D surface material shading and physical web interaction design."
 };
 
+export const ECOSYSTEM_SECTION = {
+  label: 'THE ECOSYSTEM // PROGRESSIVE DESTINATIONS',
+  title: "There's more than one side to what I do.",
+  description: 'atreyakamat.dev is the root layer. Each specialized world expands into its own dedicated destination.',
+};
+
 export const ECOSYSTEM_DESTINATIONS: EcosystemDestination[] = [
   {
     pillar: "BUILD",
@@ -209,9 +215,29 @@ export const ECOSYSTEM_DESTINATIONS: EcosystemDestination[] = [
   }
 ];
 
+export const IMPACT_SECTION = {
+  label: 'SYSTEMS & CRAFT',
+  title: 'Building work that is useful, legible and durable.',
+  description:
+    'Moving between product surfaces, infrastructure thinking, AI workflows and the small details that make software feel calm and reliable.',
+  tags: ['Product Rigor', 'Systems Architecture', 'Clean Execution', 'Thoughtful Motion'],
+  technologies: [
+    { name: 'React', label: 'REACT' },
+    { name: 'TypeScript', label: 'TS' },
+    { name: 'Electron', label: 'ELECTRON' },
+    { name: 'Node.js', label: 'NODE' },
+    { name: 'Docker', label: 'DOCKER' },
+    { name: 'PostgreSQL', label: 'POSTGRES' },
+    { name: 'Python', label: 'PYTHON' },
+    { name: 'AI Tooling', label: 'AI' },
+  ],
+  marqueeRepeat: 2,
+  marqueeDuration: 20,
+};
+
 export const CONTACT_DATA = {
   headline: "Let's make something good.",
-  email: "atreyakamat@gmail.com",
+  email: "atkamat1204@gmail.com",
   linkedin: "https://linkedin.com/in/atreyakamat",
   github: "https://github.com/atreyakamat",
   instagram: "https://instagram.com/atreyakamat",

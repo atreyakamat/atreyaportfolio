@@ -55,7 +55,15 @@ export interface ArchiveItem {
   aspect: string;
   image: string;
   alt: string;
+  year?: string;
+  href?: string;
 }
+
+export const archiveSection = {
+  label: 'LIFE // ARCHIVE',
+  title: 'A visual record of building, community and craft.',
+  description: 'Fragments from software development, workshops, student leadership and creative projects.',
+};
 
 export const archiveItems: ArchiveItem[] = [
   {

@@ -96,7 +96,8 @@ export const StackedProjectsSection: React.FC = () => {
                                 e.stopPropagation();
                                 setActiveVideoUrl(project.demo?.url || project.demo?.videoSrc || null);
                               }}
-                              className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[2px]"
+                              className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-blur-[2px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#32d6c5]"
+                              aria-label={`Open demo for ${project.title}`}
                             >
                               <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#151515] shadow-lg">
                                 <Play className="h-4 w-4 fill-current text-[#0d9488]" />
@@ -151,12 +152,18 @@ export const StackedProjectsSection: React.FC = () => {
 
       {/* Video Modal Lightbox */}
       {activeVideoUrl && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Project demo viewer"
+        >
           <div className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/20 bg-[#151515] p-2 shadow-2xl">
             <button
               type="button"
               onClick={() => setActiveVideoUrl(null)}
-              className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
+              className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#32d6c5]"
+              aria-label="Close demo"
             >
               <X className="h-5 w-5" />
             </button>
