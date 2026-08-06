@@ -14,6 +14,7 @@ export const profile = {
   headline: 'I make useful things happen.',
   intro:
     'Software engineer and product builder working across web products, systems, automation, AI tooling and the details that make software feel usable.',
+  resumeFeaturedProjects: ['pulsewatch', 'stix-n-vibes', 'teamcord'],
   credibility: [
     'Junior Developer Intern at SparkPlus Technologies',
     'B.E. Computer Engineering, CGPA 8.92 / 10.0',

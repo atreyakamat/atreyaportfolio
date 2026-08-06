@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Play, X } from 'lucide-react';
 import { RouteLink } from '../../app/router';
 import { featuredProjects } from '../../content/projects';
@@ -9,6 +9,27 @@ import { InteractiveButton } from '../ui/InteractiveButton';
 export const StackedProjectsSection: React.FC = () => {
   const reducedMotion = useReducedMotion();
   const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!activeVideoUrl) {
+      document.body.style.overflow = '';
+      return;
+    }
+
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setActiveVideoUrl(null);
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  }, [activeVideoUrl]);
 
   return (
     <section id="work" className="section-shell px-6 lg:px-8 py-20 bg-[#F7F5EF]">

@@ -4,6 +4,7 @@ import { IdentityMarquee } from '../components/Marquee/IdentityMarquee';
 import { HumanAbout } from '../components/About/HumanAbout';
 import { StackedProjectsSection } from '../components/Work/StackedProjectsSection';
 import { LifeArchiveStrip } from '../components/Archive/LifeArchiveStrip';
+import { EcosystemSection } from '../components/Ecosystem/EcosystemSection';
 import { BuildingWithImpact } from '../components/Impact/BuildingWithImpact';
 import { SimpleContact } from '../components/Contact/SimpleContact';
 import { updateSeo } from '../lib/seo';
@@ -25,8 +26,9 @@ export function HomePage() {
       <HumanAbout />
       <StackedProjectsSection />
       <LifeArchiveStrip />
-      <BuildingWithImpact />
+      <EcosystemSection />
       <SimpleContact />
+      <BuildingWithImpact />
     </PageShell>
   );
 }
