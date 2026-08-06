@@ -142,13 +142,13 @@
 }
 
 .btn {
-  padding: 1.25rem 2.5rem;
-  border-radius: 100px;
+  padding: 1.15rem 2rem;
+  border-radius: 9999px;
   font-weight: 700;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.42s var(--ease-slow);
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -159,12 +159,12 @@
   background-color: var(--accent);
   color: #000;
   border: none;
-  box-shadow: 0 10px 20px -5px rgba(0, 229, 255, 0.3);
+  box-shadow: var(--shadow-soft);
 }
 
 .btn-primary:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px -5px rgba(0, 229, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(20,20,20,0.06);
 }
 
 .btn-secondary {
@@ -200,13 +200,12 @@ section {
 }
 
 .experience-card {
-  background-color: var(--surface);
-  padding: 3.5rem;
-  border-radius: 20px;
-  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+  padding: 3rem;
+  border-radius: var(--radius-md);
   position: relative;
   overflow: hidden;
-  transition: all 0.5s ease;
+  transition: transform 0.45s var(--ease-slow), box-shadow 0.45s var(--ease-slow);
 }
 
 .experience-card::before {

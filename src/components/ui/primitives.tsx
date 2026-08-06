@@ -9,7 +9,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({ children, variant = 'primary', className, ...props }: ButtonProps) {
   return (
-    <button className={cn('button', `button-${variant}`, className)} {...props} />
+    <button className={cn('button', `button-${variant}`, className)} {...props}>
+      {children}
+    </button>
   );
 }
 
@@ -21,7 +23,9 @@ interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 export function Link({ children, variant = 'primary', className, ...props }: AnchorProps) {
   return (
-    <a className={cn('link', `link-${variant}`, className)} {...props} />
+    <a className={cn('link', `link-${variant}`, className)} {...props}>
+      {children}
+    </a>
   );
 }
 
