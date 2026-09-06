@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { personalInfo } from '../data/portfolioData';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  asH1?: boolean;
+}
+
+const Contact: React.FC<ContactProps> = ({ asH1 = false }) => {
+  const [copied, setCopied] = useState(false);
+  const HeadingTag = asH1 ? 'h1' : 'h2';
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Fallback
+      setCopied(false);
+    }
+  };
+
+  const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
+    'Engineering & Project Inquiry — Atreya Kamat'
+  )}`;
+
   return (
     <section 
       id="contact" 
@@ -19,12 +41,12 @@ const Contact: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-unit-xl items-center">
             {/* Headline and statement */}
             <div className="lg:col-span-7">
-              <h2 
+              <HeadingTag 
                 id="contact-heading"
                 className="font-headline-lg text-headline-lg sm:text-[3.25rem] text-primary font-serif tracking-tight leading-[1.1] mb-unit-sm"
               >
                 Have a problem worth solving? Let's build.
-              </h2>
+              </HeadingTag>
               <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
                 Open to full-time engineering roles, product development, and technical collaboration.
               </p>
@@ -32,17 +54,38 @@ const Contact: React.FC = () => {
 
             {/* Action buttons */}
             <div className="lg:col-span-5 flex flex-col gap-unit-sm">
-              <a 
-                className="w-full py-3.5 px-unit-md bg-primary text-[#F7F5EF] font-label-mono text-label-mono font-semibold uppercase tracking-wider text-center hover:bg-primary/90 transition-all flex items-center justify-center gap-unit-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
-                href={`mailto:${personalInfo.email}`}
-                aria-label={`Send email to ${personalInfo.email}`}
-              >
-                <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect width="20" height="16" x="2" y="4" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-                <span>{personalInfo.email}</span>
-              </a>
+              <div className="flex items-stretch gap-2">
+                <a 
+                  className="flex-grow py-3 px-unit-md bg-primary text-[#F7F5EF] font-label-mono text-label-mono font-semibold uppercase tracking-wider text-center hover:bg-primary/90 transition-all flex items-center justify-center gap-unit-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
+                  href={mailtoUrl}
+                  aria-label={`Compose email to ${personalInfo.email}`}
+                >
+                  <svg className="w-4 h-4 shrink-0 text-[#32D6C5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  <span>{personalInfo.email}</span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="py-3 px-3.5 border border-primary text-primary font-label-mono text-[11px] font-bold uppercase tracking-wider hover:bg-black/5 transition-all flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 shrink-0"
+                  aria-label="Copy email address to clipboard"
+                >
+                  {copied ? (
+                    <span className="text-[#006a61] flex items-center gap-1">COPIED ✓</span>
+                  ) : (
+                    <span className="flex items-center gap-1">
+                      <svg className="w-3.5 h-3.5 text-on-surface-variant" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+                      COPY
+                    </span>
+                  )}
+                </button>
+              </div>
 
               <div className="grid grid-cols-2 gap-unit-xs">
                 <a 
@@ -89,7 +132,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-unit-xl pt-unit-sm border-t border-primary/10 flex flex-wrap justify-between items-center font-label-mono text-[10px] text-on-surface-variant uppercase">
+          <div className="mt-unit-xl pt-unit-sm border-t border-primary/10 flex flex-wrap justify-between items-center font-label-mono text-[10px] text-on-surface-variant uppercase gap-unit-xs">
             <span>LOCATION: {personalInfo.location}</span>
             <span>DIRECT INQUIRIES: {personalInfo.email.toUpperCase()}</span>
           </div>

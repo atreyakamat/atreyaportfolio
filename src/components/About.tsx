@@ -1,7 +1,14 @@
 import React from 'react';
 import { educationEntries } from '../data/portfolioData';
+import EducationEntry from './EducationEntry';
 
-const About: React.FC = () => {
+interface AboutProps {
+  asH1?: boolean;
+}
+
+const About: React.FC<AboutProps> = ({ asH1 = false }) => {
+  const HeadingTag = asH1 ? 'h1' : 'h2';
+
   return (
     <section 
       id="about" 
@@ -15,12 +22,12 @@ const About: React.FC = () => {
             <span className="font-label-mono text-label-mono text-[#F05A3C] font-semibold uppercase tracking-widest">
               05 // ABOUT &amp; PHILOSOPHY
             </span>
-            <h2 
+            <HeadingTag 
               id="about-heading"
               className="font-headline-lg text-headline-lg text-primary font-serif tracking-tight mt-1 mb-unit-md"
             >
               Engineering focused on real-world utility.
-            </h2>
+            </HeadingTag>
             <div className="space-y-unit-md font-body-lg text-body-lg text-on-surface">
               <p>
                 Good software starts with understanding real-world constraints. It is about building dependable tools that solve actual problems and remove friction for people and teams.
@@ -33,32 +40,12 @@ const About: React.FC = () => {
 
           {/* Right: Academic Foundation */}
           <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-primary/20 pt-unit-xl lg:pt-0 lg:pl-unit-xl">
-            <span className="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest block mb-unit-sm">
+            <span className="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest block mb-unit-lg">
               ACADEMIC FOUNDATION
             </span>
             <div className="space-y-unit-lg">
-              {educationEntries.map((edu, idx) => (
-                <article 
-                  key={edu.degree}
-                  className={idx > 0 ? "border-t border-primary/10 pt-unit-md" : ""}
-                >
-                  <div className="flex items-baseline justify-between">
-                    <h3 className="font-headline-sm text-headline-sm font-bold text-primary">
-                      {edu.degree}
-                    </h3>
-                    <span className="font-label-mono text-[11px] text-on-surface-variant">
-                      {edu.period}
-                    </span>
-                  </div>
-                  {edu.specialization && (
-                    <div className="font-label-mono text-[11px] text-[#006a61] font-semibold uppercase mt-0.5">
-                      {edu.specialization}
-                    </div>
-                  )}
-                  <div className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-                    {edu.institution}
-                  </div>
-                </article>
+              {educationEntries.map((edu) => (
+                <EducationEntry key={edu.degree} edu={edu} />
               ))}
             </div>
           </div>

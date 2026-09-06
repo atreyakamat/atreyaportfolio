@@ -44,9 +44,8 @@ const Footer: React.FC = () => {
           <a 
             className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary" 
             href={personalInfo.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View Resume PDF"
+            download="atreya_kamat_resume.pdf"
+            aria-label="Download Resume PDF"
           >
             RESUME
           </a>

@@ -16,8 +16,9 @@ export interface ProjectTriad {
   outcome: string;
 }
 
-export interface FeaturedProject {
+export interface ProjectItem {
   id: string;
+  slug: string;
   number: string;
   category: string;
   subcategory?: string;
@@ -27,15 +28,24 @@ export interface FeaturedProject {
   stack: string;
   image: string;
   imageAlt: string;
-  link: string;
-  linkText: string;
+  liveUrl: string | null;
+  repoUrl: string | null;
+  overview: string;
+  keyFeatures: string[];
+  architecture: string[];
+  isFeatured: boolean;
 }
 
+// Backward compatibility aliases
+export type FeaturedProject = ProjectItem;
 export interface ArchiveProject {
+  id?: string;
+  slug: string;
   title: string;
   desc: string;
   stack: string;
-  link?: string;
+  liveUrl: string | null;
+  repoUrl: string | null;
 }
 
 export interface CapabilityGroup {
@@ -78,18 +88,19 @@ export const personalInfo = {
   statusShort: "OPEN TO ROLES · GOA, IN",
   statusBanner: "AVAILABLE FOR PRODUCT ENGINEERING",
   email: "atkamat1204@gmail.com",
-  githubUrl: "https://github.com/Atreya-Kamat",
-  linkedinUrl: "https://linkedin.com/in/atreyakamat",
+  githubUrl: "https://github.com/atreyakamat",
+  linkedinUrl: "https://linkedin.com/in/atreya-kamat",
   resumeUrl: "/atreya_kamat_resume.pdf",
+  siteUrl: "https://atreyakamat.dev",
 };
 
 export const navLinks: NavLink[] = [
-  { name: "WORK", href: "#selected-work" },
-  { name: "APPROACH", href: "#methodology" },
-  { name: "CAPABILITIES", href: "#capabilities" },
-  { name: "EXPERIENCE", href: "#experience" },
-  { name: "ABOUT", href: "#about" },
-  { name: "CONTACT", href: "#contact" },
+  { name: "WORK", href: "/#selected-work" },
+  { name: "APPROACH", href: "/#methodology" },
+  { name: "CAPABILITIES", href: "/#capabilities" },
+  { name: "EXPERIENCE", href: "/#experience" },
+  { name: "ABOUT", href: "/#about" },
+  { name: "CONTACT", href: "/#contact" },
 ];
 
 export const proofStats: ProofStat[] = [
@@ -122,8 +133,9 @@ export const approachSteps: ApproachStep[] = [
   },
 ];
 
-export const trackNowProject: FeaturedProject = {
+export const trackNowProject: ProjectItem = {
   id: "tracknow",
+  slug: "tracknow",
   number: "PROJECT 01",
   category: "PRODUCTIVITY & TASK MANAGEMENT",
   tag: "100+ ACTIVE USERS",
@@ -136,13 +148,27 @@ export const trackNowProject: FeaturedProject = {
   stack: "React · Node.js · Express · PostgreSQL · Drizzle ORM",
   image: "/projects/tracknow.jpg",
   imageAlt: "Screenshot of Track.now productivity web application",
-  link: "https://github.com/Atreya-Kamat",
-  linkText: "VIEW APPLICATION",
+  liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
+  repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+  overview: "Track.now is a focused agile productivity web application built to streamline everyday sprint workflows without the cognitive load of enterprise trackers.",
+  keyFeatures: [
+    "Sprint and task organization with real-time status transitions",
+    "Type-safe schema definitions and automated migrations via Drizzle ORM",
+    "RESTful API service with structured request validation in Express",
+    "Active user milestone reaching 100+ users with iterative feature cycles",
+  ],
+  architecture: [
+    "Frontend: React with responsive, accessible interface components",
+    "Backend: Node.js & Express REST API with token authentication",
+    "Database: PostgreSQL managed with Drizzle ORM for type safety",
+  ],
+  isFeatured: true,
 };
 
-export const gridProjects: FeaturedProject[] = [
+export const gridProjects: ProjectItem[] = [
   {
     id: "pulsewatch",
+    slug: "pulsewatch",
     number: "PROJECT 02",
     category: "UPTIME SERVICE",
     tag: "PULSEWATCH",
@@ -155,11 +181,25 @@ export const gridProjects: FeaturedProject[] = [
     stack: "React · Express · PostgreSQL · Drizzle ORM · Node.js",
     image: "/projects/pulsewatch.jpg",
     imageAlt: "Technical monitoring dashboard of PulseWatch uptime platform",
-    link: "https://github.com/Atreya-Kamat",
-    linkText: "OVERVIEW",
+    liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    overview: "PulseWatch is an uptime and health monitoring platform providing continuous HTTP endpoint checks, latency telemetry, and instant incident alerting.",
+    keyFeatures: [
+      "Configurable per-endpoint check frequencies automated with node-cron",
+      "Response-time tracking and statistical analytics across 24h, 7d, and 30d spans",
+      "Automated email notifications triggered on service outages and recovery",
+      "Operational dashboard displaying real-time endpoint status and historical logs",
+    ],
+    architecture: [
+      "Polling Engine: Scheduled asynchronous HTTP pings with timeout guards",
+      "API Layer: Express server serving aggregated uptime calculations",
+      "Database: PostgreSQL storing time-stamped status events and incident logs",
+    ],
+    isFeatured: true,
   },
   {
     id: "vistarabi",
+    slug: "vistarabi",
     number: "PROJECT 03",
     category: "BUSINESS INTELLIGENCE",
     tag: "VISTARABI",
@@ -172,16 +212,31 @@ export const gridProjects: FeaturedProject[] = [
     stack: "React · Ollama · AI/ML · Open Source",
     image: "/projects/vistarabi.jpg",
     imageAlt: "Data visualization display of business intelligence by VistaraBI",
-    link: "https://github.com/Atreya-Kamat",
-    linkText: "OVERVIEW",
+    liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    overview: "VistaraBI is an open-source business intelligence platform that combines automated data ingestion, KPI discovery, and local LLM inference via Ollama.",
+    keyFeatures: [
+      "Automated domain and KPI detection from tabular business datasets",
+      "Local LLM synthesis with Ollama for privacy-preserving data summaries",
+      "Interactive data visualizations highlighting anomalies and trends",
+      "Completely local execution avoiding expensive third-party SaaS APIs",
+    ],
+    architecture: [
+      "Inference Pipeline: Ollama local LLM integration with structured prompting",
+      "Frontend: React with responsive data charts and executive dashboards",
+      "Data Engine: Tabular ingestion and metric aggregation routines",
+    ],
+    isFeatured: true,
   },
 ];
 
-export const lawyerCrmProject: FeaturedProject = {
+export const lawyerCrmProject: ProjectItem = {
   id: "lawyer-crm",
+  slug: "lawyer-crm",
   number: "PROJECT 04",
   category: "WORKFLOW AUTOMATION",
   subcategory: "BOOKING & CLIENT INTAKE",
+  tag: "CRM & WORKFLOWS",
   title: "LAWYER BOOKING & CRM PLATFORM",
   triad: {
     problem: "Fragmented consultation booking and missed follow-ups across client channels.",
@@ -191,30 +246,136 @@ export const lawyerCrmProject: FeaturedProject = {
   stack: "Next.js · n8n · WhatsApp Automation · CRM",
   image: "/projects/lawyer-crm.jpg",
   imageAlt: "Modern legal scheduling and client CRM dashboard",
-  link: "https://github.com/Atreya-Kamat",
-  linkText: "OVERVIEW",
+  liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
+  repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+  overview: "A specialized legal practice booking and client intake system built to replace manual scheduling with automated webhook notifications and WhatsApp confirmations.",
+  keyFeatures: [
+    "Self-service consultation booking calendar with automatic conflict checking",
+    "n8n webhook automations triggered immediately upon client submission",
+    "Automated WhatsApp notification delivery for appointment confirmations",
+    "Client relationship dashboard for case notes and schedule oversight",
+  ],
+  architecture: [
+    "Application: Next.js full-stack framework with server actions",
+    "Automation: n8n workflow engine connecting database events to external APIs",
+    "Messaging: WhatsApp Business API webhook integrations",
+  ],
+  isFeatured: true,
 };
 
-export const archiveProjects: ArchiveProject[] = [
+export const archiveProjectsList: ProjectItem[] = [
   {
+    id: "futsal",
+    slug: "futsal",
+    number: "ARCHIVE 01",
+    category: "FACILITY MANAGEMENT",
+    tag: "AIEM GOA",
     title: "Futsal Booking Platform",
-    desc: "Facility reservation platform with Role-Based Access Control (RBAC), booking analytics, and AI insights.",
+    triad: {
+      problem: "Facility double-booking, manual scheduling friction, and lack of player usage metrics.",
+      build: "Facility reservation platform with Role-Based Access Control (RBAC), booking analytics, and AI insights.",
+      outcome: "Automated booking conflict resolution and visibility into court utilization.",
+    },
     stack: "Next.js · RBAC · Analytics · AI/ML",
-    link: "https://github.com/Atreya-Kamat",
+    image: "/projects/pulsewatch.jpg",
+    imageAlt: "Futsal facility booking platform preview",
+    liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    overview: "Developed for AIEM Goa, this platform manages court reservations, multi-role user access, and usage analytics for athletic facilities.",
+    keyFeatures: [
+      "Role-Based Access Control (RBAC) separating players, staff, and admins",
+      "Real-time court availability schedule with instant booking confirmation",
+      "AI-driven usage pattern analysis to identify peak demand hours",
+    ],
+    architecture: [
+      "Framework: Next.js with server-side rendered dashboard routes",
+      "Access Control: Granular RBAC middleware protecting booking endpoints",
+      "Database: Relational schema tracking facilities, slots, and bookings",
+    ],
+    isFeatured: false,
   },
   {
+    id: "stix-n-vibes",
+    slug: "stix-n-vibes",
+    number: "ARCHIVE 02",
+    category: "COMMERCE ENGINE",
+    tag: "CUSTOM MERCH",
     title: "Stix 'N' Vibes",
-    desc: "Modular e-commerce platform with material-aware cart logic, dynamic pricing, and WhatsApp checkout.",
+    triad: {
+      problem: "Custom merchandise requires multi-variant pricing logic and low-friction mobile checkout.",
+      build: "Modular e-commerce platform with material-aware cart logic, dynamic pricing multipliers, and WhatsApp checkout.",
+      outcome: "Seamless catalog browsing and automated order messaging.",
+    },
     stack: "Next.js · E-commerce · WhatsApp Integration · Analytics",
-    link: "https://github.com/Atreya-Kamat",
+    image: "/projects/vistarabi.jpg",
+    imageAlt: "Stix 'N' Vibes e-commerce platform preview",
+    liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    overview: "A custom merchandise and sticker e-commerce storefront featuring dynamic material-aware pricing and frictionless mobile order placement.",
+    keyFeatures: [
+      "Material-aware cart calculating pricing multipliers for Paper and Vinyl finishes",
+      "Direct WhatsApp checkout link generation pre-formatting the customer order",
+      "Modular product, collection, and category data structures",
+    ],
+    architecture: [
+      "Storefront: Next.js with static page generation for high-speed catalog browsing",
+      "Pricing Logic: Client-side mathematical multipliers based on material selection",
+      "Checkout: Pre-formatted WhatsApp API URI encoding",
+    ],
+    isFeatured: false,
   },
   {
+    id: "amthane-valley",
+    slug: "amthane-valley",
+    number: "ARCHIVE 03",
+    category: "HOSPITALITY WEB PLATFORM",
+    tag: "AMTHANE VALLEY",
     title: "Amthane Valley",
-    desc: "Self-hosted direct reservation platform for farm activities, SEO-optimized and mobile responsive.",
+    triad: {
+      problem: "Over-reliance on third-party aggregators with high commissions and disconnected direct reservation experience.",
+      build: "Self-hosted direct reservation platform for farm activities, SEO-optimized and mobile responsive.",
+      outcome: "Direct reservation flow with fast page load metrics and organic discovery.",
+    },
     stack: "Next.js · Booking System · SEO · Deployment",
-    link: "https://github.com/Atreya-Kamat",
+    image: "/projects/tracknow.jpg",
+    imageAlt: "Amthane Valley farm reservation website preview",
+    liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    overview: "A direct client website for Amthane Valley farm activities providing seamless self-hosted booking and high-performance local search discovery.",
+    keyFeatures: [
+      "Direct booking flow bypassing third-party aggregator commissions",
+      "Structured SEO metadata for agro-tourism and local activity discovery",
+      "Optimized static delivery ensuring sub-second initial page render",
+    ],
+    architecture: [
+      "Frontend: Next.js with server-rendered metadata and responsive layout",
+      "Reservation System: Form intake handling custom activity schedules",
+      "Deployment: Production edge hosting with automated cache invalidation",
+    ],
+    isFeatured: false,
   },
 ];
+
+export const archiveProjects: ArchiveProject[] = archiveProjectsList.map((p) => ({
+  id: p.id,
+  slug: p.slug,
+  title: p.title,
+  desc: p.triad.build,
+  stack: p.stack,
+  liveUrl: p.liveUrl,
+  repoUrl: p.repoUrl,
+}));
+
+export const allProjects: ProjectItem[] = [
+  trackNowProject,
+  ...gridProjects,
+  lawyerCrmProject,
+  ...archiveProjectsList,
+];
+
+export const getProjectBySlug = (slug: string): ProjectItem | undefined => {
+  return allProjects.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
+};
 
 export const capabilityGroups: CapabilityGroup[] = [
   {
