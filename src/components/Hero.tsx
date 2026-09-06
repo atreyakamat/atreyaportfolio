@@ -1,143 +1,110 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Code2 } from 'lucide-react';
-import heroImage from '../assets/hero.png';
+import portraitImage from '../assets/atreyapfp.webp';
+import { personalInfo, proofStats } from '../data/portfolioData';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative flex items-center justify-center min-h-screen overflow-hidden">
-      {/* Background Video Layer - Full Screen */}
-      <div className="absolute inset-0 z-0">
-        <video 
-          src="/pugc_Pixverse_V3_5_8939.mp4" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="w-full h-full object-cover opacity-30 dark:opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-primary)] via-transparent to-[var(--bg-primary)] opacity-60" />
-      </div>
+    <section 
+      id="hero" 
+      aria-labelledby="hero-heading" 
+      className="w-full border-b border-primary/15"
+    >
+      <div className="max-w-max-width mx-auto px-gutter-mobile lg:px-margin-desktop py-unit-xl lg:py-unit-3xl">
+        {/* Intro Metadata Coordinate Line */}
+        <div className="flex flex-wrap items-center justify-between gap-unit-sm pb-unit-sm mb-unit-lg font-label-mono text-label-mono uppercase text-on-surface-variant border-b border-primary/10">
+          <div className="flex items-center gap-unit-md">
+            <span className="text-primary font-semibold">{personalInfo.name}</span>
+            <span className="text-outline-variant" aria-hidden="true">/</span>
+            <span>{personalInfo.title}</span>
+          </div>
+          <div className="flex items-center gap-unit-sm">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#32D6C5]" aria-hidden="true"></span>
+            <span className="text-primary">{personalInfo.statusBanner}</span>
+          </div>
+        </div>
 
-      <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-        
-        {/* Left Content */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-left"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-cursive text-3xl md:text-4xl text-indigo-500 mb-2"
-          >
-            Hello, I'm Atreya
-          </motion.div>
+        {/* Editorial Grid Split (Portrait & Content) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-unit-xl items-stretch">
+          {/* Left: Editorial Portrait */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
+            <div className="w-full aspect-[3/4] bg-surface-container-high border border-primary/20 overflow-hidden group shadow-sm">
+              <img 
+                className="w-full h-full object-cover grayscale contrast-105 group-hover:contrast-100 group-hover:grayscale-0 transition-all duration-500 ease-out" 
+                alt={`Studio portrait of ${personalInfo.name}, ${personalInfo.title}`} 
+                src={portraitImage}
+                width={1086}
+                height={1448}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </div>
+            <div className="mt-unit-sm flex items-center justify-between font-label-mono text-[11px] text-on-surface-variant">
+              <span className="text-primary font-semibold tracking-wider">{personalInfo.name}</span>
+              <span>{personalInfo.title} · {personalInfo.location}</span>
+            </div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-6 text-4xl font-normal leading-tight md:text-6xl tracking-tight text-[var(--text-primary)] font-cursive"
-          >
-            Building products <br /> 
-            <span className="text-gradient">that actually ship.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="max-w-xl mb-8 text-lg font-medium md:text-xl text-[var(--text-secondary)]"
-          >
-            Engineer · Developer · Founder. <br />
-            <span className="text-[var(--text-primary)]">Based in Goa, India.</span>
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="max-w-lg mb-10 text-base md:text-lg text-[var(--text-secondary)]/80"
-          >
-            <p>
-              I build full-stack platforms, AI tools, and high-impact tech ecosystems. 
-              Passionate about architecting robust solutions that solve real-world problems.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col gap-4 sm:flex-row"
-          >
-            <a
-              href="#work"
-              className="group relative flex items-center justify-center gap-2 px-8 py-4 font-bold text-white transition-all rounded-full bg-indigo-600 hover:bg-indigo-500 overflow-hidden shadow-lg shadow-indigo-500/20"
-            >
-              <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              View My Work
-              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            
-            <a
-              href="#contact"
-              className="flex items-center justify-center gap-2 px-8 py-4 font-bold text-[var(--text-primary)] transition-all border rounded-full bg-[var(--glass-bg)] border-[var(--glass-border)] hover:bg-indigo-500/5 hover:border-indigo-500/30 backdrop-blur-md"
-            >
-              Get In Touch
-            </a>
-          </motion.div>
-        </motion.div>
-
-        {/* Right Content - Profile Image with Glass Frame */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, x: 50 }}
-          animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative flex justify-center lg:justify-end"
-        >
-          <div className="relative w-72 h-72 md:w-96 md:h-96 group">
-            {/* Ambient Glow */}
-            <div className="absolute inset-0 bg-indigo-500/20 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-
-            {/* Glass Frame for Image */}
-            <div className="relative w-full h-full rounded-[3rem] overflow-hidden glass-morphism border-2 border-[var(--glass-border)] p-3 shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
-              <div className="relative w-full h-full rounded-[2.2rem] overflow-hidden bg-slate-900/50">
-                <img 
-                  src={heroImage} 
-                  alt="Atreya Kamat" 
-                  className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-1000"
-                />
+          {/* Right: Headline, Copy, CTAs, Proof Strip */}
+          <div className="lg:col-span-7 flex flex-col justify-between py-unit-xs">
+            <div>
+              <div className="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest mb-unit-sm">
+                {personalInfo.kicker}
+              </div>
+              <h1 
+                id="hero-heading"
+                className="font-headline-lg text-headline-lg sm:text-display-xl text-primary font-serif tracking-tight leading-[1.06] mb-unit-lg"
+              >
+                {personalInfo.headlinePrefix}
+                <span className="italic underline decoration-1 decoration-outline-variant underline-offset-8">
+                  {personalInfo.headlineHighlight}
+                </span>
+                {personalInfo.headlineSuffix}
+              </h1>
+              <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed mb-unit-xl">
+                {personalInfo.bio}
+              </p>
+              
+              {/* CTA Group */}
+              <div className="flex flex-wrap items-center gap-unit-md">
+                <a 
+                  className="px-6 py-3 bg-primary text-[#F7F5EF] font-label-mono text-label-mono tracking-widest uppercase hover:bg-primary/85 transition-all flex items-center gap-unit-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
+                  href="#selected-work"
+                >
+                  <span>VIEW SELECTED WORK →</span>
+                </a>
+                <a 
+                  className="px-6 py-3 border border-primary text-primary font-label-mono text-label-mono tracking-widest uppercase hover:bg-black/5 transition-all flex items-center gap-unit-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
+                  href={personalInfo.resumeUrl}
+                  download="atreya_kamat_resume.pdf"
+                >
+                  <span>DOWNLOAD RESUME →</span>
+                </a>
               </div>
             </div>
 
-            {/* Decorative Floating Elements */}
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-6 -right-6 p-5 rounded-2xl glass-card border border-[var(--glass-border)] shadow-xl z-20"
+            {/* Proof Strip */}
+            <div 
+              aria-label="Key Proof and Qualifications"
+              className="border-t border-primary/15 pt-unit-md mt-unit-2xl grid grid-cols-2 sm:grid-cols-4 gap-unit-md"
             >
-              <Sparkles className="text-amber-400" size={28} />
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-6 -left-6 p-5 rounded-2xl glass-card border border-[var(--glass-border)] shadow-xl z-20"
-            >
-              <Code2 className="text-indigo-400" size={28} />
-            </motion.div>
+              {proofStats.map((stat) => (
+                <div 
+                  key={stat.label}
+                  className={`border-l-2 ${stat.isAccent ? 'border-[#32D6C5]' : 'border-primary'} pl-2.5`}
+                >
+                  <div className="font-headline-sm text-headline-sm font-bold text-primary">
+                    {stat.value}
+                  </div>
+                  <div className="font-label-mono text-[10px] tracking-wider text-on-surface-variant uppercase">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
-      
-      {/* Background Blobs Overlay (Subtle) */}
-      <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-indigo-500/10 blur-[150px] rounded-full -z-10" />
-      <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-cyan-500/10 blur-[150px] rounded-full -z-10" />
     </section>
   );
 };

@@ -1,20 +1,58 @@
 import React from 'react';
+import { personalInfo } from '../data/portfolioData';
 
 const Footer: React.FC = () => {
-  return (
-    <footer className="py-12 px-6 border-t border-white/5 bg-background/50 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="text-slate-500 text-sm font-medium">
-          © 2026 Atreya Kamat · <span className="text-slate-400">Built with intention</span>
-        </div>
-        
-        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-slate-400 font-bold tracking-wider">
-          <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
-          GOA, INDIA
-        </div>
+  const currentYear = new Date().getFullYear();
 
-        <div className="text-slate-500 text-xs uppercase tracking-[0.2em]">
-          Final Year Portfolio
+  return (
+    <footer className="w-full border-t border-primary/15 bg-[#F7F5EF]">
+      <div className="max-w-max-width mx-auto px-gutter-mobile lg:px-margin-desktop py-unit-xl flex flex-col md:flex-row items-center justify-between gap-unit-md font-label-mono text-label-mono uppercase text-on-surface-variant">
+        <div>
+          <span className="text-primary font-bold">{personalInfo.name}</span>
+          <span className="mx-2 select-none text-outline-variant" aria-hidden="true">/</span>
+          <span>{personalInfo.title}</span>
+        </div>
+        <div className="flex items-center gap-unit-md">
+          <a 
+            className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary" 
+            href={personalInfo.githubUrl} 
+            rel="noopener noreferrer" 
+            target="_blank"
+            aria-label="Atreya Kamat on GitHub"
+          >
+            GITHUB
+          </a>
+          <span className="text-outline-variant select-none" aria-hidden="true">/</span>
+          <a 
+            className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary" 
+            href={personalInfo.linkedinUrl} 
+            rel="noopener noreferrer" 
+            target="_blank"
+            aria-label="Atreya Kamat on LinkedIn"
+          >
+            LINKEDIN
+          </a>
+          <span className="text-outline-variant select-none" aria-hidden="true">/</span>
+          <a 
+            className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary" 
+            href={`mailto:${personalInfo.email}`}
+            aria-label={`Email ${personalInfo.email}`}
+          >
+            EMAIL
+          </a>
+          <span className="text-outline-variant select-none" aria-hidden="true">/</span>
+          <a 
+            className="hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary" 
+            href={personalInfo.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Resume PDF"
+          >
+            RESUME
+          </a>
+        </div>
+        <div className="text-[11px]">
+          © {currentYear} {personalInfo.name}
         </div>
       </div>
     </footer>

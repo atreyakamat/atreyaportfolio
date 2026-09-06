@@ -1,165 +1,263 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Rocket, Clock } from 'lucide-react';
+import React from 'react';
+import { 
+  trackNowProject, 
+  gridProjects, 
+  lawyerCrmProject, 
+  archiveProjects,
+  type FeaturedProject as IFeaturedProject,
+  type ProjectTriad 
+} from '../data/portfolioData';
 
-const categories = ['All', 'Shipped', 'In Development'];
+const ArrowOutward: React.FC<{ className?: string }> = ({ className = "w-3.5 h-3.5 text-[#F05A3C] shrink-0" }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2.5" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <line x1="7" y1="17" x2="17" y2="7" />
+    <polyline points="7 7 17 7 17 17" />
+  </svg>
+);
 
-const projects = [
-  {
-    title: "TrackNow",
-    tag: "Shipped",
-    description: "PWA with 100+ active users. Full-stack cross-platform ecosystem for real-time tracking.",
-    stack: ["React Native", "Quasar", "Node.js", "PostgreSQL"],
-    icon: <Rocket className="text-emerald-400" size={20} />
-  },
-  {
-    title: "PulseWatch",
-    tag: "Shipped",
-    description: "Full-stack uptime monitoring platform with configurable per-site checks and automated alerts.",
-    stack: ["React", "Express", "Drizzle ORM", "Node-cron"],
-    icon: <Rocket className="text-emerald-400" size={20} />
-  },
-  {
-    title: "EchoBridge",
-    tag: "Shipped",
-    description: "Low-latency Windows audio routing & FX mixer with independent real-time DSP effect chains.",
-    stack: [".NET 8", "WPF", "WASAPI", "NAudio"],
-    icon: <Rocket className="text-emerald-400" size={20} />
-  },
-  {
-    title: "AttenDance",
-    tag: "Shipped",
-    description: "Proxy-proof college attendance validation engine utilizing Wi-Fi subnet verification.",
-    stack: ["PostgreSQL", "JWT", "Node.js", "Bcrypt"],
-    icon: <Rocket className="text-emerald-400" size={20} />
-  },
-  {
-    title: "ClinicOS",
-    tag: "In Development",
-    description: "Advanced CRM + automated patient communication workflows and AI-driven follow-ups.",
-    stack: ["React", "Node.js", "PostgreSQL", "LLMs"],
-    icon: <Clock className="text-amber-400" size={20} />
-  },
-  {
-    title: "Vistara BI",
-    tag: "In Development",
-    description: "AI-powered Business Intelligence platform designed for SMEs, abstracting the data analyst layer.",
-    stack: ["React", "Python", "FastAPI", "Vector DB"],
-    icon: <Clock className="text-amber-400" size={20} />
-  },
-  {
-    title: "TimeFlex",
-    tag: "In Development",
-    description: "Enterprise-grade school management ERP covering intelligent timetabling and fee administration.",
-    stack: ["React", "Node.js", "PostgreSQL", "Redis"],
-    icon: <Clock className="text-amber-400" size={20} />
-  },
-  {
-    title: "TeamCord",
-    tag: "In Development",
-    description: "Real-time Discord alternative tailored for small agencies featuring instant voice channels.",
-    stack: ["React", "WebSockets", "WebRTC", "Node.js"],
-    icon: <Clock className="text-amber-400" size={20} />
-  }
-];
+const TriadDisplay: React.FC<{ triad: ProjectTriad; isCompact?: boolean }> = ({ triad, isCompact = false }) => (
+  <div className="space-y-unit-sm py-unit-sm text-body-sm">
+    <div>
+      <span className={`font-label-mono ${isCompact ? 'text-[11px]' : 'text-label-mono'} text-[#F05A3C] font-bold uppercase`}>
+        PROBLEM:{' '}
+      </span>
+      <span className="text-on-surface">{triad.problem}</span>
+    </div>
+    <div>
+      <span className={`font-label-mono ${isCompact ? 'text-[11px]' : 'text-label-mono'} text-primary font-bold uppercase`}>
+        THE BUILD:{' '}
+      </span>
+      <span className="text-on-surface">{triad.build}</span>
+    </div>
+    <div>
+      <span className={`font-label-mono ${isCompact ? 'text-[11px]' : 'text-label-mono'} text-secondary font-bold uppercase`}>
+        OUTCOME:{' '}
+      </span>
+      <span className="font-medium text-primary">{triad.outcome}</span>
+    </div>
+  </div>
+);
 
 const Projects: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('All');
-
-  const filteredProjects = projects.filter(project => 
-    activeTab === 'All' ? true : project.tag === activeTab
-  );
-
   return (
-    <section id="projects" className="py-24 px-6 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="max-w-2xl"
-        >
-          <h2 className="text-5xl md:text-6xl text-white mb-4 font-cursive">Featured Projects</h2>
-          <p className="text-slate-400">A collection of systems I've architected and built, from concept to production.</p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="flex p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md"
-        >
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`relative px-6 py-2 text-sm font-bold transition-all rounded-full ${
-                activeTab === cat ? "text-white" : "text-slate-500 hover:text-slate-300"
-              }`}
+    <section 
+      id="selected-work" 
+      aria-labelledby="work-heading" 
+      className="w-full border-b border-primary/15"
+    >
+      <div className="max-w-max-width mx-auto px-gutter-mobile lg:px-margin-desktop py-unit-2xl lg:py-unit-4xl">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-primary/15 pb-unit-md mb-unit-2xl gap-unit-sm">
+          <div>
+            <span className="font-label-mono text-label-mono text-[#F05A3C] font-semibold uppercase tracking-widest">
+              02 // SELECTED WORK
+            </span>
+            <h2 
+              id="work-heading"
+              className="font-headline-lg text-headline-lg text-primary font-serif tracking-tight mt-1"
             >
-              {activeTab === cat && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute inset-0 bg-indigo-600 rounded-full -z-10"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              {cat}
-            </button>
-          ))}
-        </motion.div>
-      </div>
+              Software Built Around Real Problems
+            </h2>
+          </div>
+          <div className="font-label-mono text-label-mono text-on-surface-variant max-w-md">
+            A selection of software, systems, and products built from idea to deployment.
+          </div>
+        </div>
 
-      <motion.div 
-        layout
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <AnimatePresence mode='popLayout'>
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="group relative flex flex-col glass-card rounded-3xl overflow-hidden hover:border-white/20 transition-all duration-500"
-            >
-              <div className="p-8 flex flex-col h-full">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                    {project.icon}
-                  </div>
-                  <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${
-                    project.tag === 'Shipped' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' : 'bg-amber-500/10 border-amber-500/20 text-amber-500'
-                  }`}>
-                    {project.tag}
-                  </div>
-                </div>
-
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">
-                  {project.title}
+        {/* PROJECT 01: TRACK.NOW (Full Width Split) */}
+        <article 
+          aria-labelledby={`project-${trackNowProject.id}-title`}
+          className="mb-unit-2xl border border-primary/20 bg-[#ffffff]"
+        >
+          <div className="p-unit-sm sm:p-unit-md border-b border-primary/15 flex items-center justify-between font-label-mono text-label-mono">
+            <span className="font-bold text-primary uppercase">
+              {trackNowProject.number} // {trackNowProject.category}
+            </span>
+            {trackNowProject.tag && (
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#32D6C5]" aria-hidden="true"></span>
+                <span className="text-primary font-semibold uppercase">{trackNowProject.tag}</span>
+              </div>
+            )}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-primary/20 relative bg-surface-container overflow-hidden group">
+              <img 
+                className="w-full h-full object-cover min-h-[300px] lg:min-h-[380px] grayscale group-hover:grayscale-0 transition-all duration-300" 
+                alt={trackNowProject.imageAlt} 
+                src={trackNowProject.image}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="lg:col-span-7 p-unit-lg lg:p-unit-xl flex flex-col justify-between">
+              <div>
+                <h3 
+                  id={`project-${trackNowProject.id}-title`}
+                  className="font-headline-md text-headline-md text-primary font-bold tracking-tight mb-unit-sm"
+                >
+                  {trackNowProject.title}
                 </h3>
-                
-                <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                  {project.description}
-                </p>
+                <TriadDisplay triad={trackNowProject.triad} />
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-unit-sm pt-unit-md mt-unit-sm border-t border-primary/10">
+                <div className="font-label-mono text-[11px] text-on-surface-variant">
+                  {trackNowProject.stack}
+                </div>
+                <a 
+                  className="inline-flex items-center gap-1.5 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                  href={trackNowProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${trackNowProject.linkText} for ${trackNowProject.title}`}
+                >
+                  <span>{trackNowProject.linkText}</span>
+                  <ArrowOutward />
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
 
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.stack.map(tech => (
-                    <span key={tech} className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-medium text-slate-500 uppercase">
-                      {tech}
-                    </span>
-                  ))}
+        {/* 2-COLUMN PROJECT GRID: PULSEWATCH & VISTARABI */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-unit-xl mb-unit-2xl">
+          {gridProjects.map((project: IFeaturedProject) => (
+            <article 
+              key={project.id}
+              aria-labelledby={`project-${project.id}-title`}
+              className="border border-primary/20 bg-[#ffffff] flex flex-col justify-between"
+            >
+              <div>
+                <div className="p-unit-sm border-b border-primary/15 flex items-center justify-between font-label-mono text-[11px]">
+                  <span className="font-bold text-primary uppercase">
+                    {project.number} // {project.category}
+                  </span>
+                  <span className="text-on-surface-variant uppercase">{project.tag}</span>
+                </div>
+                <div className="aspect-[16/9] border-b border-primary/20 relative bg-surface-container overflow-hidden group">
+                  <img 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" 
+                    alt={project.imageAlt} 
+                    src={project.image}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="p-unit-lg">
+                  <h3 
+                    id={`project-${project.id}-title`}
+                    className="font-headline-sm text-headline-sm font-bold text-primary mb-unit-sm"
+                  >
+                    {project.title}
+                  </h3>
+                  <TriadDisplay triad={project.triad} isCompact />
                 </div>
               </div>
-              
-              {/* Card Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            </motion.div>
+              <div className="p-unit-lg pt-unit-xs border-t border-primary/10 flex flex-wrap items-center justify-between gap-unit-sm">
+                <div className="font-label-mono text-[11px] text-on-surface-variant">
+                  {project.stack}
+                </div>
+                <a 
+                  className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] font-semibold uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.linkText} for ${project.title}`}
+                >
+                  <span>{project.linkText}</span>
+                  <ArrowOutward className="w-3 h-3 text-[#F05A3C]" />
+                </a>
+              </div>
+            </article>
           ))}
-        </AnimatePresence>
-      </motion.div>
+        </div>
+
+        {/* PROJECT 04: LAWYER BOOKING & CRM PLATFORM (Inverted Split) */}
+        <article 
+          aria-labelledby={`project-${lawyerCrmProject.id}-title`}
+          className="border border-primary/20 bg-[#ffffff] mb-unit-2xl"
+        >
+          <div className="p-unit-sm sm:p-unit-md border-b border-primary/15 flex items-center justify-between font-label-mono text-label-mono">
+            <span className="font-bold text-primary uppercase">
+              {lawyerCrmProject.number} // {lawyerCrmProject.category}
+            </span>
+            {lawyerCrmProject.subcategory && (
+              <span className="text-on-surface-variant uppercase">{lawyerCrmProject.subcategory}</span>
+            )}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-7 p-unit-lg lg:p-unit-xl flex flex-col justify-between order-2 lg:order-1">
+              <div>
+                <h3 
+                  id={`project-${lawyerCrmProject.id}-title`}
+                  className="font-headline-md text-headline-md text-primary font-bold tracking-tight mb-unit-sm"
+                >
+                  {lawyerCrmProject.title}
+                </h3>
+                <TriadDisplay triad={lawyerCrmProject.triad} isCompact />
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-unit-sm pt-unit-md border-t border-primary/10">
+                <div className="font-label-mono text-[11px] text-on-surface-variant">
+                  {lawyerCrmProject.stack}
+                </div>
+                <a 
+                  className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                  href={lawyerCrmProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${lawyerCrmProject.linkText} for ${lawyerCrmProject.title}`}
+                >
+                  <span>{lawyerCrmProject.linkText}</span>
+                  <ArrowOutward />
+                </a>
+              </div>
+            </div>
+            <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-primary/20 relative bg-surface-container overflow-hidden order-1 lg:order-2 group">
+              <img 
+                className="w-full h-full object-cover min-h-[260px] lg:min-h-[340px] grayscale group-hover:grayscale-0 transition-all duration-300" 
+                alt={lawyerCrmProject.imageAlt} 
+                src={lawyerCrmProject.image}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </article>
+
+        {/* EXTENDED ARCHIVE GRID */}
+        <div className="border border-primary/20 bg-[#ffffff] p-unit-lg">
+          <div className="flex items-center justify-between pb-unit-sm mb-unit-lg border-b border-primary/10 font-label-mono text-label-mono">
+            <span className="font-bold text-primary uppercase">ADDITIONAL CODEBASES</span>
+            <span className="text-on-surface-variant uppercase">ARCHIVE</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-unit-xl">
+            {archiveProjects.map((archive) => (
+              <article key={archive.title} className="flex flex-col justify-between">
+                <div>
+                  <h4 className="font-headline-sm text-[1.1rem] font-bold text-primary mb-1">
+                    {archive.title}
+                  </h4>
+                  <p className="font-body-sm text-body-sm text-on-surface-variant">
+                    {archive.desc}
+                  </p>
+                </div>
+                <div className="pt-unit-sm mt-unit-sm font-label-mono text-[11px] text-on-surface-variant">
+                  {archive.stack}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

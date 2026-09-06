@@ -1,118 +1,162 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home } from 'lucide-react';
-import { cn } from '../lib/utils';
-
-const navLinks = [
-  { name: 'Work', href: '#work' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'About', href: '#about' },
-];
+import React, { useState, useEffect, useCallback } from 'react';
+import { navLinks, personalInfo } from '../data/portfolioData';
 
 const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Close mobile menu on Escape key press
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape' && mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  }, [mobileMenuOpen]);
+
   useEffect(() => {
-    const handleScroll = () => {
-      // Logic: Start larger, get smaller as we scroll down
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center p-6">
-      <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ 
-          y: 0, 
-          opacity: 1,
-          // When scrolled, we grow slightly in height but stay compact in width
-          // When at top (Hero), we are more "fitted" to the content
-          width: isScrolled ? "auto" : "max-content",
-          paddingLeft: isScrolled ? "2rem" : "1.5rem",
-          paddingRight: isScrolled ? "2rem" : "1.5rem",
-          scale: isScrolled ? 1.05 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className={cn(
-          "flex items-center gap-8 px-6 py-3 transition-all duration-500 rounded-full glass-morphism shadow-2xl",
-          isScrolled 
-            ? "bg-white/[0.08] backdrop-blur-2xl border-indigo-500/30 py-4" 
-            : "bg-white/[0.02] border-white/10"
-        )}
-      >
-        <div className="flex items-center gap-6">
-          <a href="#" className="flex items-center gap-2 text-sm font-bold tracking-widest text-[var(--text-primary)] hover:text-indigo-400 transition-colors">
-            <Home size={18} />
-            <span className="uppercase">Home</span>
+    <header className="fixed top-0 inset-x-0 z-50 bg-[#F7F5EF]/90 backdrop-blur-md border-b border-primary/15">
+      <div className="max-w-max-width mx-auto px-gutter-mobile lg:px-margin-desktop h-20 flex items-center justify-between">
+        {/* Brand & Location status */}
+        <div className="flex items-center gap-unit-md">
+          <a 
+            className="font-headline-sm text-[1.15rem] tracking-tight text-primary font-bold uppercase hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
+            href="#"
+            aria-label={`${personalInfo.name} - Back to top`}
+          >
+            {personalInfo.name}
           </a>
-          
-          <div className="hidden md:flex items-center gap-6 border-l border-white/10 pl-6">
+          <span className="text-outline-variant select-none hidden lg:inline-block" aria-hidden="true">/</span>
+          <div className="hidden lg:flex items-center gap-1.5" aria-label={`Status: ${personalInfo.statusShort}`}>
+            <span className="inline-block w-2 h-2 rounded-full bg-[#32D6C5]" aria-hidden="true"></span>
+            <span className="font-label-mono text-[10px] tracking-wider text-on-surface-variant uppercase">
+              {personalInfo.statusShort}
+            </span>
+          </div>
+        </div>
+
+        {/* Desktop Navigation & Actions */}
+        <div className="flex items-center gap-unit-lg">
+          <nav 
+            className="hidden lg:flex items-center gap-unit-md font-label-mono text-label-mono tracking-widest text-on-surface-variant uppercase"
+            aria-label="Primary Navigation"
+          >
+            {navLinks.map((link, idx) => (
+              <React.Fragment key={link.name}>
+                <a 
+                  className="hover:text-primary transition-colors py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                  href={link.href}
+                >
+                  {link.name}
+                </a>
+                {idx < navLinks.length - 1 && (
+                  <span className="text-outline-variant select-none" aria-hidden="true">/</span>
+                )}
+              </React.Fragment>
+            ))}
+          </nav>
+
+          <a 
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-primary text-primary font-label-mono text-label-mono tracking-wider uppercase hover:bg-primary hover:text-[#F7F5EF] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" 
+            href={personalInfo.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Resume PDF in new tab"
+          >
+            <span>RESUME</span>
+            <svg 
+              className="w-3.5 h-3.5 text-[#F05A3C] shrink-0" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </a>
+
+          {/* Accessible Mobile/Tablet hamburger toggle */}
+          <button
+            type="button"
+            className="lg:hidden p-2 text-primary hover:text-primary/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation-menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Accessible Mobile/Tablet Navigation Drawer */}
+      {mobileMenuOpen && (
+        <nav 
+          id="mobile-navigation-menu"
+          aria-label="Mobile Navigation"
+          className="lg:hidden bg-[#F7F5EF] border-b border-primary/15 px-gutter-mobile py-6 flex flex-col gap-4 animate-in fade-in duration-200"
+        >
+          <div className="flex items-center gap-2 pb-3 border-b border-primary/10">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#32D6C5]" aria-hidden="true"></span>
+            <span className="font-label-mono text-[11px] tracking-wider text-on-surface-variant uppercase">
+              {personalInfo.statusShort}
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-3 font-label-mono text-sm tracking-widest text-primary uppercase">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-bold uppercase tracking-[0.2em] transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1.5 hover:text-[#F05A3C] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
               >
                 {link.name}
               </a>
             ))}
           </div>
-        </div>
 
-        <div className="flex items-center gap-4 border-l border-white/10 pl-4">
-          <a
-            href="#contact"
-            className="hidden md:block px-6 py-2 text-xs font-bold uppercase tracking-widest text-white transition-all rounded-full bg-indigo-600 hover:bg-indigo-500 hover:shadow-[0_0_20px_rgba(79,70,229,0.5)] active:scale-95"
-          >
-            Contact
-          </a>
-
-          <button 
-            className="p-2 md:hidden text-slate-300"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </motion.div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-4 top-24 z-40 p-8 rounded-[2rem] md:hidden bg-[var(--bg-primary)]/90 backdrop-blur-3xl border border-[var(--glass-border)] shadow-2xl"
-          >
-            <div className="flex flex-col items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-2xl font-cursive text-[var(--text-primary)] hover:text-indigo-400"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center py-4 text-lg font-bold text-white bg-indigo-600 rounded-2xl"
+          <div className="pt-2 border-t border-primary/10">
+            <a
+              href={personalInfo.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center justify-center gap-2 w-full py-2.5 border border-primary text-primary font-label-mono text-xs tracking-wider uppercase hover:bg-primary hover:text-[#F7F5EF] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <span>VIEW RESUME</span>
+              <svg 
+                className="w-3.5 h-3.5 text-[#F05A3C] shrink-0" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                aria-hidden="true"
               >
-                Get in Touch
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </div>
+        </nav>
+      )}
+    </header>
   );
 };
 
