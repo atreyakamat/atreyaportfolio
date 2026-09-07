@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProjectBySlug, allProjects, personalInfo } from '../data/portfolioData';
 import { ArrowOutward, TriadDisplay } from '../components/ProjectCard';
+import ProjectSchematicPlaceholder from '../components/ProjectSchematicPlaceholder';
 
 export const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -73,21 +74,25 @@ export const ProjectDetailPage: React.FC = () => {
         </div>
       </header>
 
-      {/* Media Screenshot Container */}
-      <div className="border border-primary/20 bg-surface-container overflow-hidden mb-unit-2xl group">
-        <img 
-          src={project.image} 
-          alt={project.imageAlt}
-          className="w-full h-auto max-h-[550px] object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
-          width={1200}
-          height={675}
-          loading="eager"
-        />
-        <div className="p-unit-sm bg-[#ffffff] border-t border-primary/10 font-label-mono text-[11px] text-on-surface-variant flex items-center justify-between">
-          <span>FIG 01 // INTERFACE &amp; SYSTEM ARCHITECTURE</span>
-          <span className="uppercase">{project.title}</span>
+      {/* Media Screenshot Container or Truthful Schematic Fallback */}
+      {project.hasScreenshot && project.image ? (
+        <div className="border border-primary/20 bg-surface-container overflow-hidden mb-unit-2xl group">
+          <img 
+            src={project.image} 
+            alt={project.imageAlt}
+            className="w-full h-auto max-h-[550px] object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
+            width={1200}
+            height={675}
+            loading="eager"
+          />
+          <div className="p-unit-sm bg-[#ffffff] border-t border-primary/10 font-label-mono text-[11px] text-on-surface-variant flex items-center justify-between">
+            <span>FIG 01 // INTERFACE &amp; SYSTEM ARCHITECTURE</span>
+            <span className="uppercase">{project.title}</span>
+          </div>
         </div>
-      </div>
+      ) : (
+        <ProjectSchematicPlaceholder project={project} />
+      )}
 
       {/* Two Column Layout: Triad & Details */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-unit-2xl mb-unit-3xl">

@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollManager from './components/ScrollManager';
 
 import HomePage from './pages/HomePage';
-import ProjectsPage from './pages/ProjectsPage';
-import ProjectDetailPage from './pages/ProjectDetailPage';
-import ExperiencePage from './pages/ExperiencePage';
-import SkillsPage from './pages/SkillsPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import ResumeRedirect from './pages/ResumeRedirect';
-import NotFoundPage from './pages/NotFoundPage';
+
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
+const ProjectDetailPage = lazy(() => import('./pages/ProjectDetailPage'));
+const ExperiencePage = lazy(() => import('./pages/ExperiencePage'));
+const SkillsPage = lazy(() => import('./pages/SkillsPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const ResumeRedirect = lazy(() => import('./pages/ResumeRedirect'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+
+const PageFallback: React.FC = () => (
+  <div className="min-h-[50vh] flex items-center justify-center font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">
+    LOADING...
+  </div>
+);
 
 const App: React.FC = () => {
   return (
@@ -30,17 +37,19 @@ const App: React.FC = () => {
         <Navbar />
 
         <main id="main-content" className="w-full pt-20 bg-[#F7F5EF] flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-            <Route path="/experience" element={<ExperiencePage />} />
-            <Route path="/skills" element={<SkillsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/resume" element={<ResumeRedirect />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <Suspense fallback={<PageFallback />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+              <Route path="/experience" element={<ExperiencePage />} />
+              <Route path="/skills" element={<SkillsPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/resume" element={<ResumeRedirect />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </main>
 
         <Footer />

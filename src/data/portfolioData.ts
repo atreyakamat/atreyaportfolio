@@ -28,6 +28,7 @@ export interface ProjectItem {
   stack: string;
   image: string;
   imageAlt: string;
+  hasScreenshot?: boolean;
   liveUrl: string | null;
   repoUrl: string | null;
   overview: string;
@@ -148,6 +149,7 @@ export const trackNowProject: ProjectItem = {
   stack: "Vue 3 · Quasar · Firebase · Web Extension · TypeScript · PWA",
   image: "/projects/tracknow.jpg",
   imageAlt: "Screenshot of Track.now productivity web application and habit manager",
+  hasScreenshot: true,
   liveUrl: null, // PENDING PRODUCTION DOMAIN
   repoUrl: "https://github.com/atreyakamat/track.now",
   overview: "Track.now is a mission-based habit product and agile task manager featuring a full Quasar/Vue 3 web app, an installable offline-capable PWA, a companion browser extension, and built-in voice-to-task capture. The platform supports dual runtime modes: a zero-backend local demo mode storing data in browser storage, and a production Firebase mode providing authenticated cloud synchronization with Firestore.",
@@ -182,6 +184,7 @@ export const gridProjects: ProjectItem[] = [
     stack: "React · Express · PostgreSQL · Drizzle ORM · Node.js",
     image: "/projects/pulsewatch.jpg",
     imageAlt: "Technical monitoring dashboard of PulseWatch uptime platform",
+    hasScreenshot: true,
     liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
     repoUrl: "https://github.com/atreyakamat/pulsewatch",
     overview: "PulseWatch is an uptime and health monitoring platform providing continuous HTTP endpoint checks, latency telemetry, and instant incident alerting.",
@@ -213,6 +216,7 @@ export const gridProjects: ProjectItem[] = [
     stack: "React · Ollama · AI/ML · Open Source",
     image: "/projects/vistarabi.jpg",
     imageAlt: "Data visualization display of business intelligence by VistaraBI",
+    hasScreenshot: true,
     liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
     repoUrl: "https://github.com/atreyakamat/VistaraBI",
     overview: "VistaraBI is an open-source business intelligence platform that combines automated data ingestion, KPI discovery, and local LLM inference via Ollama.",
@@ -247,6 +251,7 @@ export const lawyerCrmProject: ProjectItem = {
   stack: "Next.js · n8n · WhatsApp Automation · CRM",
   image: "/projects/lawyer-crm.jpg",
   imageAlt: "Modern legal scheduling and client CRM dashboard",
+  hasScreenshot: true,
   liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
   repoUrl: "https://github.com/atreyakamat/anirudh-abcoflaw",
   overview: "A specialized legal practice booking and client intake system built to replace manual scheduling with automated webhook notifications and WhatsApp confirmations.",
@@ -273,22 +278,23 @@ export const archiveProjectsList: ProjectItem[] = [
     tag: "VULKAN · FASTAPI · NCNN",
     title: "ScaleUp — Local Batch AI Image Upscaler",
     triad: {
-      problem: "Cloud image upscaling compromises privacy and incurs API fees, while PyTorch desktop tools cause VRAM exhaustion and session crashes on Linux.",
+      problem: "Cloud image upscaling compromises privacy and incurs API fees, while PyTorch desktop tools cause high VRAM usage and desktop session crashes on Linux.",
       build: "Self-hosted local super-resolution tool using C++ NCNN-Vulkan compute and dynamic tile clamping on Mesa RADV, paired with FastAPI and React.",
-      outcome: "Ultra-low memory footprint (≤ 120 MB API process RSS, ≤ 600 MB UMA GPU tile clamping) with rock-solid Hyprland desktop stability.",
+      outcome: "Low memory footprint (≤ 120 MB API process RSS, dynamic tile clamping keeping GPU memory ≤ 600 MB UMA) tested for Linux desktop stability under Wayland/Hyprland.",
     },
     stack: "Vulkan 1.4 · FastAPI · React · Vite · Docker · C++ NCNN · RADV",
-    image: "/projects/vistarabi.jpg",
-    imageAlt: "ScaleUp local AI super-resolution and image upscaling dashboard",
+    image: "",
+    imageAlt: "Architectural schematic preview of ScaleUp local batch AI upscaler",
+    hasScreenshot: false,
     liveUrl: null, // LOCAL DESKTOP APP
     repoUrl: "https://github.com/atreyakamat/ScaleUp",
-    overview: "ScaleUp is a self-hosted, privacy-first local image enhancement and batch super-resolution application. Built for Linux desktop environments (Arch Linux + Hyprland), it harnesses NCNN-Vulkan C++ compute to execute hardware-accelerated deep learning models directly on integrated and discrete AMD GPUs via Mesa's RADV driver. By bypassing heavy PyTorch runtimes, ScaleUp operates with an ultra-low memory footprint (≤ 120 MB API process RSS, dynamic tile clamping keeping GPU memory ≤ 600 MB UMA), avoiding VRAM exhaustion and ensuring total desktop stability under Hyprland without killing user sessions.",
+    overview: "ScaleUp is a self-hosted, privacy-first local image enhancement and batch super-resolution application. Built for Linux desktop environments (Arch Linux + Hyprland), it harnesses NCNN-Vulkan C++ compute to execute hardware-accelerated deep learning models directly on integrated and discrete AMD GPUs via Mesa's RADV driver. By bypassing heavy PyTorch runtimes, ScaleUp operates with a low memory footprint (≤ 120 MB API process RSS, dynamic tile clamping keeping GPU memory ≤ 600 MB UMA), avoiding VRAM exhaustion and session lockups.",
     keyFeatures: [
       "NCNN-Vulkan C++ inference engine for hardware-accelerated deep learning super-resolution",
       "Dynamic tile clamping maintaining GPU UMA memory allocation ≤ 600 MB to prevent VRAM exhaustion",
       "Lean FastAPI asynchronous backend operating at ≤ 120 MB process RSS, eliminating PyTorch overhead",
       "High-throughput batch processing queue with real-time progress telemetry and image preview",
-      "Engineered specifically for Arch Linux + Hyprland desktop environments with complete system stability",
+      "Tested on Arch Linux + Hyprland desktop environments for session stability during batch compute",
     ],
     architecture: [
       "Compute Engine: NCNN C++ compute with Vulkan 1.4 shaders targeting Mesa RADV drivers",
@@ -302,20 +308,21 @@ export const archiveProjectsList: ProjectItem[] = [
     id: "timeflex",
     slug: "timeflex",
     number: "ARCHIVE 02",
-    category: "ENTERPRISE SCHEDULING & OR-TOOLS",
+    category: "ACADEMIC SCHEDULING & OR-TOOLS",
     tag: "ACTIVE DEVELOPMENT",
     title: "TimeFlex — AI Academic Timetable Engine",
     triad: {
       problem: "College departments spend weeks manually building academic timetables, continually battling teacher overlapping and lab/room constraint violations.",
-      build: "Enterprise scheduling monorepo featuring a Python OR-Tools constraint solver, Node.js orchestration API, and interactive React timetable editor.",
+      build: "Constraint-driven scheduling monorepo featuring a Python OR-Tools solver, Node.js orchestration API, and interactive React timetable editor.",
       outcome: "Automated hard-constraint satisfaction and optimization with manual drag-and-drop cell adjustments and PDF/Excel export.",
     },
     stack: "TypeScript · Python · Google OR-Tools · Node.js · React · Monorepo",
-    image: "/projects/tracknow.jpg",
-    imageAlt: "TimeFlex enterprise education scheduling and timetable solver preview",
+    image: "",
+    imageAlt: "Architectural schematic preview of TimeFlex academic timetable solver",
+    hasScreenshot: false,
     liveUrl: null, // IN ACTIVE DEVELOPMENT
     repoUrl: "https://github.com/atreyakamat/timesflex",
-    overview: "TimeFlex is an enterprise education scheduling platform engineered for AI-assisted and algorithmic timetable generation. Structured as a modern multi-package monorepo, it pairs a high-performance Python constraint satisfaction solver using Google OR-Tools with a Node.js orchestration API and a React timetable management interface. The system automates division and batch scheduling, room and lab allocation, teacher availability, and strict lunch/break hard constraints while allowing seamless manual timetable adjustments and PDF/Excel export.",
+    overview: "TimeFlex is an academic timetable scheduling platform engineered for algorithmic constraint satisfaction. Structured as a multi-package monorepo, it pairs a Python constraint solver using Google OR-Tools with a Node.js orchestration API and a React timetable management interface. The system automates division and batch scheduling, room and lab allocation, teacher availability, and lunch/break constraints while supporting manual timetable adjustments and PDF/Excel export.",
     keyFeatures: [
       "Google OR-Tools Python solver engine for automated hard-constraint satisfaction",
       "Monorepo architecture separating React frontend, Node.js API, and Python solver services",
@@ -340,15 +347,16 @@ export const archiveProjectsList: ProjectItem[] = [
     title: "Agnel Arena Futsal & Turf Booking Platform",
     triad: {
       problem: "Turf double-bookings, manual cash handling friction, and payment drop-offs during peak reservation hours.",
-      build: "Enterprise-grade multi-arena booking platform built with Next.js 15 App Router, PostgreSQL, PayU Gateway, and AiSensy WhatsApp OTP.",
+      build: "Multi-arena turf booking platform built with Next.js 15 App Router, PostgreSQL, PayU Gateway, and AiSensy WhatsApp OTP.",
       outcome: "Concurrent 10-minute session slot locking, automated ticket security, and restricted payment modes.",
     },
     stack: "Next.js 15 · PostgreSQL · PayU Gateway · AiSensy WhatsApp OTP",
-    image: "/projects/pulsewatch.jpg",
-    imageAlt: "Agnel Arena Futsal and turf booking platform preview",
+    image: "",
+    imageAlt: "Architectural schematic preview of Agnel Arena futsal and turf booking platform",
+    hasScreenshot: false,
     liveUrl: null, // PENDING CAMPUS LAUNCH
     repoUrl: "https://github.com/atreyakamat/futsal-laravel",
-    overview: "Agnel Arena Futsal is an enterprise-grade, high-concurrency multi-arena futsal and turf booking platform built for college athletic facilities. Built with Next.js 15 App Router and PostgreSQL, it provides instant mobile-based OTP login via AiSensy WhatsApp API (with SMS fallback), 10-minute concurrent session slot locks during checkout to prevent double-booking collisions, PayU gateway integration with strict payment status enforcement (confirmed, failed, cancelled), restricting PDF ticket access exclusively to confirmed bookings, and dynamic checkout payment restrictions (UPI, Debit Cards, Net Banking, and Wallets).",
+    overview: "Agnel Arena Futsal is a multi-arena futsal and turf booking platform built for athletic facilities. Built with Next.js 15 App Router and PostgreSQL, it provides mobile-based OTP login via AiSensy WhatsApp API (with SMS fallback), 10-minute concurrent session slot locks during checkout to prevent double-booking collisions, PayU gateway integration with strict payment status enforcement (confirmed, failed, cancelled), restricting PDF ticket access exclusively to confirmed bookings, and dynamic checkout payment restrictions (UPI, Debit Cards, Net Banking, and Wallets).",
     keyFeatures: [
       "Instant OTP Authentication: Seamless mobile login via AiSensy WhatsApp API with SMS fallback",
       "Concurrent Slot Locking: 10-minute session slot reservation locks preventing double-booking collisions",
@@ -371,13 +379,14 @@ export const archiveProjectsList: ProjectItem[] = [
     tag: "AGENCY WEB PLATFORM",
     title: "Pixel N Purpose — Agency Web Platform",
     triad: {
-      problem: "Creative social media agencies require high-converting client showcases with sub-second page loads and mobile-optimized inquiry funnels.",
+      problem: "Creative social media agencies require high-converting client showcases with fast initial page loads and mobile-optimized inquiry funnels.",
       build: "Production agency web platform built with Next.js and Tailwind CSS featuring optimized media delivery and structured client onboarding.",
       outcome: "Deployed live client platform at PixelNPurpose.com with fast Core Web Vitals and fluid responsive storytelling.",
     },
     stack: "Next.js · Tailwind CSS · TypeScript · Responsive Design",
-    image: "/projects/tracknow.jpg",
-    imageAlt: "Pixel N Purpose social media agency web platform preview",
+    image: "",
+    imageAlt: "Architectural schematic preview of Pixel N Purpose agency web platform",
+    hasScreenshot: false,
     liveUrl: "https://pixelnpurpose.com",
     repoUrl: "https://github.com/atreyakamat/pixel-n-purpose",
     overview: "Pixel N Purpose is a modern client web platform designed and built for a creative social media agency. Built with Next.js and Tailwind CSS, the platform delivers high-performance portfolio showcases, engaging case studies, and a streamlined client inquiry workflow to drive agency conversion.",
@@ -407,15 +416,16 @@ export const archiveProjectsList: ProjectItem[] = [
       outcome: "Direct reservation flow with fast page load metrics and organic discovery.",
     },
     stack: "Next.js · Booking System · SEO · Deployment",
-    image: "/projects/tracknow.jpg",
-    imageAlt: "Amthane Valley farm reservation website preview",
+    image: "",
+    imageAlt: "Architectural schematic preview of Amthane Valley reservation platform",
+    hasScreenshot: false,
     liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
     repoUrl: "https://github.com/atreyakamat/Amthane-Valley",
     overview: "A direct client website for Amthane Valley farm activities providing seamless self-hosted booking and high-performance local search discovery.",
     keyFeatures: [
       "Direct booking flow bypassing third-party aggregator commissions",
       "Structured SEO metadata for agro-tourism and local activity discovery",
-      "Optimized static delivery ensuring sub-second initial page render",
+      "Optimized static delivery ensuring fast initial page loads and responsive navigation",
     ],
     architecture: [
       "Frontend: Next.js with server-rendered metadata and responsive layout",
@@ -437,8 +447,9 @@ export const archiveProjectsList: ProjectItem[] = [
       outcome: "Seamless catalog browsing and automated order messaging.",
     },
     stack: "Next.js · E-commerce · WhatsApp Integration · Analytics",
-    image: "/projects/vistarabi.jpg",
-    imageAlt: "Stix 'N' Vibes e-commerce platform preview",
+    image: "",
+    imageAlt: "Architectural schematic preview of Stix 'N' Vibes e-commerce platform",
+    hasScreenshot: false,
     liveUrl: "https://stixnvibes.com",
     repoUrl: null, // PENDING PUBLIC RELEASE / REPO POLISH
     overview: "A custom merchandise and sticker e-commerce storefront featuring dynamic material-aware pricing and frictionless mobile order placement.",
