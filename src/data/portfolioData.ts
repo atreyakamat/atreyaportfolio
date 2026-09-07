@@ -183,7 +183,7 @@ export const gridProjects: ProjectItem[] = [
     image: "/projects/pulsewatch.jpg",
     imageAlt: "Technical monitoring dashboard of PulseWatch uptime platform",
     liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
-    repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    repoUrl: "https://github.com/atreyakamat/pulsewatch",
     overview: "PulseWatch is an uptime and health monitoring platform providing continuous HTTP endpoint checks, latency telemetry, and instant incident alerting.",
     keyFeatures: [
       "Configurable per-endpoint check frequencies automated with node-cron",
@@ -439,8 +439,8 @@ export const archiveProjectsList: ProjectItem[] = [
     stack: "Next.js · E-commerce · WhatsApp Integration · Analytics",
     image: "/projects/vistarabi.jpg",
     imageAlt: "Stix 'N' Vibes e-commerce platform preview",
-    liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
-    repoUrl: null, // PLACEHOLDER UNTIL PROVIDED
+    liveUrl: "https://stixnvibes.com",
+    repoUrl: null, // PENDING PUBLIC RELEASE / REPO POLISH
     overview: "A custom merchandise and sticker e-commerce storefront featuring dynamic material-aware pricing and frictionless mobile order placement.",
     keyFeatures: [
       "Material-aware cart calculating pricing multipliers for Paper and Vinyl finishes",
