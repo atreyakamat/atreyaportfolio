@@ -96,26 +96,40 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {project.stack}
         </div>
         
-        {project.liveUrl ? (
-          <a 
-            className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] font-semibold uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Launch ${project.title}`}
-          >
-            <span>LAUNCH APP</span>
-            <ArrowOutward className="w-3 h-3 text-[#F05A3C]" />
-          </a>
-        ) : (
-          <Link 
-            to={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] font-semibold uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
-            aria-label={`View architecture details for ${project.title}`}
-          >
-            <span>VIEW DETAILS →</span>
-          </Link>
-        )}
+        <div className="flex items-center gap-3">
+          {project.repoUrl && (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View source code for ${project.title} on GitHub`}
+              className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] font-semibold uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <span>CODE</span>
+              <ArrowOutward className="w-2.5 h-2.5 text-[#F05A3C]" />
+            </a>
+          )}
+          {project.liveUrl ? (
+            <a 
+              className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] font-semibold uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Launch ${project.title}`}
+            >
+              <span>LAUNCH APP</span>
+              <ArrowOutward className="w-3 h-3 text-[#32D6C5]" />
+            </a>
+          ) : (
+            <Link 
+              to={`/projects/${project.slug}`}
+              className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] font-semibold uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+              aria-label={`View architecture details for ${project.title}`}
+            >
+              <span>DETAILS →</span>
+            </Link>
+          )}
+        </div>
       </div>
     </article>
   );

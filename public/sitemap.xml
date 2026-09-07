@@ -46,6 +46,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://atreyakamat.dev/projects/scaleup</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://atreyakamat.dev/projects/timeflex</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://atreyakamat.dev/projects/pixel-n-purpose</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://atreyakamat.dev/experience</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

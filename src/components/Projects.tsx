@@ -73,26 +73,40 @@ const Projects: React.FC = () => {
                 <div className="font-label-mono text-label-mono text-on-surface-variant">
                   {trackNowProject.stack}
                 </div>
-                {trackNowProject.liveUrl ? (
-                  <a 
-                    className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
-                    href={trackNowProject.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Launch ${trackNowProject.title}`}
-                  >
-                    <span>VIEW APPLICATION</span>
-                    <ArrowOutward className="w-3.5 h-3.5 text-[#F05A3C]" />
-                  </a>
-                ) : (
-                  <Link 
-                    to={`/projects/${trackNowProject.slug}`}
-                    className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
-                    aria-label={`View architecture details for ${trackNowProject.title}`}
-                  >
-                    <span>VIEW CASE STUDY →</span>
-                  </Link>
-                )}
+                <div className="flex items-center gap-3">
+                  {trackNowProject.repoUrl && (
+                    <a 
+                      className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                      href={trackNowProject.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Source code for ${trackNowProject.title} on GitHub`}
+                    >
+                      <span>SOURCE CODE</span>
+                      <ArrowOutward className="w-3.5 h-3.5 text-[#F05A3C]" />
+                    </a>
+                  )}
+                  {trackNowProject.liveUrl ? (
+                    <a 
+                      className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                      href={trackNowProject.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Launch ${trackNowProject.title}`}
+                    >
+                      <span>VIEW APPLICATION</span>
+                      <ArrowOutward className="w-3.5 h-3.5 text-[#32D6C5]" />
+                    </a>
+                  ) : (
+                    <Link 
+                      to={`/projects/${trackNowProject.slug}`}
+                      className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                      aria-label={`View architecture details for ${trackNowProject.title}`}
+                    >
+                      <span>VIEW CASE STUDY →</span>
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -138,26 +152,40 @@ const Projects: React.FC = () => {
                 <div className="font-label-mono text-[11px] text-on-surface-variant">
                   {lawyerCrmProject.stack}
                 </div>
-                {lawyerCrmProject.liveUrl ? (
-                  <a 
-                    className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
-                    href={lawyerCrmProject.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Launch ${lawyerCrmProject.title}`}
-                  >
-                    <span>LAUNCH APP</span>
-                    <ArrowOutward className="w-3.5 h-3.5 text-[#F05A3C]" />
-                  </a>
-                ) : (
-                  <Link 
-                    to={`/projects/${lawyerCrmProject.slug}`}
-                    className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
-                    aria-label={`View architecture details for ${lawyerCrmProject.title}`}
-                  >
-                    <span>VIEW CASE STUDY →</span>
-                  </Link>
-                )}
+                <div className="flex items-center gap-3">
+                  {lawyerCrmProject.repoUrl && (
+                    <a 
+                      className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                      href={lawyerCrmProject.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Source code for ${lawyerCrmProject.title} on GitHub`}
+                    >
+                      <span>SOURCE CODE</span>
+                      <ArrowOutward className="w-3.5 h-3.5 text-[#F05A3C]" />
+                    </a>
+                  )}
+                  {lawyerCrmProject.liveUrl ? (
+                    <a 
+                      className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                      href={lawyerCrmProject.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Launch ${lawyerCrmProject.title}`}
+                    >
+                      <span>LAUNCH APP</span>
+                      <ArrowOutward className="w-3.5 h-3.5 text-[#32D6C5]" />
+                    </a>
+                  ) : (
+                    <Link 
+                      to={`/projects/${lawyerCrmProject.slug}`}
+                      className="inline-flex items-center gap-1 font-label-mono text-label-mono text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1" 
+                      aria-label={`View architecture details for ${lawyerCrmProject.title}`}
+                    >
+                      <span>VIEW CASE STUDY →</span>
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
             <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-l border-primary/20 relative bg-surface-container overflow-hidden group order-1 lg:order-2">
@@ -176,13 +204,21 @@ const Projects: React.FC = () => {
 
         {/* ARCHIVE PROJECTS LEDGER */}
         <div className="border border-primary/20 bg-[#ffffff]">
-          <div className="p-unit-sm sm:p-unit-md border-b border-primary/15 flex items-center justify-between font-label-mono text-label-mono">
-            <span className="font-bold text-primary uppercase">
-              ADDITIONAL CODEBASES
-            </span>
-            <span className="text-on-surface-variant uppercase">ARCHIVE</span>
+          <div className="p-unit-sm sm:p-unit-md border-b border-primary/15 flex items-center justify-between font-label-mono text-label-mono bg-[#FAF9F5]/70">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#32D6C5]" aria-hidden="true" />
+              <span className="font-bold text-primary tracking-wider uppercase text-[12px] sm:text-label-mono">
+                ADDITIONAL CODEBASES &amp; SYSTEMS
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 text-on-surface-variant uppercase text-[11px] tracking-wider">
+              <span>ARCHIVE</span>
+              <span className="inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold text-primary bg-[#ffffff] border border-primary/20 tracking-normal">
+                0{archiveProjectsList.length}
+              </span>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-primary/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-primary/20">
             {archiveProjectsList.map((project) => (
               <ProjectArchiveItem key={project.id} project={project} />
             ))}

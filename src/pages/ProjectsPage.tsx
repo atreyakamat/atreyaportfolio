@@ -74,24 +74,37 @@ export const ProjectsPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="flex items-center justify-between pt-unit-sm border-t border-primary/10">
+              <div className="flex flex-wrap items-center justify-between gap-unit-sm pt-unit-sm border-t border-primary/10">
                 <Link
                   to={`/projects/${project.slug}`}
                   className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] font-semibold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1"
                 >
                   <span>EXPLORE ARCHITECTURE & CASE STUDY →</span>
                 </Link>
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-label-mono text-[11px] text-[#F05A3C] hover:opacity-75 uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  >
-                    <span>LIVE APP</span>
-                    <ArrowOutward className="w-3 h-3 text-[#F05A3C]" />
-                  </a>
-                )}
+                <div className="flex items-center gap-3">
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-label-mono text-[11px] text-primary hover:text-[#F05A3C] uppercase tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <span>SOURCE REPO</span>
+                      <ArrowOutward className="w-3 h-3 text-[#F05A3C]" />
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-label-mono text-[11px] text-[#006a61] hover:text-primary uppercase tracking-wider font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <span>LIVE APP</span>
+                      <ArrowOutward className="w-3 h-3 text-[#32D6C5]" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </article>
