@@ -30,11 +30,11 @@ export function Pipeline() {
             <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-lemon-400">02 / Approach</p>
               <h2 id="approach-title" className="mt-4 font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-paper md:text-7xl">
-                From messy workflow to{" "}
-                <span className="font-serif font-normal italic text-lemon-400">working product</span>.
+                From &ldquo;it is a mess&rdquo; to{" "}
+                <span className="font-serif font-normal italic text-lemon-400">done and working</span>.
               </h2>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-navy-300">
-                I work across frontend, backend, data, automation and AI to turn messy workflows into useful products.
+                One person, start to finish. You talk to the one who designs it and builds it, so nothing gets lost in handoffs.
               </p>
             </Reveal>
           </div>

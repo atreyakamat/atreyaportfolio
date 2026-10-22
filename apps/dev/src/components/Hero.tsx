@@ -96,8 +96,8 @@ export function Hero() {
               transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.0 }}
               className="max-w-2xl font-serif text-4xl leading-[1.08] text-paper md:text-6xl"
             >
-              I build software to solve{" "}
-              <em className="text-lemon-400">real problems</em>.
+              Your messy workflow,{" "}
+              <em className="text-lemon-400">shipped as software</em>.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 24 }}
@@ -115,19 +115,18 @@ export function Hero() {
             >
               <Magnetic>
                 <a
-                  href="#work"
+                  href={`mailto:${personalInfo.email}?subject=${encodeURIComponent("Project enquiry")}&body=${encodeURIComponent("Hi Atreya,\n\nHere is what I need built:\n\nWho it is for:\nWhen I need it:\n")}`}
                   className="inline-flex items-center gap-3 rounded-full bg-lemon-400 px-7 py-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-navy-950 transition-colors hover:bg-lemon-300"
                 >
-                  View selected work <span aria-hidden>↓</span>
+                  Start a project <span aria-hidden>→</span>
                 </a>
               </Magnetic>
               <Magnetic>
                 <a
-                  href={personalInfo.resumeUrl}
-                  download="atreya_kamat_resume.pdf"
+                  href="#work"
                   className="inline-flex items-center gap-3 rounded-full border border-white/25 px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] text-paper transition-colors hover:border-lemon-400 hover:text-lemon-400"
                 >
-                  Resume <span aria-hidden>↗</span>
+                  See the work <span aria-hidden>↓</span>
                 </a>
               </Magnetic>
             </motion.div>

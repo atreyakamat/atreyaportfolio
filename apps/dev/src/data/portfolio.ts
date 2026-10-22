@@ -79,15 +79,15 @@ export interface NavLink {
 export const personalInfo = {
   name: "ATREYA KAMAT",
   title: "SOFTWARE ENGINEER",
-  kicker: "FULL-STACK ENGINEERING",
+  kicker: "FREELANCE PRODUCT ENGINEER",
   headlinePrefix: "I build software to solve ",
   headlineHighlight: "real problems",
   headlineSuffix: ".",
-  bio: "I work across frontend, backend, data, automation and AI to turn messy workflows into useful products.",
+  bio: "Spreadsheets and WhatsApp threads are costing you money. I turn them into software your team actually uses.",
   location: "GOA, INDIA",
   locationShort: "GOA, IN",
-  statusShort: "OPEN TO ROLES · GOA, IN",
-  statusBanner: "AVAILABLE FOR PRODUCT ENGINEERING",
+  statusShort: "TAKING PROJECTS · GOA, IN",
+  statusBanner: "TAKING ON NEW PROJECTS",
   email: "atkamat1204@gmail.com",
   githubUrl: "https://github.com/atreyakamat",
   linkedinUrl: "https://linkedin.com/in/atreya-kamat",
@@ -115,22 +115,22 @@ export const approachSteps: ApproachStep[] = [
   {
     num: "01",
     title: "UNDERSTAND",
-    desc: "Find the real problem, constraints, and workflow.",
+    desc: "We find the real problem first: who is stuck, where the time leaks, what 'done' looks like.",
   },
   {
     num: "02",
     title: "DESIGN",
-    desc: "Break the problem into a practical product and system.",
+    desc: "I cut it down to the smallest product that fixes it. No feature bloat, no surprises.",
   },
   {
     num: "03",
     title: "BUILD",
-    desc: "Implement the software required to make it work.",
+    desc: "You see working software early and often, not a big reveal after weeks of silence.",
   },
   {
     num: "04",
     title: "IMPROVE",
-    desc: "Test, measure, learn, and refine.",
+    desc: "Real users, real feedback. We tighten what matters and drop what doesn't.",
   },
 ];
 
@@ -548,5 +548,33 @@ export const educationEntries: EducationEntry[] = [
     period: "2023 – 2026",
     institution: "Goa University",
     specialization: "Artificial Intelligence & Machine Learning",
+  },
+];
+
+export interface Offer {
+  tag: string;
+  title: string;
+  desc: string;
+  for: string;
+}
+
+export const offers: Offer[] = [
+  {
+    tag: "01",
+    title: "Landing pages that convert",
+    desc: "Fast, sharp pages with copy that says one thing clearly and a button people actually press.",
+    for: "Launches, services, events",
+  },
+  {
+    tag: "02",
+    title: "Custom software & internal tools",
+    desc: "Dashboards, trackers, CRMs and automations that replace the spreadsheet everyone is afraid to touch.",
+    for: "Small teams, practices, shops",
+  },
+  {
+    tag: "03",
+    title: "AI & automation",
+    desc: "Document parsing, summaries, data pipelines. The boring work, done by software.",
+    for: "Anyone drowning in repetitive admin",
   },
 ];

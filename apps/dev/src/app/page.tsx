@@ -2,6 +2,7 @@ import { Capabilities } from "@/components/Capabilities";
 import { Contact } from "@/components/Contact";
 import { Experience } from "@/components/Experience";
 import { Hero } from "@/components/Hero";
+import { Offers } from "@/components/Offers";
 import { Marquee } from "@/components/Marquee";
 import { Pipeline } from "@/components/Pipeline";
 import { SelectedWork } from "@/components/SelectedWork";
@@ -22,6 +23,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       <Hero />
       <Marquee />
+      <Offers />
       <SelectedWork />
       <Pipeline />
       <Experience />

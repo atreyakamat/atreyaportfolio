@@ -3,6 +3,7 @@ import { Monogram } from "@atreya/brand/monogram";
 import { personalInfo } from "@/data/portfolio";
 
 const links = [
+  { label: "Services", href: "/#services" },
   { label: "Work", href: "/#work" },
   { label: "Approach", href: "/#approach" },
   { label: "Experience", href: "/#experience" },
