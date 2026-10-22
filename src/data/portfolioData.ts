@@ -355,7 +355,7 @@ export const archiveProjectsList: ProjectItem[] = [
     imageAlt: "Architectural schematic preview of Agnel Arena futsal and turf booking platform",
     hasScreenshot: false,
     liveUrl: null, // PENDING CAMPUS LAUNCH
-    repoUrl: null, // REPO IS PRIVATE (futsal-laravel); link restored once it is public and its stack is confirmed
+    repoUrl: null, // PRIVATE BY DESIGN (repo is named futsal-laravel but the project is Next.js); never link a private repo
     overview: "Agnel Arena Futsal is a multi-arena futsal and turf booking platform built for athletic facilities. Built with Next.js 15 App Router and PostgreSQL, it provides mobile-based OTP login via AiSensy WhatsApp API (with SMS fallback), 10-minute concurrent session slot locks during checkout to prevent double-booking collisions, PayU gateway integration with strict payment status enforcement (confirmed, failed, cancelled), restricting PDF ticket access exclusively to confirmed bookings, and dynamic checkout payment restrictions (UPI, Debit Cards, Net Banking, and Wallets).",
     keyFeatures: [
       "Instant OTP Authentication: Seamless mobile login via AiSensy WhatsApp API with SMS fallback",
@@ -451,7 +451,7 @@ export const archiveProjectsList: ProjectItem[] = [
     imageAlt: "Architectural schematic preview of Stix 'N' Vibes e-commerce platform",
     hasScreenshot: false,
     liveUrl: "https://stixnvibes.com",
-    repoUrl: null, // PENDING PUBLIC RELEASE / REPO POLISH
+    repoUrl: "https://github.com/atreyakamat/stixnvibes", // stixnvibes-nv is the separate shop repo, to be rebuilt later
     overview: "A custom merchandise and sticker e-commerce storefront featuring dynamic material-aware pricing and frictionless mobile order placement.",
     keyFeatures: [
       "Material-aware cart calculating pricing multipliers for Paper and Vinyl finishes",
