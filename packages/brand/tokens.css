@@ -1,0 +1,39 @@
+/*
+  Atreya brand tokens: Midnight Citrus.
+  One lemon + navy core. Each site changes the ratio, not the palette.
+
+  Contrast notes (WCAG):
+  - lemon-400 on navy-950 is about 16.8:1. Lemon text is safe on navy only.
+  - lemon on paper/white is about 1.1:1 and fails. On light backgrounds lemon is
+    a fill behind navy text or a highlighter stroke, never text.
+  - navy-300 (muted text) on navy-950 is about 7:1.
+*/
+
+@theme {
+  /* Navy ladder */
+  --color-navy-950: #070b1f;
+  --color-navy-900: #0b1230;
+  --color-navy-800: #121a42;
+  --color-navy-700: #1c2757;
+  --color-navy-500: #4a5aa6;
+  --color-navy-300: #9aa4d0;
+  --color-navy-100: #dce1f5;
+
+  /* Lemon */
+  --color-lemon-300: #f8ff94;
+  --color-lemon-400: #f4ff5c;
+  --color-lemon-600: #c9d814;
+
+  /* Neutrals */
+  --color-paper: #f6f6f1;
+  --color-ink: #0a0a0a;
+
+  /* Type */
+  --font-display: "Bricolage Grotesque Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}

@@ -1,0 +1,8 @@
+# Used only when a Netlify site is created for the v2 dev app with
+# "Base directory" set to apps/dev. The current live site is not affected.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
