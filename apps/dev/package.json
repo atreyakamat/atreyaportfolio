@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/build-posts-index.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "npx serve out",

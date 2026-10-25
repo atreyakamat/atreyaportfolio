@@ -1,0 +1,76 @@
+[
+  {
+    "slug": "outgrown-excel",
+    "title": "5 signs your business has outgrown Excel",
+    "description": "Spreadsheets are where most small businesses start. Here are five signs yours has become a risk, and three honest options for what to do next.",
+    "date": "2026-10-25",
+    "updated": null,
+    "tags": [
+      "operations",
+      "software"
+    ],
+    "kicker": "Operations · Software",
+    "service": {
+      "slug": "custom-software-development-goa",
+      "label": "Custom software in Goa",
+      "href": "/services/custom-software-development-goa/"
+    },
+    "related": [],
+    "cover": null,
+    "coverAlt": null,
+    "ogImage": "/og/blog-outgrown-excel.png",
+    "readingMinutes": 5,
+    "words": 1053
+  },
+  {
+    "slug": "custom-vs-off-the-shelf",
+    "title": "Custom software vs off-the-shelf: an honest guide for small teams",
+    "description": "A plain-language framework for deciding between ready-made software and a custom build, what each really costs over time, and when you should not build custom at all.",
+    "date": "2026-10-25",
+    "updated": null,
+    "tags": [
+      "software",
+      "decisions"
+    ],
+    "kicker": "Software · Decisions",
+    "service": {
+      "slug": "custom-software-development-goa",
+      "label": "Custom software in Goa",
+      "href": "/services/custom-software-development-goa/"
+    },
+    "related": [
+      {
+        "label": "AI & automation in Goa",
+        "href": "/services/ai-automation-goa/"
+      }
+    ],
+    "cover": null,
+    "coverAlt": null,
+    "ogImage": "/og/blog-custom-vs-off-the-shelf.png",
+    "readingMinutes": 5,
+    "words": 1026
+  },
+  {
+    "slug": "website-cost-goa",
+    "title": "How much does a website cost in Goa? (2026 guide)",
+    "description": "What actually drives the cost of a website in Goa, the four ways to get one built, what you should get no matter what you pay, and how to get an honest quote.",
+    "date": "2026-10-25",
+    "updated": null,
+    "tags": [
+      "websites",
+      "pricing"
+    ],
+    "kicker": "Websites · Pricing",
+    "service": {
+      "slug": "website-development-goa",
+      "label": "Website development in Goa",
+      "href": "/services/website-development-goa/"
+    },
+    "related": [],
+    "cover": null,
+    "coverAlt": null,
+    "ogImage": "/og/blog-website-cost-goa.png",
+    "readingMinutes": 5,
+    "words": 1090
+  }
+]

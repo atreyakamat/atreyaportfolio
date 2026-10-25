@@ -4,26 +4,28 @@ import { notFound } from "next/navigation";
 import { CornerTicks, TileLabel } from "@atreya/ui/Tile";
 import { PostBody } from "@/components/blog/PostBody";
 import { personalInfo } from "@/data/portfolio";
-import { formatDate, getPost, posts, readingMinutes } from "@/data/posts";
+import { formatDate } from "@/data/posts";
+import { getAllPosts, getPostBySlug } from "@/lib/markdown";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+  return getAllPosts().map((p) => ({ slug: p.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = getPostBySlug(slug);
   if (!post) return {};
   const url = `/blog/${post.slug}/`;
-  const image = `/og/blog-${post.slug}.png`;
+  const image = post.ogImage;
   return {
     title: { absolute: `${post.title} | Atreya Kamat` },
     description: post.description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, types: { "application/rss+xml": [{ url: "/feed.xml", title: "Atreya Kamat — Blog" }] } },
+    keywords: post.tags,
     authors: [{ name: "Atreya Kamat", url: personalInfo.siteUrl }],
     openGraph: {
       type: "article",
@@ -31,9 +33,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description: post.description,
       locale: "en_IN",
-      publishedTime: post.published,
+      publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       authors: ["Atreya Kamat"],
-      images: [{ url: image, width: 1200, height: 630, alt: post.title }],
+      tags: post.tags,
+      images: [{ url: image, width: 1200, height: 630, alt: post.coverAlt ?? post.title }],
     },
     twitter: { card: "summary_large_image", title: post.title, description: post.description, images: [image] },
   };
@@ -41,14 +45,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const post = getPostBySlug(slug);
   if (!post) notFound();
 
   const site = personalInfo.siteUrl;
-  const index = posts.findIndex((p) => p.slug === post.slug);
-  const prev = posts[index - 1];
-  const next = posts[index + 1];
-  const toc = post.blocks.filter((b): b is Extract<typeof b, { type: "h2" }> => b.type === "h2");
+  const all = getAllPosts();
+  const index = all.findIndex((p) => p.slug === post.slug);
+  const prev = all[index - 1];
+  const next = all[index + 1];
+  const toc = post.headings;
+  const abs = (u: string) => (u.startsWith("http") ? u : `${site}${u}`);
 
   const ld = {
     "@context": "https://schema.org",
@@ -57,12 +63,14 @@ export default async function PostPage({ params }: Props) {
         "@type": "BlogPosting",
         headline: post.title,
         description: post.description,
-        datePublished: post.published,
-        dateModified: post.published,
+        datePublished: post.date,
+        dateModified: post.updated ?? post.date,
         inLanguage: "en-IN",
+        wordCount: post.words,
+        keywords: post.tags.join(", "),
         url: `${site}/blog/${post.slug}/`,
         mainEntityOfPage: `${site}/blog/${post.slug}/`,
-        image: `${site}/og/blog-${post.slug}.png`,
+        image: abs(post.ogImage),
         author: { "@type": "Person", "@id": `${site}/#person`, name: "Atreya Kamat", url: site },
         publisher: { "@type": "Person", "@id": `${site}/#person`, name: "Atreya Kamat" },
       },
@@ -74,6 +82,14 @@ export default async function PostPage({ params }: Props) {
           { "@type": "ListItem", position: 3, name: post.title, item: `${site}/blog/${post.slug}/` },
         ],
       },
+      ...(post.faq.length
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: post.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+            },
+          ]
+        : []),
     ],
   };
 
@@ -92,10 +108,24 @@ export default async function PostPage({ params }: Props) {
         <header className="mt-10 max-w-5xl">
           <h1 className="font-display text-5xl font-extrabold leading-[0.95] tracking-[-0.035em] text-paper md:text-7xl">{post.title}</h1>
           <p className="mt-6 max-w-3xl text-xl leading-relaxed text-navy-300">{post.description}</p>
+          {post.tags.length > 0 && (
+            <ul aria-label="Tags" className="mt-6 flex flex-wrap gap-2">
+              {post.tags.map((t) => (
+                <li key={t} className="rounded-full border border-white/15 px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.16em] text-navy-300">
+                  {t}
+                </li>
+              ))}
+            </ul>
+          )}
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-navy-300">
             <span className="text-paper">Atreya Kamat</span>
-            <time dateTime={post.published}>{formatDate(post.published)}</time>
-            <span>{readingMinutes(post)} min read</span>
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            {post.updated && post.updated !== post.date && (
+              <span>
+                Updated <time dateTime={post.updated}>{formatDate(post.updated)}</time>
+              </span>
+            )}
+            <span>{post.readingMinutes} min read</span>
           </div>
         </header>
 
@@ -116,7 +146,30 @@ export default async function PostPage({ params }: Props) {
           </aside>
 
           <div className="max-w-[68ch] lg:col-span-7">
-            <PostBody blocks={post.blocks} />
+            {post.cover && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={post.cover} alt={post.coverAlt ?? ""} className="mb-10 h-auto w-full rounded-[1.5rem] border border-white/10" />
+            )}
+            <PostBody html={post.html} />
+
+            {post.faq.length > 0 && (
+              <section aria-labelledby="post-faq" className="mt-14 border-t border-white/10 pt-10">
+                <h2 id="post-faq" className="font-display text-3xl font-extrabold tracking-tight text-paper">Questions</h2>
+                <div className="mt-6 border-t border-white/10">
+                  {post.faq.map((f) => (
+                    <details key={f.q} className="group border-b border-white/10">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-display text-xl font-bold text-paper hover:text-lemon-400 [&::-webkit-details-marker]:hidden">
+                        {f.q}
+                        <span aria-hidden className="font-mono text-xl text-lemon-400 transition-transform group-open:rotate-45">
+                          +
+                        </span>
+                      </summary>
+                      <p className="pb-6 leading-relaxed text-navy-300">{f.a}</p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <div className="relative mt-16 overflow-hidden rounded-[1.5rem] bg-lemon-400 p-7 text-navy-950 md:p-9">
               <TileLabel dot>Taking on projects in Goa</TileLabel>
@@ -126,10 +179,12 @@ export default async function PostPage({ params }: Props) {
                 <Link href="/#contact" className="rounded-full bg-navy-950 px-6 py-3.5 font-semibold text-lemon-400 transition-colors hover:bg-navy-800">
                   Start a project →
                 </Link>
-                <Link href={post.service.href} className="rounded-full border border-navy-950/40 px-6 py-3.5 text-navy-950 transition-colors hover:border-navy-950">
-                  {post.service.label}
-                </Link>
-                {post.related?.map((r) => (
+                {post.service && (
+                  <Link href={post.service.href} className="rounded-full border border-navy-950/40 px-6 py-3.5 text-navy-950 transition-colors hover:border-navy-950">
+                    {post.service.label}
+                  </Link>
+                )}
+                {post.related.map((r) => (
                   <Link key={r.href} href={r.href} className="rounded-full border border-navy-950/40 px-6 py-3.5 text-navy-950 transition-colors hover:border-navy-950">
                     {r.label}
                   </Link>
