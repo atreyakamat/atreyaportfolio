@@ -10,7 +10,7 @@ export const site = {
   name: "Atreya Kamat",
   /** Creator handle this site is branded as. Link it once the platform URL is confirmed. */
   handle: "atreya.mp4",
-  handleUrl: null as string | null,
+  handleUrl: "https://www.instagram.com/atreya.mp4/" as string | null,
 };
 
 /** Sticker designs from Stix N Vibes (transparent webp), with a hero position (percent) and tilt. */
@@ -85,3 +85,12 @@ export const showreel: { src: string | null; poster: string | null; caption: str
   poster: null,
   caption: "atreya.mp4 showreel",
 };
+
+/**
+ * Top reels from the atreya.mp4 Instagram account, newest/best first (max 6).
+ * Paste each reel's link, e.g. "https://www.instagram.com/reel/ABC123xyz/".
+ * The section stays hidden while this list is empty.
+ */
+export const topReels: string[] = [];
+
+export const instagram = { handle: "atreya.mp4", url: "https://www.instagram.com/atreya.mp4/" };

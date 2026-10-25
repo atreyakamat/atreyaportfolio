@@ -18,6 +18,8 @@
     "build:teach": "npm run build -w apps/teach",
     "dev:create": "npm run dev -w apps/create",
     "build:create": "npm run build -w apps/create",
-    "build:all": "npm run build --workspaces --if-present"
+    "build:all": "npm run build --workspaces --if-present",
+    "dev:weddings": "npm run dev -w apps/weddings",
+    "build:weddings": "npm run build -w apps/weddings"
   }
 }
