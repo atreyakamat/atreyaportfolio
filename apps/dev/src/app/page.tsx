@@ -1,5 +1,6 @@
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
+import { CaseStudies } from "@/components/CaseStudies";
 import { ProofWall } from "@/components/ProofWall";
 import { Testimonials } from "@/components/Testimonials";
 import { TrustBar } from "@/components/TrustBar";
@@ -24,6 +25,7 @@ export default function HomePage() {
       <ServicesBento />
       <SystemDiagram />
       <ProofWall />
+      <CaseStudies />
       <Testimonials />
       <SelectedWork />
       <About />
