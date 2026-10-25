@@ -137,36 +137,36 @@ export function Hero() {
           </h1>
 
           <p className="rise-in mt-8 max-w-xl text-lg leading-relaxed text-salt/85 md:text-xl" style={{ ["--d" as string]: "0.55s" }}>
-            Vertical wedding reels for destination and local Goan weddings, shot for couples or edited from your footage if you&rsquo;re the videographer.
+            Vertical wedding reels, edited from your footage if you&rsquo;re a videographer or photographer, or shot for couples at destination and local Goan weddings.
           </p>
 
           <div className="rise-in mt-10 flex flex-wrap gap-3" style={{ ["--d" as string]: "0.7s" }}>
             <a
               href="#packages"
-              onClick={() => pick("couples")}
+              onClick={() => pick("editors")}
               className="inline-flex items-center gap-2 rounded-full bg-sun-400 px-7 py-4 text-sm font-semibold text-tide-950 transition-transform hover:-translate-y-0.5"
             >
-              We&rsquo;re getting married <span aria-hidden>→</span>
+              I&rsquo;m a videographer <span aria-hidden>→</span>
             </a>
             <a
               href="#packages"
-              onClick={() => pick("editors")}
+              onClick={() => pick("couples")}
               className="inline-flex items-center gap-2 rounded-full border border-salt/30 px-7 py-4 text-sm font-semibold text-salt transition-colors hover:border-sun-400 hover:text-sun-400"
             >
-              I&rsquo;m a videographer <span aria-hidden>→</span>
+              We&rsquo;re getting married <span aria-hidden>→</span>
             </a>
           </div>
 
           <dl className="rise-in mt-12 grid max-w-lg grid-cols-2 gap-px overflow-hidden rounded-2xl border border-salt/10 bg-salt/10" style={{ ["--d" as string]: "0.85s" }}>
             <div className="bg-tide-950/80 p-4">
-              <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-tide-300">Couples</dt>
-              <dd className="mt-1 font-display text-2xl text-salt">₹6,000–8,000</dd>
-            </div>
-            <div className="bg-tide-950/80 p-4">
               <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-tide-300">Reel editing</dt>
               <dd className="mt-1 font-display text-2xl text-salt">
                 from ₹2,500<span className="text-base text-tide-300"> / reel</span>
               </dd>
+            </div>
+            <div className="bg-tide-950/80 p-4">
+              <dt className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-tide-300">Couples</dt>
+              <dd className="mt-1 font-display text-2xl text-salt">₹6,000–8,000</dd>
             </div>
           </dl>
         </div>

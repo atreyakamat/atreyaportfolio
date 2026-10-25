@@ -6,8 +6,8 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 import { Mark } from "@/components/Mark";
 
 const links = [
-  { label: "Couples", href: "#packages", track: "couples" },
   { label: "Videographers", href: "#packages", track: "editors" },
+  { label: "Couples", href: "#packages", track: "couples" },
   { label: "Reels", href: "#reels" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -46,7 +46,7 @@ export function Header() {
         href="#enquire"
         className="rounded-full bg-salt px-5 py-2.5 text-sm font-semibold text-tide-950 transition-colors hover:bg-sun-400"
       >
-        Check your date
+        Start a project
       </a>
     </header>
   );

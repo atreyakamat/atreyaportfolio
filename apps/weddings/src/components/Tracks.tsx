@@ -139,7 +139,7 @@ function ProcessTimeline({ track }: { track: Track }) {
 
 /** "Who it's for" chooser + packages + process, all driven by one track choice. */
 export function Tracks() {
-  const [id, setId] = useState<TrackId>("couples");
+  const [id, setId] = useState<TrackId>("editors");
   const track = tracks.find((t) => t.id === id) ?? tracks[0];
 
   useEffect(() => {
