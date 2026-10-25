@@ -4,16 +4,14 @@
  * small batches) and how to enquire. No prices, boards, results or testimonials.
  */
 
+import { WHATSAPP_NUMBER } from "@atreya/ui/contact";
+
 export const site = {
   url: "https://teach.atreyakamat.dev",
   name: "Atreya Kamat — Tuition & Workshops",
   email: "atkamat1204@gmail.com",
-  /**
-   * WhatsApp number for enquiries, digits only with country code (e.g. "919876543210").
-   * Leave empty until Atreya supplies it: every enquiry button then falls back to
-   * a prefilled email. Once set, the same buttons open WhatsApp with the message.
-   */
-  whatsappNumber: "",
+  /** WhatsApp for enquiries. Set once for all sites in packages/ui/src/contact.ts; empty = email fallback. */
+  whatsappNumber: WHATSAPP_NUMBER,
 };
 
 export interface Track {

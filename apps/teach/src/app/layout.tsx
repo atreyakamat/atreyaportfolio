@@ -4,6 +4,7 @@ import { display, mono, serif } from "./fonts";
 import { Analytics } from "@atreya/ui/Analytics";
 import { Providers } from "@atreya/ui/Providers";
 import { ScrollProgress } from "@atreya/ui/ScrollProgress";
+import { WhatsAppButton } from "@atreya/ui/WhatsAppButton";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/data/teach";
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <WhatsAppButton message="Hi Atreya, I found you on teach.atreyakamat.dev. I'm looking for tuition in: " />
         </Providers>
         <Analytics token={process.env.NEXT_PUBLIC_CF_BEACON_TOKEN} />
       </body>
