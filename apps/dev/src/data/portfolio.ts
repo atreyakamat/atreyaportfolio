@@ -182,8 +182,8 @@ export const gridProjects: ProjectItem[] = [
       outcome: "Automated health checks and incident logs across monitored endpoints.",
     },
     stack: "React · Express · PostgreSQL · Drizzle ORM · Node.js",
-    image: "/projects/pulsewatch.jpg",
-    imageAlt: "Technical monitoring dashboard of PulseWatch uptime platform",
+    image: "/projects/pulsewatch.webp",
+    imageAlt: "PulseWatch monitors view: live uptime checks with per-check status bars, uptime and average response time",
     hasScreenshot: true,
     liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
     repoUrl: "https://github.com/atreyakamat/pulsewatch",
@@ -214,8 +214,8 @@ export const gridProjects: ProjectItem[] = [
       outcome: "Automated business analytics and data summaries without third-party cloud data dependencies.",
     },
     stack: "React · Ollama · AI/ML · Open Source",
-    image: "/projects/vistarabi.jpg",
-    imageAlt: "Data visualization display of business intelligence by VistaraBI",
+    image: "/projects/vistarabi.webp",
+    imageAlt: "VistaraBI retail analytics demo dashboard with KPI cards and a store performance table",
     hasScreenshot: true,
     liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
     repoUrl: "https://github.com/atreyakamat/VistaraBI",
@@ -249,7 +249,7 @@ export const lawyerCrmProject: ProjectItem = {
     outcome: "Streamlined client intake and automated WhatsApp booking confirmations.",
   },
   stack: "Next.js · n8n · WhatsApp Automation · CRM",
-  image: "/projects/lawyer-crm.jpg",
+  image: "/projects/lawyer-crm.webp",
   imageAlt: "Modern legal scheduling and client CRM dashboard",
   hasScreenshot: true,
   liveUrl: null, // PLACEHOLDER UNTIL PROVIDED
