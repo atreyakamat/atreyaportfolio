@@ -1,9 +1,27 @@
 import { Reveal } from "@atreya/ui/Reveal";
 import { SectionHeader } from "@atreya/ui/SectionHeader";
-import { reelServices } from "@/data/create";
+import { reelServices, showreel } from "@/data/create";
 
 /* A phone frame with a looping "edit timeline" — decorative, no fake footage. */
 function PhoneTimeline() {
+  if (showreel.src) {
+    return (
+      <div className="mx-auto w-full max-w-[17rem] rounded-[2.2rem] border-2 border-ink bg-ink p-3">
+        <video
+          className="aspect-[9/16] w-full rounded-[1.6rem] object-cover"
+          src={showreel.src}
+          poster={showreel.poster ?? undefined}
+          aria-label={showreel.caption}
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls
+          preload="metadata"
+        />
+      </div>
+    );
+  }
   return (
     <div aria-hidden className="mx-auto w-full max-w-[17rem] rounded-[2.2rem] border-2 border-ink bg-ink p-3">
       <div className="relative aspect-[9/16] overflow-hidden rounded-[1.6rem] bg-ink">

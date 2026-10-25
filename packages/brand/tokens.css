@@ -49,3 +49,35 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 }
+
+/*
+  Entrance animations that run in CSS, before JavaScript hydrates, so hero
+  text paints immediately (good LCP). Content starts at opacity 0.01, not 0,
+  so the browser still counts it as painted. Set --d for a delay.
+*/
+@keyframes rise-in {
+  from {
+    opacity: 0.01;
+    transform: translateY(var(--rise, 22px));
+  }
+}
+@keyframes letter-up {
+  from {
+    transform: translateY(112%);
+  }
+}
+.rise-in {
+  animation: rise-in 0.95s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+.letter-up {
+  display: inline-block;
+  animation: letter-up 1.05s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise-in,
+  .letter-up {
+    animation: none;
+  }
+}

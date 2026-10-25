@@ -1,5 +1,12 @@
 @import "tailwindcss";
 @import "@atreya/brand/tokens.css";
+
+/* Fonts come from next/font (see app/fonts.ts); map the brand font tokens to them. */
+@theme inline {
+  --font-display: var(--nf-display), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--nf-serif), Georgia, serif;
+  --font-mono: var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
+}
 @source "../../../../packages/brand/src";
 @source "../../../../packages/ui/src";
 
@@ -69,11 +76,12 @@ html.lenis body {
 }
 
 /* System diagram: data packets travelling the bus */
+/* The packet wrapper spans the bus width, so translateX(100%) = one full bus length (compositor-only). */
 @keyframes packet {
-  0% { left: 0%; opacity: 0; }
+  0% { transform: translateX(0); opacity: 0; }
   6% { opacity: 1; }
   94% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
+  100% { transform: translateX(100%); opacity: 0; }
 }
 .packet {
   animation: packet 4.8s linear infinite;

@@ -36,7 +36,7 @@ export function EcosystemNav({
             className={clsx(
               "rounded-full px-2.5 py-1 transition-colors",
               on && (dark ? "bg-lemon-400 text-navy-950" : "bg-ink-navy text-marker"),
-              !on && (dark ? "text-navy-300 hover:text-lemon-400" : "text-ink-navy/60 hover:text-ink-navy"),
+              !on && (dark ? "text-navy-300 hover:text-lemon-400" : "text-ink-navy/75 hover:text-ink-navy"),
             )}
           >
             {s.label}

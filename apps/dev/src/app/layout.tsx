@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/bricolage-grotesque";
-import "@fontsource-variable/jetbrains-mono";
-import "@fontsource/instrument-serif/400.css";
-import "@fontsource/instrument-serif/400-italic.css";
 import "./globals.css";
+import { display, mono, serif } from "./fonts";
+import { Analytics } from "@atreya/ui/Analytics";
 import { Providers } from "@atreya/ui/Providers";
 import { ScrollProgress } from "@atreya/ui/ScrollProgress";
+import { WhatsAppButton } from "@atreya/ui/WhatsAppButton";
+import { CommandPalette } from "@/components/CommandPalette";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { personalInfo } from "@/data/portfolio";
@@ -57,7 +57,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" className={`${display.variable} ${serif.variable} ${mono.variable}`}>
       <body>
         <a
           href="#main"
@@ -70,7 +70,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <CommandPalette />
+          <WhatsAppButton message="Hi Atreya, I found you on atreyakamat.dev. I need help with: " />
         </Providers>
+        <Analytics token={process.env.NEXT_PUBLIC_CF_BEACON_TOKEN} />
       </body>
     </html>
   );

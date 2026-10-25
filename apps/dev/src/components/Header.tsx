@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CommandPaletteTrigger } from "@/components/CommandPalette";
 import { Monogram } from "@atreya/brand/monogram";
 import { personalInfo } from "@/data/portfolio";
 
@@ -7,6 +8,7 @@ const links = [
   { label: "System", href: "/#system" },
   { label: "Proof", href: "/#proof" },
   { label: "About", href: "/#about" },
+  { label: "Blog", href: "/blog/" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -30,6 +32,7 @@ export function Header() {
       </nav>
 
       <div className="flex items-center gap-5">
+        <CommandPaletteTrigger className="hidden md:flex" />
         <span className="hidden items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-navy-300 lg:flex">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lemon-400 opacity-60 motion-reduce:animate-none" />

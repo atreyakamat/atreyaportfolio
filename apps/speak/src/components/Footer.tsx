@@ -54,9 +54,9 @@ export function Footer() {
 
       <p
         aria-hidden
-        className="mx-auto mt-16 max-w-[96rem] select-none whitespace-nowrap font-display text-[24vw] font-extrabold leading-[0.78] tracking-[-0.06em] text-cobalt-900 md:text-[21vw] [@media(min-width:96rem)]:text-[20rem]"
+        data-word="SPEAK"
+        className="mx-auto mt-16 max-w-[96rem] select-none whitespace-nowrap font-display text-[24vw] font-extrabold leading-[0.78] tracking-[-0.06em] text-cobalt-900 before:content-[attr(data-word)] after:text-lemonade after:content-['.'] md:text-[21vw] [@media(min-width:96rem)]:text-[20rem]"
       >
-        SPEAK<span className="text-lemonade">.</span>
       </p>
       <div className="mx-auto flex max-w-[96rem] flex-wrap justify-between gap-3 border-t border-white/10 py-5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-cobalt-300">
         <span>© {new Date().getFullYear()} Atreya Kamat</span>

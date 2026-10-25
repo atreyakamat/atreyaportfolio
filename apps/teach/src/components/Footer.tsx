@@ -45,11 +45,11 @@ export function Footer() {
 
       <p
         aria-hidden
-        className="mx-auto mt-14 max-w-[96rem] select-none whitespace-nowrap font-display text-[24vw] font-extrabold leading-[0.78] tracking-[-0.06em] text-ink-navy/[0.07] md:text-[21vw] [@media(min-width:96rem)]:text-[20rem]"
+        data-word="teach"
+        className="mx-auto mt-14 max-w-[96rem] select-none whitespace-nowrap font-display text-[24vw] font-extrabold leading-[0.78] tracking-[-0.06em] text-ink-navy/[0.07] before:content-[attr(data-word)] after:text-ink-navy/20 after:content-['.'] md:text-[21vw] [@media(min-width:96rem)]:text-[20rem]"
       >
-        teach<span className="text-ink-navy/20">.</span>
       </p>
-      <div className="mx-auto flex max-w-[96rem] flex-wrap justify-between gap-3 border-t border-ink-navy/10 py-5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink-navy/55">
+      <div className="mx-auto flex max-w-[96rem] flex-wrap justify-between gap-3 border-t border-ink-navy/10 py-5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-ink-navy/75">
         <span>© {new Date().getFullYear()} Atreya Kamat</span>
         <span>teach.atreyakamat.dev</span>
       </div>

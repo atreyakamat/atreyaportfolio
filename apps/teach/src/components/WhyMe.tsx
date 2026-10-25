@@ -32,6 +32,7 @@ export function WhyMe() {
           <div className="lg:col-span-7">
             <ScrollReveal
               text={teachingManifesto}
+              from={0.62}
               className="font-display text-3xl font-semibold leading-[1.2] tracking-tight text-ink-navy md:text-[2.5rem]"
             />
             <a
@@ -52,7 +53,7 @@ export function WhyMe() {
               ))}
             </div>
             <Reveal className="rounded-[1.25rem] bg-white/80 p-6 ring-1 ring-ink-navy/10">
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-navy/60">Worked & trained at</p>
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-navy/75">Worked & trained at</p>
               <ul className="mt-4 divide-y divide-ink-navy/10">
                 {credentials.roles.map((r) => (
                   <li key={r.company} className="flex items-baseline justify-between gap-4 py-2.5">

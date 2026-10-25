@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { motion, useReducedMotion } from "framer-motion";
-import { EASE_OUT_EXPO } from "@atreya/brand/motion";
 import { heroStickers } from "@/data/create";
 
 const WORD = "atreya.mp4";
@@ -46,37 +45,21 @@ export function Hero() {
           <span className="sr-only">atreya.mp4 — creative work by Atreya Kamat</span>
           <span aria-hidden className="flex overflow-hidden text-[clamp(3.6rem,15.5vw,15rem)] tracking-[-0.07em]">
             {WORD.split("").map((ch, i) => (
-              <motion.span
-                key={i}
-                className="inline-block"
-                initial={reduce ? false : { y: "105%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.1 + i * 0.06 }}
-              >
+              <span key={i} className="letter-up" style={{ ["--d" as string]: `${0.08 + i * 0.05}s` }}>
                 {ch}
-              </motion.span>
+              </span>
             ))}
           </span>
         </h1>
 
         <div className="mt-8 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end">
-          <motion.p
-            initial={reduce ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE_OUT_EXPO, delay: 0.7 }}
-            className="max-w-2xl font-serif text-4xl leading-[1.02] text-paper md:text-6xl"
-          >
+          <p style={{ ["--d" as string]: "0.7s", ["--rise" as string]: "20px" }} className="rise-in max-w-2xl font-serif text-4xl leading-[1.02] text-paper md:text-6xl">
             Reels, brands, stickers and the web, <em className="text-acid">made in Goa.</em>
-          </motion.p>
-          <motion.div
-            initial={reduce ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-paper/60 md:justify-end"
-          >
+          </p>
+          <div style={{ ["--d" as string]: "1.2s", ["--rise" as string]: "0px" }} className="rise-in flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-paper/60 md:justify-end">
             <span aria-hidden className="inline-block h-2 w-2 animate-pulse bg-acid motion-reduce:animate-none" />
             {touched ? "Nice throw. Keep going." : "Grab a sticker. Throw it."}
-          </motion.div>
+          </div>
         </div>
       </div>
 

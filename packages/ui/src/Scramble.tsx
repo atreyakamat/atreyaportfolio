@@ -30,7 +30,8 @@ export function Scramble({ text, className, speed = 26 }: { text: string; classN
   }, [inView, reduce, text, speed]);
 
   return (
-    <span ref={ref} className={className} aria-label={text}>
+    <span ref={ref} className={className}>
+      <span className="sr-only">{text}</span>
       <span aria-hidden>{out}</span>
     </span>
   );

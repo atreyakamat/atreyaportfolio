@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <section className="flex min-h-[80svh] flex-col items-start justify-center px-5 md:px-10">
       <div className="mx-auto w-full max-w-7xl">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-navy/60">404</p>
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-ink-navy/75">404</p>
         <h1 className="mt-4 font-display text-6xl font-extrabold leading-[0.9] tracking-tight text-ink-navy md:text-9xl">
           Page not <span className="marker font-serif font-normal italic" style={{ backgroundSize: "100% 60%" }}>found</span>.
         </h1>

@@ -3,7 +3,6 @@
 import { useRef, type PointerEvent } from "react";
 import clsx from "clsx";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { EASE_OUT_EXPO } from "@atreya/brand/motion";
 import { DuotonePortrait } from "@/components/DuotonePortrait";
 import { Magnetic } from "@atreya/ui/Magnetic";
 import { LocalClock } from "@atreya/ui/LocalClock";
@@ -18,34 +17,27 @@ function Word({ word, accent, delay }: { word: string; accent?: boolean; delay: 
   return (
     <span className="flex overflow-hidden pb-[0.06em]" aria-hidden>
       {word.split("").map((ch, i) => (
-        <motion.span
+        <span
           key={`${ch}-${i}`}
-          initial={{ y: "112%" }}
-          animate={{ y: 0 }}
-          transition={{ duration: 1.1, ease: EASE_OUT_EXPO, delay: delay + i * 0.05 }}
+          style={{ ["--d" as string]: `${delay + i * 0.05}s` }}
           className={clsx(
-            "inline-block cursor-default font-extrabold transition-colors duration-300",
+            "letter-up cursor-default font-extrabold transition-colors duration-300",
             accent ? "text-lemon-400 hover:text-paper" : "text-paper hover:text-lemon-400",
           )}
         >
           {ch}
-        </motion.span>
+        </span>
       ))}
     </span>
   );
 }
 
-/** Each bento tile rises in on load, staggered. */
+/** Each bento tile rises in on load, staggered. Pure CSS so it paints before hydration. */
 function Rise({ i, className, children }: { i: number; className?: string; children: React.ReactNode }) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 28, scale: 0.985 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.15 + i * 0.09 }}
-    >
+    <div className={clsx("rise-in", className)} style={{ ["--d" as string]: `${0.1 + i * 0.08}s`, ["--rise" as string]: "28px" }}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -95,22 +87,12 @@ export function Hero() {
             </h1>
 
             <div className="grid gap-6 md:grid-cols-[1.25fr_1fr] md:items-end">
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.0 }}
-                className="font-serif text-[2.1rem] leading-[1.02] text-paper md:text-5xl"
-              >
+              <p style={{ ["--d" as string]: "0.55s" }} className="rise-in font-serif text-[2.1rem] leading-[1.02] text-paper md:text-5xl">
                 Your messy workflow, <em className="text-lemon-400">shipped as a system</em>.
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.12 }}
-                className="max-w-sm text-[15px] leading-relaxed text-navy-300"
-              >
+              </p>
+              <p style={{ ["--d" as string]: "0.65s" }} className="rise-in max-w-sm text-[15px] leading-relaxed text-navy-300">
                 {personalInfo.bio}
-              </motion.p>
+              </p>
             </div>
           </Tile>
         </Rise>

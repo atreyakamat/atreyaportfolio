@@ -9,38 +9,32 @@ import { TiltCard } from "@atreya/ui/TiltCard";
 import { Marker } from "@/components/Marker";
 import { defaultEnquiry, enquiryHref } from "@/lib/enquiry";
 
-const rise = (i: number) => ({
-  initial: { opacity: 0, y: 26 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 1, ease: EASE_OUT_EXPO, delay: 0.15 + i * 0.1 },
-});
+/** CSS entrance (brand tokens .rise-in): paints before hydration for a fast LCP. */
+const riseStyle = (i: number) => ({ ["--d" as string]: `${0.1 + i * 0.08}s`, ["--rise" as string]: "26px" });
 
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="ruled relative overflow-hidden px-5 pb-20 pt-32 md:px-10 md:pb-28 md:pt-40">
       <div className="mx-auto grid max-w-[96rem] items-center gap-14 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <motion.p {...rise(0)} className="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-navy/70">
+          <p style={riseStyle(0)} className="rise-in flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-navy/70">
             <span className="rounded-full bg-ink-navy px-2.5 py-1 text-marker">§ teach</span>
             Tuition & workshops · Goa
-          </motion.p>
+          </p>
 
-          <motion.h1
-            {...rise(1)}
-            id="hero-title"
-            className="mt-8 font-display text-[clamp(3rem,7.4vw,7.4rem)] font-extrabold leading-[0.95] tracking-[-0.04em] text-ink-navy"
-          >
+          <h1 style={riseStyle(1)}
+            id="hero-title" className="rise-in mt-8 font-display text-[clamp(3rem,7.4vw,7.4rem)] font-extrabold leading-[0.95] tracking-[-0.04em] text-ink-navy">
             Learn to code from someone who{" "}
             <Marker delay={0.9} height="58%">
               <span className="font-serif font-normal italic tracking-[-0.01em]">ships code.</span>
             </Marker>
-          </motion.h1>
+          </h1>
 
-          <motion.p {...rise(2)} className="mt-8 max-w-xl text-lg leading-relaxed text-ink-navy/75 md:text-xl">
+          <p style={riseStyle(2)} className="rise-in mt-8 max-w-xl text-lg leading-relaxed text-ink-navy/75 md:text-xl">
             Computer science and coding tuition from a working software engineer. 1:1 in person across Goa, or in small batches. From Class 8 to college, or from absolute zero.
-          </motion.p>
+          </p>
 
-          <motion.div {...rise(3)} className="mt-10 flex flex-wrap items-center gap-3">
+          <div style={riseStyle(3)} className="rise-in mt-10 flex flex-wrap items-center gap-3">
             <Magnetic strength={0.2}>
               <a
                 href={enquiryHref(defaultEnquiry)}
@@ -55,15 +49,15 @@ export function Hero() {
             >
               See the tracks ↓
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.ul {...rise(4)} className="mt-10 flex flex-wrap gap-2">
+          <ul style={riseStyle(4)} className="rise-in mt-10 flex flex-wrap gap-2">
             {["1:1 in person · Goa", "Small batches", "Class 8 → college → any age"].map((c) => (
               <li key={c} className="rounded-full border border-ink-navy/15 bg-white/60 px-4 py-2 text-sm text-ink-navy">
                 {c}
               </li>
             ))}
-          </motion.ul>
+          </ul>
         </div>
 
         <motion.div
@@ -88,7 +82,7 @@ export function Hero() {
                 />
               </div>
               <p className="absolute bottom-4 left-5 font-serif text-2xl italic text-ink-navy">Atreya, your tutor</p>
-              <p className="absolute bottom-5 right-5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-navy/60">Goa, IN</p>
+              <p className="absolute bottom-5 right-5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-navy/75">Goa, IN</p>
             </div>
 
             {/* floating code note */}

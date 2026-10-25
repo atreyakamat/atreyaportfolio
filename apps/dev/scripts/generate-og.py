@@ -23,6 +23,9 @@ CARDS = [
     ("custom-software-development-goa", "S/02 · Custom software & tools", "Custom software for Goa businesses", "outgrowing spreadsheets.", False),
     ("ai-automation-goa", "S/03 · AI & automation", "Practical AI that gives your team", "hours back.", False),
     ("projects", "Selected work", "Systems built", "and shipped.", False),
+    ("blog-website-cost-goa", "Blog · Websites · Pricing", "How much does a website cost", "in Goa?", False),
+    ("blog-outgrown-excel", "Blog · Operations · Software", "5 signs your business has", "outgrown Excel.", False),
+    ("blog-custom-vs-off-the-shelf", "Blog · Software · Decisions", "Custom software vs off-the-shelf:", "an honest guide.", False),
 ]
 
 MONOGRAM = """<svg viewBox="0 0 64 64" width="56" height="56" fill="none"><g stroke="#f6f6f1" stroke-linecap="round" stroke-linejoin="round">

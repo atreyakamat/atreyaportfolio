@@ -73,37 +73,25 @@ export function Hero() {
                 {line.words.map((word) => {
                   const i = w++;
                   return (
-                    <motion.span
+                    <span
                       key={`${li}-${word}`}
-                      initial={{ y: "110%" }}
-                      animate={{ y: 0 }}
-                      transition={{ duration: 1.05, ease: EASE_OUT_EXPO, delay: 0.15 + i * 0.08 }}
-                      className={clsx("inline-block", line.accent && "font-serif font-normal italic tracking-[-0.02em] text-lemonade")}
+                      style={{ ["--d" as string]: `${0.12 + i * 0.07}s` }}
+                      className={clsx("letter-up", line.accent && "font-serif font-normal italic tracking-[-0.02em] text-lemonade")}
                     >
                       {word}
-                    </motion.span>
+                    </span>
                   );
                 })}
               </span>
             ))}
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.8 }}
-            className="mt-8 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl"
-          >
+          <p style={{ ["--d" as string]: "0.8s", ["--rise" as string]: "18px" }} className="rise-in mt-8 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
             I&rsquo;m Atreya, a software engineer in Goa. I give hands-on talks and workshops on AI tools, prompting and shipping real
             software, for students, developers and business owners.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.95 }}
-            className="mt-10 flex flex-wrap items-center gap-3"
-          >
+          <div style={{ ["--d" as string]: "0.95s", ["--rise" as string]: "18px" }} className="rise-in mt-10 flex flex-wrap items-center gap-3">
             <Magnetic>
               <a
                 href={bookingMailto(
@@ -123,7 +111,7 @@ export function Hero() {
                 See the workshop <span aria-hidden>↓</span>
               </Link>
             </Magnetic>
-          </motion.div>
+          </div>
 
           <dl className="mt-14 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/20 bg-white/20">
             {stats.map((s) => (

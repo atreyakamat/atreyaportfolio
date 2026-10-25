@@ -1,5 +1,12 @@
 @import "tailwindcss";
 @import "@atreya/brand/tokens.css";
+
+/* Fonts come from next/font (see app/fonts.ts); map the brand font tokens to them. */
+@theme inline {
+  --font-display: var(--nf-display), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--nf-serif), Georgia, serif;
+  --font-mono: var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
+}
 @source "../../../../packages/brand/src";
 @source "../../../../packages/ui/src";
 

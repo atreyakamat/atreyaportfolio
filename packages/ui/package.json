@@ -4,6 +4,7 @@
   "private": true,
   "description": "Shared interactive components for the atreyakamat.dev sites: tiles, section headers, reveals, tilt, spotlight, tickers",
   "exports": {
+    "./contact": "./src/contact.ts",
     "./*": "./src/*.tsx"
   },
   "dependencies": {

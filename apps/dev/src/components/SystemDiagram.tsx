@@ -75,21 +75,19 @@ export function SystemDiagram() {
             {!reduce && (
               <div aria-hidden className="absolute left-[10%] right-[10%] top-6 hidden md:block">
                 {[0, 1, 2].map((k) => (
-                  <span
-                    key={k}
-                    className="packet absolute -top-[3px] h-[7px] w-[7px] rounded-full bg-lemon-400 shadow-[0_0_14px_rgba(244,255,92,0.9)]"
-                    style={{ animationDelay: `${k * 1.6}s` }}
-                  />
+                  <span key={k} className="packet absolute inset-x-0 -top-[3px] h-[7px]" style={{ animationDelay: `${k * 1.6}s` }}>
+                    <span className="block h-[7px] w-[7px] rounded-full bg-lemon-400 shadow-[0_0_14px_rgba(244,255,92,0.9)]" />
+                  </span>
                 ))}
               </div>
             )}
 
-            <ol role="tablist" aria-label="Project stages" className="relative grid grid-cols-5 gap-2">
+            <div role="tablist" aria-label="Project stages" className="relative grid grid-cols-5 gap-2">
               {systemStages.map((s, i) => {
                 const on = i === active;
                 const done = i < active;
                 return (
-                  <li key={s.code} className="flex justify-center">
+                  <div key={s.code} className="flex justify-center">
                     <button
                       role="tab"
                       aria-selected={on}
@@ -116,10 +114,10 @@ export function SystemDiagram() {
                         {s.name}
                       </span>
                     </button>
-                  </li>
+                  </div>
                 );
               })}
-            </ol>
+            </div>
           </div>
 
           {/* Stage panel */}

@@ -8,8 +8,16 @@ export function enquiryHref(message: string, subject = "Tuition enquiry") {
   if (site.whatsappNumber) {
     return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
   }
+  return mailtoHref(message, subject);
+}
+
+/** Prefilled email, used as the fallback when the form cannot be sent. */
+export function mailtoHref(message: string, subject = "Tuition enquiry") {
   return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
 }
+
+/** Netlify form name; its fields are mirrored in public/__forms.html. */
+export const ENQUIRY_FORM = "tuition-enquiry";
 
 export const enquiryChannel = site.whatsappNumber ? "WhatsApp" : "Email";
 

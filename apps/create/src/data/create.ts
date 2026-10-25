@@ -74,3 +74,14 @@ export const reelServices = [
   { title: "Brand & product shorts", desc: "Launches, menus, pop-ups and behind-the-scenes, cut for Reels, Shorts and stories." },
   { title: "Event recaps", desc: "Turn a day of raw clips into one tight recap people actually share." },
 ];
+
+/**
+ * Showreel: drop a vertical MP4/WebM (9:16, under ~8 MB) into public/reel/
+ * and set src (and an optional poster image). While src is null the phone
+ * frame shows the "coming soon" timeline.
+ */
+export const showreel: { src: string | null; poster: string | null; caption: string } = {
+  src: null,
+  poster: null,
+  caption: "atreya.mp4 showreel",
+};

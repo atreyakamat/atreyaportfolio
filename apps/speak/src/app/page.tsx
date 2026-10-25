@@ -1,3 +1,4 @@
+import { MoreTalks } from "@/components/MoreTalks";
 import { Booking } from "@/components/Booking";
 import { Faq } from "@/components/Faq";
 import { Formats } from "@/components/Formats";
@@ -38,6 +39,7 @@ export default function SpeakHome() {
       <Hero />
       <TopicStrip />
       <Workshop />
+      <MoreTalks />
       <Topics />
       <Formats />
       <SpeakerKit />

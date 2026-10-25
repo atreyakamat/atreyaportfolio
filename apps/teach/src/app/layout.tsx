@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/bricolage-grotesque";
-import "@fontsource-variable/jetbrains-mono";
-import "@fontsource/instrument-serif/400.css";
-import "@fontsource/instrument-serif/400-italic.css";
 import "./globals.css";
+import { display, mono, serif } from "./fonts";
+import { Analytics } from "@atreya/ui/Analytics";
 import { Providers } from "@atreya/ui/Providers";
 import { ScrollProgress } from "@atreya/ui/ScrollProgress";
 import { Header } from "@/components/Header";
@@ -48,7 +46,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" className={`${display.variable} ${serif.variable} ${mono.variable}`}>
       <body>
         <a
           href="#main"
@@ -62,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
         </Providers>
+        <Analytics token={process.env.NEXT_PUBLIC_CF_BEACON_TOKEN} />
       </body>
     </html>
   );

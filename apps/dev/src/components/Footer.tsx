@@ -32,6 +32,7 @@ export function Footer() {
             ["Work", "/#work"],
             ["Experience", "/#experience"],
             ["FAQ", "/#faq"],
+            ["Blog", "/blog/"],
           ].map(([l, h]) => (
             <Link key={h} href={h} className="block transition-colors hover:text-lemon-400">
               {l}
@@ -57,11 +58,10 @@ export function Footer() {
 
       <p
         aria-hidden
-        className="mx-auto mt-16 max-w-[96rem] select-none whitespace-nowrap font-display text-[17.5vw] font-extrabold leading-[0.78] tracking-[-0.06em] text-navy-800/90 md:text-[15.5vw] [@media(min-width:96rem)]:text-[14.6rem]"
-      >
-        ATREYA<span className="text-lemon-400">.</span>
-      </p>
-      <div className="mx-auto flex max-w-[96rem] flex-wrap justify-between gap-3 border-t border-white/10 py-5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-navy-500">
+        data-word="ATREYA"
+        className="mx-auto mt-16 max-w-[96rem] select-none whitespace-nowrap font-display text-[17.5vw] font-extrabold leading-[0.78] tracking-[-0.06em] text-navy-800/90 before:content-[attr(data-word)] after:text-lemon-400 after:content-['.'] md:text-[15.5vw] [@media(min-width:96rem)]:text-[14.6rem]"
+      />
+      <div className="mx-auto flex max-w-[96rem] flex-wrap justify-between gap-3 border-t border-white/10 py-5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-navy-300">
         <span>© {new Date().getFullYear()} Atreya Kamat</span>
         <span>Built with Next.js · Hosted on Netlify</span>
       </div>

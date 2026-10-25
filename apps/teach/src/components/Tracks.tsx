@@ -37,7 +37,7 @@ export function Tracks() {
                   >
                     <CornerTicks className={dark ? "text-marker/50" : "text-ink-navy/25"} />
                     <div className="flex items-center justify-between">
-                      <TileLabel className={dark ? "text-marker" : "text-ink-navy/60"}>{t.code}</TileLabel>
+                      <TileLabel className={dark ? "text-marker" : "text-ink-navy/75"}>{t.code}</TileLabel>
                       <span
                         className={clsx(
                           "rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em]",
@@ -52,7 +52,7 @@ export function Tracks() {
                       <p className={clsx("mt-3 max-w-lg text-[17px] leading-relaxed", dark ? "text-navy-100/80" : "text-ink-navy/70")}>{t.forWho}</p>
                     </div>
                     <div className="flex-1">
-                      <p className={clsx("font-mono text-[10.5px] uppercase tracking-[0.2em]", dark ? "text-navy-300" : "text-ink-navy/55")}>
+                      <p className={clsx("font-mono text-[10.5px] uppercase tracking-[0.2em]", dark ? "text-navy-300" : "text-ink-navy/75")}>
                         You&rsquo;ll learn
                       </p>
                       <ul className="mt-3 space-y-2.5">

@@ -139,7 +139,7 @@ export function LiveLesson() {
           {/* explanation */}
           <div className="flex flex-col justify-between gap-6 rounded-[1.25rem] bg-sunlit p-6 text-ink-navy md:p-8 lg:col-span-5">
             <div>
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-navy/60">
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-ink-navy/75">
                 Line {activeNote + 1} of {LINES.length}
               </p>
               <p aria-live="polite" className="mt-4 font-display text-2xl font-bold leading-snug tracking-tight md:text-3xl">

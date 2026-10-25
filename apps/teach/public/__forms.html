@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>Form detection</title>
+</head>
+<body>
+  <!--
+    Netlify Forms detects forms from deployed static HTML. The live form is a
+    React component that POSTs to this file; field names here must match it.
+  -->
+  <form name="tuition-enquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="tuition-enquiry" />
+    <input name="bot-field" />
+    <input type="text" name="name" />
+    <input type="text" name="contact" />
+    <input type="text" name="level" />
+    <input type="text" name="track" />
+    <input type="text" name="format" />
+    <input type="text" name="area" />
+    <textarea name="note"></textarea>
+  </form>
+</body>
+</html>

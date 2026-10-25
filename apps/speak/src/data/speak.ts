@@ -205,3 +205,19 @@ export const faqs = [
     a: "It depends on the format, audience and location. Send the details through the form below and I'll reply with a clear answer.",
   },
 ];
+
+export interface PastTalk {
+  title: string;
+  event: string;
+  /** e.g. "Mar 2026". Only real, confirmed dates. */
+  when: string;
+  place: string;
+  slidesUrl?: string;
+  videoUrl?: string;
+}
+
+/**
+ * Other talks Atreya has given. Add each one here (title, event, month/year,
+ * place). The "More talks" section stays hidden while this list is empty.
+ */
+export const pastTalks: PastTalk[] = [];

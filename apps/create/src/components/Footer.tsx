@@ -29,7 +29,7 @@ export function Footer() {
       >
         atreya.mp4
       </p>
-      <div className="mx-auto flex max-w-[96rem] flex-wrap justify-between gap-3 border-t border-paper/15 py-5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-paper/45">
+      <div className="mx-auto flex max-w-[96rem] flex-wrap justify-between gap-3 border-t border-paper/15 py-5 font-mono text-[10.5px] uppercase tracking-[0.18em] text-paper/65">
         <span>© {new Date().getFullYear()} Atreya Kamat</span>
         <span>Sticker art © Stix N Vibes</span>
       </div>

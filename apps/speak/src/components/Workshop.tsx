@@ -61,11 +61,11 @@ export function Workshop() {
           onBlur={() => setPaused(false)}
         >
           {/* Agenda rail */}
-          <ol role="tablist" aria-label="Workshop agenda" className="grid gap-1.5 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
+          <div role="tablist" aria-label="Workshop agenda" className="grid gap-1.5 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
             {agenda.map((s, i) => {
               const on = i === active;
               return (
-                <li key={s.code}>
+                <div key={s.code}>
                   <button
                     role="tab"
                     aria-selected={on}
@@ -92,10 +92,10 @@ export function Workshop() {
                       />
                     )}
                   </button>
-                </li>
+                </div>
               );
             })}
-          </ol>
+          </div>
 
           {/* Projector */}
           <div className="lg:col-span-8">
