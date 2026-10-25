@@ -29,11 +29,13 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_IN",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "Atreya Kamat — website and software developer in Goa" }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: ["/og/home.png"],
   },
   keywords: [
     "website developer in Goa",

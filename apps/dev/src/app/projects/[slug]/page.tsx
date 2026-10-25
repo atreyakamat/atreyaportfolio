@@ -21,7 +21,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: project.title,
     description: project.triad.build,
     alternates: { canonical: url },
-    openGraph: { type: "article", url, title: `${project.title} · Atreya Kamat`, description: project.triad.build },
+    openGraph: {
+      type: "article",
+      url,
+      title: `${project.title} · Atreya Kamat`,
+      description: project.triad.build,
+      images: [{ url: "/og/projects.png", width: 1200, height: 630, alt: "Selected work by Atreya Kamat" }],
+    },
+    twitter: { card: "summary_large_image", title: `${project.title} · Atreya Kamat`, images: ["/og/projects.png"] },
   };
 }
 
