@@ -7,7 +7,8 @@ One npm-workspaces monorepo for four sites that share a brand and a component li
 | `apps/dev` | [atreyakamat.dev](https://atreyakamat.dev) | Midnight Citrus (navy + lemon) | Freelance product engineering, Goa services, proof of work |
 | `apps/teach` | teach.atreyakamat.dev | Sunlit Ink (paper + ink + lemon marker) | Tuition and workshops |
 | `apps/speak` | speak.atreyakamat.dev | Cobalt Lemonade (cobalt + lemonade) | Talks and booking |
-| `apps/create` | create.atreyakamat.dev | Acid Duotone (black + acid lemon) | Brand, stickers, creative coding, reels |
+| `apps/create` | create.atreyakamat.dev (atreya.mp4) | Acid Duotone (black + acid lemon) | Brand, stickers, creative coding, reels |
+| `apps/weddings` | Saltwater Studios (domain TBD) | Its own brand: tide ink, salt, sand, golden hour | Wedding reels for couples and videographers |
 
 Shared packages:
 
@@ -34,7 +35,7 @@ npm run lint           # all workspaces
 
 ## Content rules
 
-- Content lives in each app's `src/data/` files.
+- Content lives in each app's `src/data/` files. Blog posts on atreyakamat.dev live in `apps/dev/content/posts/*.md` and can be written at `/admin` (see `apps/dev/content/README.md`).
 - A URL that is not confirmed stays `null`. Never link a private repo.
 - No metrics, clients, testimonials, dates or results without evidence.
 - Lemon is never text on a light background (contrast about 1.1:1). On light surfaces it is a fill or a highlighter.

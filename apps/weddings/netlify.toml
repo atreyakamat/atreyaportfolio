@@ -1,0 +1,8 @@
+# Netlify site for Saltwater Studios.
+# In the Netlify UI for this site set Base directory = apps/weddings.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
