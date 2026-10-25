@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import "@atreya/brand/tokens.css";
+@source "../../../../packages/brand/src";
+@source "../../../../packages/ui/src";
+
+/* speak.atreyakamat.dev: "Cobalt Lemonade". Deep cobalt base, cobalt panels,
+   lemonade + lemon accents, white text. Lemon text only on cobalt/navy. */
+
+html {
+  background: var(--color-cobalt-950);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-cobalt-700) var(--color-cobalt-950);
+}
+
+body {
+  margin: 0;
+  background: var(--color-cobalt-950);
+  color: #ffffff;
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-lemonade);
+  color: var(--color-cobalt-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lemonade);
+  outline-offset: 3px;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* "On air" light and sound bars in the hero */
+@keyframes onair {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.onair { animation: onair 1.6s ease-in-out infinite; }
+
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+.eq-bar { transform-origin: bottom; animation: eq 1.1s ease-in-out infinite; }
+
+/* Spotlight cone that sweeps the hero stage */
+@keyframes sweep {
+  0%, 100% { transform: rotate(-14deg); }
+  50% { transform: rotate(10deg); }
+}
+.sweep { transform-origin: 50% 0%; animation: sweep 9s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .onair, .eq-bar, .sweep { animation: none; }
+}
