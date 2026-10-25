@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Monogram } from "@atreya/brand/monogram";
-import { LocalClock } from "@/components/system/LocalClock";
+import { EcosystemNav } from "@atreya/ui/EcosystemNav";
+import { LocalClock } from "@atreya/ui/LocalClock";
 import { personalInfo } from "@/data/portfolio";
 import { services } from "@/data/services";
 
@@ -14,6 +15,7 @@ export function Footer() {
           <p>
             Goa · <LocalClock className="tabular-nums text-paper" /> IST
           </p>
+          <EcosystemNav current="dev" className="-ml-2.5 pt-2" />
         </div>
         <nav aria-label="Services" className="space-y-3">
           <p className="text-lemon-400">Services</p>

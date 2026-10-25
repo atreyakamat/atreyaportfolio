@@ -10,7 +10,14 @@
   "scripts": {
     "dev": "npm run dev -w apps/dev",
     "build": "npm run build -w apps/dev",
-    "lint": "npm run lint -w apps/dev",
-    "legacy:build": "npm --prefix legacy/vite-site ci && npm --prefix legacy/vite-site run build"
+    "lint": "npm run lint --workspaces --if-present",
+    "legacy:build": "npm --prefix legacy/vite-site ci && npm --prefix legacy/vite-site run build",
+    "dev:speak": "npm run dev -w apps/speak",
+    "build:speak": "npm run build -w apps/speak",
+    "dev:teach": "npm run dev -w apps/teach",
+    "build:teach": "npm run build -w apps/teach",
+    "dev:create": "npm run dev -w apps/create",
+    "build:create": "npm run build -w apps/create",
+    "build:all": "npm run build --workspaces --if-present"
   }
 }

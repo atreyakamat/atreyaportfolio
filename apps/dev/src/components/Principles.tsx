@@ -1,5 +1,5 @@
-import { Reveal } from "@/components/Reveal";
-import { SectionHeader } from "@/components/system/SectionHeader";
+import { Reveal } from "@atreya/ui/Reveal";
+import { SectionHeader } from "@atreya/ui/SectionHeader";
 import { principles } from "@/data/portfolio";
 
 /** Lemon flip section: the operating principles behind every project. */

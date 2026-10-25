@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@atreya/brand": "*",
+    "@atreya/ui": "*",
     "@fontsource-variable/bricolage-grotesque": "^5.2.0",
     "@fontsource-variable/jetbrains-mono": "^5.2.0",
     "@fontsource/instrument-serif": "^5.2.0",

@@ -4,8 +4,8 @@ import { useRef } from "react";
 import Link from "next/link";
 import { useScroll } from "framer-motion";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Reveal } from "@/components/Reveal";
-import { SectionHeader } from "@/components/system/SectionHeader";
+import { Reveal } from "@atreya/ui/Reveal";
+import { SectionHeader } from "@atreya/ui/SectionHeader";
 import { archiveProjectsList, gridProjects, lawyerCrmProject, trackNowProject } from "@/data/portfolio";
 
 const featured = [trackNowProject, ...gridProjects, lawyerCrmProject];

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
-import { Reveal } from "@/components/Reveal";
-import { Scramble } from "@/components/system/Scramble";
+import { Reveal } from "./Reveal";
+import { Scramble } from "./Scramble";
 
 /**
  * Spec-sheet section header: a rule line with index, label and a meta tag,
@@ -22,9 +22,10 @@ export function SectionHeader({
   title: ReactNode;
   intro?: ReactNode;
   id: string;
-  tone?: "dark" | "lemon";
+  tone?: "dark" | "lemon" | "light";
 }) {
-  const lemon = tone === "lemon";
+  // "lemon" = navy text on a lemon section; "light" = ink on paper with a lemon marker.
+  const lemon = tone === "lemon" || tone === "light";
   return (
     <header>
       <div

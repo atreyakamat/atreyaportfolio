@@ -3,10 +3,10 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
-import { Magnetic } from "@/components/Magnetic";
-import { Reveal } from "@/components/Reveal";
-import { SectionHeader } from "@/components/system/SectionHeader";
-import { CornerTicks } from "@/components/system/Tile";
+import { Magnetic } from "@atreya/ui/Magnetic";
+import { Reveal } from "@atreya/ui/Reveal";
+import { SectionHeader } from "@atreya/ui/SectionHeader";
+import { CornerTicks } from "@atreya/ui/Tile";
 import { personalInfo } from "@/data/portfolio";
 
 const TYPES = ["Website / landing page", "Custom software / tool", "AI & automation", "Not sure yet"];

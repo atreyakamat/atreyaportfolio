@@ -5,9 +5,9 @@ import clsx from "clsx";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { EASE_OUT_EXPO } from "@atreya/brand/motion";
 import { DuotonePortrait } from "@/components/DuotonePortrait";
-import { Magnetic } from "@/components/Magnetic";
-import { LocalClock } from "@/components/system/LocalClock";
-import { Tile, TileLabel } from "@/components/system/Tile";
+import { Magnetic } from "@atreya/ui/Magnetic";
+import { LocalClock } from "@atreya/ui/LocalClock";
+import { Tile, TileLabel } from "@atreya/ui/Tile";
 import { nowFocus, personalInfo } from "@/data/portfolio";
 
 export const briefMailto = `mailto:${personalInfo.email}?subject=${encodeURIComponent("Project enquiry")}&body=${encodeURIComponent(

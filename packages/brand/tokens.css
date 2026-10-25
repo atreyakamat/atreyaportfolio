@@ -24,6 +24,18 @@
   --color-lemon-400: #f4ff5c;
   --color-lemon-600: #c9d814;
 
+  /* Site accents (same family, different ratios per site) */
+  --color-cobalt-950: #06114a;
+  --color-cobalt-900: #0a1a6e;
+  --color-cobalt-700: #0e2499;
+  --color-cobalt-500: #1534d6;
+  --color-cobalt-300: #8fa0f0;
+  --color-lemonade: #fff59a;
+  --color-acid: #dfff00;
+  --color-sunlit: #fbfaf4;
+  --color-marker: #f2ff70;
+  --color-ink-navy: #101a3d;
+
   /* Neutrals */
   --color-paper: #f6f6f1;
   --color-ink: #0a0a0a;

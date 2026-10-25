@@ -1,10 +1,10 @@
 import { DuotonePortrait } from "@/components/DuotonePortrait";
-import { Reveal } from "@/components/Reveal";
-import { NumberTicker } from "@/components/system/NumberTicker";
-import { ScrollReveal } from "@/components/system/ScrollReveal";
-import { SectionHeader } from "@/components/system/SectionHeader";
-import { TiltCard } from "@/components/system/TiltCard";
-import { TileLabel } from "@/components/system/Tile";
+import { Reveal } from "@atreya/ui/Reveal";
+import { NumberTicker } from "@atreya/ui/NumberTicker";
+import { ScrollReveal } from "@atreya/ui/ScrollReveal";
+import { SectionHeader } from "@atreya/ui/SectionHeader";
+import { TiltCard } from "@atreya/ui/TiltCard";
+import { TileLabel } from "@atreya/ui/Tile";
 import { aboutManifesto, allProjects, educationEntries, experienceEntries, personalInfo, talksGiven } from "@/data/portfolio";
 
 const stats = [

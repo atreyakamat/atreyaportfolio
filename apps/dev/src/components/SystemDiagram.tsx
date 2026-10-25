@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import { EASE_OUT_EXPO } from "@atreya/brand/motion";
-import { SectionHeader } from "@/components/system/SectionHeader";
-import { CornerTicks } from "@/components/system/Tile";
+import { SectionHeader } from "@atreya/ui/SectionHeader";
+import { CornerTicks } from "@atreya/ui/Tile";
 import { systemStages } from "@/data/portfolio";
 
 const CYCLE_MS = 4200;

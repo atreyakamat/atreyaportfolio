@@ -1,9 +1,9 @@
 import Image from "next/image";
 import clsx from "clsx";
-import { Reveal } from "@/components/Reveal";
-import { SectionHeader } from "@/components/system/SectionHeader";
-import { SpotlightCard } from "@/components/system/Spotlight";
-import { TileLabel } from "@/components/system/Tile";
+import { Reveal } from "@atreya/ui/Reveal";
+import { SectionHeader } from "@atreya/ui/SectionHeader";
+import { SpotlightCard } from "@atreya/ui/Spotlight";
+import { TileLabel } from "@atreya/ui/Tile";
 import { proofItems, type ProofItem } from "@/data/portfolio";
 
 const STATUS_STYLE: Record<ProofItem["status"], string> = {

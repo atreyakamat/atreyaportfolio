@@ -1,5 +1,5 @@
-import { Reveal } from "@/components/Reveal";
-import { SectionHeader } from "@/components/system/SectionHeader";
+import { Reveal } from "@atreya/ui/Reveal";
+import { SectionHeader } from "@atreya/ui/SectionHeader";
 import type { Faq as FaqItem } from "@/data/services";
 
 /** Accessible FAQ using native <details>. Pair with FAQPage JSON-LD on the page. */

@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: { unoptimized: true },
-  transpilePackages: ["@atreya/brand"],
+  transpilePackages: ["@atreya/brand", "@atreya/ui"],
   // Monorepo: tell Turbopack where the workspace root is.
   turbopack: { root: path.join(__dirname, "../..") },
 };

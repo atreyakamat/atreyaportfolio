@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@atreya/brand/tokens.css";
 @source "../../../../packages/brand/src";
+@source "../../../../packages/ui/src";
 
 html {
   background: var(--color-navy-950);

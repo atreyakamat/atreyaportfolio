@@ -1,0 +1,9 @@
+# Netlify site for speak.atreyakamat.dev
+# In the Netlify UI for this site set Base directory = apps/speak.
+# Netlify then reads this file (not the root one).
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import clsx from "clsx";
-import { Reveal } from "@/components/Reveal";
-import { SectionHeader } from "@/components/system/SectionHeader";
-import { CornerTicks, TileLabel } from "@/components/system/Tile";
+import { Reveal } from "@atreya/ui/Reveal";
+import { SectionHeader } from "@atreya/ui/SectionHeader";
+import { CornerTicks, TileLabel } from "@atreya/ui/Tile";
 import { goaAreas, services, type Service } from "@/data/services";
 
 const stack = ["Next.js", "React", "TypeScript", "Tailwind", "Python", "Flask", "PostgreSQL", "Supabase", "Docker", "Ollama", "TensorFlow", "Netlify"];
