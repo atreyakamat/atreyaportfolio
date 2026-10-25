@@ -1,3 +1,4 @@
+import { TopReels } from "@/components/TopReels";
 import { Commission } from "@/components/Commission";
 import { CreativeCoding } from "@/components/CreativeCoding";
 import { Hero } from "@/components/Hero";
@@ -37,6 +38,7 @@ export default function CreatePage() {
       <CreativeCoding />
       <WebCraft />
       <Reels />
+      <TopReels />
       <Commission />
     </>
   );

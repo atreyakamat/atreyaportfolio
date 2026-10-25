@@ -14,6 +14,7 @@ export function Footer() {
         </div>
         <div className="space-y-3">
           <p className="text-acid">Elsewhere</p>
+          <a href="https://www.instagram.com/atreya.mp4/" target="_blank" rel="noopener noreferrer" className="block hover:text-acid">@atreya.mp4 on Instagram ↗</a>
           <a href="https://stixnvibes.com" target="_blank" rel="noopener noreferrer" className="block hover:text-acid">Stix N Vibes ↗</a>
           <a href="https://instagram.com/stixnvibes" target="_blank" rel="noopener noreferrer" className="block hover:text-acid">@stixnvibes ↗</a>
           <a href="https://github.com/atreyakamat" target="_blank" rel="noopener noreferrer" className="block hover:text-acid">GitHub ↗</a>

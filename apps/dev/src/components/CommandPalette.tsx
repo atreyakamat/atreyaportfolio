@@ -10,6 +10,7 @@ import { SITES } from "@atreya/ui/EcosystemNav";
 import { allProjects, personalInfo } from "@/data/portfolio";
 import { services } from "@/data/services";
 import { posts } from "@/data/posts";
+import { caseStudies } from "@/data/caseStudies";
 
 type Item = {
   id: string;
@@ -76,6 +77,12 @@ export function CommandPalette() {
         label: p.title,
         hint: p.category,
         run: () => go(`/projects/${p.slug}/`),
+      })),
+      ...caseStudies.map((c) => ({
+        id: `cs-${c.slug}`,
+        group: "Work" as const,
+        label: `Case study: ${c.title}`,
+        run: () => go(`/work/${c.slug}/`),
       })),
       ...posts.map((p) => ({
         id: `post-${p.slug}`,

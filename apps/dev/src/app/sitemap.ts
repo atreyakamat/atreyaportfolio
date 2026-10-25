@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { allProjects, personalInfo } from "@/data/portfolio";
-import { posts } from "@/data/posts";
+import { getAllPosts } from "@/lib/markdown";
 import { services } from "@/data/services";
+import { caseStudyUrls } from "@/data/caseStudies";
 
 export const dynamic = "force-static";
 
@@ -16,10 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.9,
     })),
+    ...caseStudyUrls.map((u) => ({ url: `${base}${u}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 })),
     { url: `${base}/blog/`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.7 },
-    ...posts.map((p) => ({
+    ...getAllPosts().map((p) => ({
       url: `${base}/blog/${p.slug}/`,
-      lastModified: new Date(`${p.published}T00:00:00Z`),
+      lastModified: new Date(`${p.updated ?? p.date}T00:00:00Z`),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
