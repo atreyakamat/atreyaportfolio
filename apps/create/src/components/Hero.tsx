@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { EASE_OUT_EXPO } from "@atreya/brand/motion";
 import { heroStickers } from "@/data/create";
 
-const WORD = "CREATE";
+const WORD = "atreya.mp4";
 
 /**
  * Hero: giant acid type plus a field of real Stix N Vibes stickers that can be
@@ -38,13 +38,13 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-[96rem]">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.2em]">
-          <span className="bg-acid px-2 py-1 text-ink">Atreya Kamat / create</span>
+          <span className="bg-acid px-2 py-1 text-ink">@atreya.mp4 · Atreya Kamat&rsquo;s creator studio</span>
           <span className="text-paper/60">Brands · stickers · motion · web — Goa, IN</span>
         </div>
 
         <h1 id="hero-title" className="pointer-events-none select-none font-display font-extrabold leading-[0.78] tracking-[-0.06em] text-acid">
-          <span className="sr-only">Create — creative work by Atreya Kamat</span>
-          <span aria-hidden className="flex overflow-hidden text-[clamp(5.5rem,24vw,23rem)]">
+          <span className="sr-only">atreya.mp4 — creative work by Atreya Kamat</span>
+          <span aria-hidden className="flex overflow-hidden text-[clamp(3.6rem,15.5vw,15rem)] tracking-[-0.07em]">
             {WORD.split("").map((ch, i) => (
               <motion.span
                 key={i}
@@ -66,7 +66,7 @@ export function Hero() {
             transition={{ duration: 0.9, ease: EASE_OUT_EXPO, delay: 0.7 }}
             className="max-w-2xl font-serif text-4xl leading-[1.02] text-paper md:text-6xl"
           >
-            Brands, stickers, motion and the web, <em className="text-acid">made in Goa.</em>
+            Reels, brands, stickers and the web, <em className="text-acid">made in Goa.</em>
           </motion.p>
           <motion.div
             initial={reduce ? false : { opacity: 0 }}

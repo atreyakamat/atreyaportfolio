@@ -8,6 +8,9 @@ export const site = {
   url: "https://create.atreyakamat.dev",
   email: "atkamat1204@gmail.com",
   name: "Atreya Kamat",
+  /** Creator handle this site is branded as. Link it once the platform URL is confirmed. */
+  handle: "atreya.mp4",
+  handleUrl: null as string | null,
 };
 
 /** Sticker designs from Stix N Vibes (transparent webp), with a hero position (percent) and tilt. */

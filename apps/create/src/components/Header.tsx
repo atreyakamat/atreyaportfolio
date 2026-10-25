@@ -13,7 +13,7 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-4 border-b-2 border-acid bg-ink/90 px-5 py-3.5 backdrop-blur-md md:px-10">
       <div className="flex items-center gap-5">
-        <Link href="/" aria-label="create, home" className="text-paper transition-colors hover:text-acid">
+        <Link href="/" aria-label="atreya.mp4, home" className="text-paper transition-colors hover:text-acid">
           <Monogram size={34} accent="#DFFF00" />
         </Link>
         <EcosystemNav current="create" className="hidden lg:flex" />

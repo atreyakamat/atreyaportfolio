@@ -10,26 +10,26 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/data/create";
 
-const title = "Atreya Kamat — Creative work: brands, stickers, reels & web | Goa";
+const title = "atreya.mp4 — Reels, brands, stickers & creative web by Atreya Kamat | Goa";
 const description =
   "Creative work by Atreya Kamat in Goa: the Stix N Vibes sticker brand, art drawn in code, websites built as craft, and reel editing for brands.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: title, template: "%s · create · Atreya Kamat" },
+  title: { default: title, template: "%s · atreya.mp4" },
   description,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: site.url,
-    siteName: "Atreya Kamat — create",
+    siteName: "atreya.mp4",
     title,
     description,
     locale: "en_IN",
-    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "create.atreyakamat.dev — brands, stickers, reels and web" }],
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "atreya.mp4 — reels, brands, stickers and web by Atreya Kamat" }],
   },
   twitter: { card: "summary_large_image", title, description, images: ["/og/home.png"] },
-  keywords: ["creative developer Goa", "reel editor Goa", "sticker brand Goa", "creative coding", "Stix N Vibes", "Atreya Kamat"],
+  keywords: ["atreya.mp4", "creative developer Goa", "reel editor Goa", "sticker brand Goa", "creative coding", "Stix N Vibes", "Atreya Kamat"],
   authors: [{ name: "Atreya Kamat", url: "https://atreyakamat.dev" }],
 };
 
