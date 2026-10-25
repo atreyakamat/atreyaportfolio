@@ -1,0 +1,41 @@
+# Netlify build for atreyakamat.dev (npm workspaces monorepo).
+# This file overrides the build settings in the Netlify UI.
+# The dev site is a static Next.js export in apps/dev/out.
+[build]
+  command = "npm run build"
+  publish = "apps/dev/out"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Old routes from the previous (Vite) site, kept so existing links and
+# Google results do not 404. Project pages keep the same slugs.
+[[redirects]]
+  from = "/projects"
+  to = "/#work"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/#about"
+  status = 301
+
+[[redirects]]
+  from = "/experience"
+  to = "/#experience"
+  status = 301
+
+[[redirects]]
+  from = "/skills"
+  to = "/#services"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/#contact"
+  status = 301
+
+[[redirects]]
+  from = "/resume"
+  to = "/atreya_kamat_resume.pdf"
+  status = 301

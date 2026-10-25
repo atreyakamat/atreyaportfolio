@@ -147,10 +147,10 @@ export const trackNowProject: ProjectItem = {
     outcome: "Reached 100+ active users with instant offline local mode and production Firebase cloud synchronization.",
   },
   stack: "Vue 3 · Quasar · Firebase · Web Extension · TypeScript · PWA",
-  image: "/projects/tracknow.jpg",
+  image: "/proof/tracknow.webp",
   imageAlt: "Screenshot of Track.now productivity web application and habit manager",
   hasScreenshot: true,
-  liveUrl: null, // PENDING PRODUCTION DOMAIN
+  liveUrl: "https://tracknow.atreyakamat.dev",
   repoUrl: "https://github.com/atreyakamat/track.now",
   overview: "Track.now is a mission-based habit product and agile task manager featuring a full Quasar/Vue 3 web app, an installable offline-capable PWA, a companion browser extension, and built-in voice-to-task capture. The platform supports dual runtime modes: a zero-backend local demo mode storing data in browser storage, and a production Firebase mode providing authenticated cloud synchronization with Firestore.",
   keyFeatures: [
@@ -286,7 +286,7 @@ export const archiveProjectsList: ProjectItem[] = [
     image: "",
     imageAlt: "Architectural schematic preview of ScaleUp local batch AI upscaler",
     hasScreenshot: false,
-    liveUrl: null, // LOCAL DESKTOP APP
+    liveUrl: "https://scaleup.atreyakamat.dev",
     repoUrl: "https://github.com/atreyakamat/ScaleUp",
     overview: "ScaleUp is a self-hosted, privacy-first local image enhancement and batch super-resolution application. Built for Linux desktop environments (Arch Linux + Hyprland), it harnesses NCNN-Vulkan C++ compute to execute hardware-accelerated deep learning models directly on integrated and discrete AMD GPUs via Mesa's RADV driver. By bypassing heavy PyTorch runtimes, ScaleUp operates with a low memory footprint (≤ 120 MB API process RSS, dynamic tile clamping keeping GPU memory ≤ 600 MB UMA), avoiding VRAM exhaustion and session lockups.",
     keyFeatures: [
@@ -656,7 +656,7 @@ export interface ProofItem {
   name: string;
   image?: string;
   kind: string;
-  status: "Live" | "Pilot" | "Built" | "In progress" | "Internal";
+  status: "Live" | "Pilot" | "Waitlist" | "Built" | "In progress" | "Internal";
   desc: string;
   url: string | null;
   note?: string;
@@ -671,6 +671,30 @@ export const proofItems: ProofItem[] = [
     desc: "Landing site for a Goa sticker and print brand, with a physics sticker pile and a separate shop.",
     image: "/proof/stix.webp",
     url: "https://stixnvibes.com",
+  },
+  {
+    name: "Track.now",
+    kind: "Product · planning & habits",
+    status: "Live",
+    desc: "Plans life areas into focused execution arcs with daily routines and honest progress tracking. Landing site and web app.",
+    url: "https://tracknow.atreyakamat.dev",
+    image: "/proof/tracknow.webp",
+  },
+  {
+    name: "QuizMania",
+    kind: "Rotaract Club of Mapusa",
+    status: "Live",
+    desc: "The club's official interactive quiz platform: live competitions and instant, fair scoring for members across Goa.",
+    url: "https://quizmania.atreyakamat.dev",
+    image: "/proof/quizmania.webp",
+  },
+  {
+    name: "ShipTrack AI",
+    kind: "Shipment management platform",
+    status: "Waitlist",
+    desc: "Shipment tracking with OCR and AI summaries for individuals, creators and businesses. Waitlist open.",
+    url: "https://shiptrack-ai.atreyakamat.dev",
+    image: "/proof/shiptrack-ai.webp",
   },
   {
     name: "SlotBack",

@@ -9,6 +9,7 @@ import { proofItems, type ProofItem } from "@/data/portfolio";
 const STATUS_STYLE: Record<ProofItem["status"], string> = {
   Live: "bg-lemon-400 text-navy-950",
   Pilot: "border border-lemon-400 text-lemon-400",
+  Waitlist: "border border-lemon-400 text-lemon-400",
   Built: "bg-navy-700 text-paper",
   Internal: "bg-navy-700 text-paper",
   "In progress": "border border-white/30 text-paper",
@@ -80,7 +81,7 @@ export function ProofWall() {
               Don&rsquo;t take my word. <span className="font-serif font-normal italic text-lemon-400">Click around.</span>
             </>
           }
-          intro="Live sites, a product piloting in Goa, and tools real teams run on. Everything here was designed and built by me."
+          intro="Live sites, products with real users and waitlists, and tools teams run on. Every one designed and built by me."
         />
 
         <ul className="mt-16 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
