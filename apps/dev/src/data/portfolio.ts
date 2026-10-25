@@ -644,3 +644,69 @@ export const principles: Principle[] = [
   { code: "P/05", title: "Yours, not mine.", desc: "Code, accounts and domain set up in your name. You can walk away any time." },
   { code: "P/06", title: "Launch is the midpoint.", desc: "We measure real use after go-live and keep tightening what matters." },
 ];
+
+/* ───────────── Trust: about + proof ───────────── */
+
+export const aboutManifesto =
+  "I'm Atreya, a software engineer based in Goa. I've kept production platforms running at SparkPlus, worked on AI and computer vision with Google and Infosys Springboard, and shipped products of my own. Now I build the same kind of *systems* for businesses *here* *at* *home:* planned in writing, built in the open, and handed over in your name.";
+
+export const talksGiven = 5;
+
+export interface ProofItem {
+  name: string;
+  image?: string;
+  kind: string;
+  status: "Live" | "Pilot" | "Built" | "In progress" | "Internal";
+  desc: string;
+  url: string | null;
+  note?: string;
+}
+
+/** Real builds, described only with what each repository / live site states. */
+export const proofItems: ProofItem[] = [
+  {
+    name: "Stix N Vibes",
+    kind: "Brand landing site · own brand",
+    status: "Live",
+    desc: "Landing site for a Goa sticker and print brand, with a physics sticker pile and a separate shop.",
+    image: "/proof/stix.webp",
+    url: "https://stixnvibes.com",
+  },
+  {
+    name: "SlotBack",
+    kind: "Product · appointment businesses",
+    status: "Pilot",
+    desc: "Refills last-minute cancellations: waitlisted customers get a secure, expiring link and the first to claim gets the slot. Piloting in Goa.",
+    url: null,
+  },
+  {
+    name: "InWoice",
+    kind: "Invoicing, CRM & GST",
+    status: "Built",
+    desc: "Invoicing, credit notes and GSTR-1 reports for small product businesses, built for Indian GST and self-hosting.",
+    url: null,
+  },
+  {
+    name: "Inventory system",
+    kind: "Internal tool · 10-person team",
+    status: "Internal",
+    desc: "Stock across locations, low-stock alerts and a multi-step item request workflow, on Next.js and Supabase.",
+    url: null,
+  },
+  {
+    name: "Pixel N Purpose",
+    kind: "Agency web platform",
+    status: "Live",
+    desc: "Web platform for a creative agency, designed and built end to end.",
+    image: "/proof/pnp.webp",
+    url: "https://pixelnpurpose.com",
+  },
+  {
+    name: "Solara Studios",
+    kind: "Studio website · Goa",
+    status: "Live",
+    desc: "Website for a Goa web studio: engraved cobalt artwork drawn in code, clear pricing and a Netlify enquiry form.",
+    image: "/proof/solara.webp",
+    url: "https://solara.atreyakamat.dev",
+  },
+];

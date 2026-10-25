@@ -1,4 +1,7 @@
+import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
+import { ProofWall } from "@/components/ProofWall";
+import { TrustBar } from "@/components/TrustBar";
 import { Experience } from "@/components/Experience";
 import { Faq } from "@/components/Faq";
 import { Hero } from "@/components/Hero";
@@ -15,10 +18,13 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: graph(personLd, businessLd, faqLd(homeFaqs)) }} />
       <Hero />
+      <TrustBar />
       <Marquee />
       <ServicesBento />
       <SystemDiagram />
+      <ProofWall />
       <SelectedWork />
+      <About />
       <Principles />
       <Experience />
       <Faq items={homeFaqs} />

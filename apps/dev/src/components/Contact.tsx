@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import clsx from "clsx";
 import { Magnetic } from "@/components/Magnetic";
 import { Reveal } from "@/components/Reveal";
@@ -61,7 +62,7 @@ export function Contact() {
     <section id="contact" aria-labelledby="contact-title" className="px-5 py-28 md:px-10 md:py-36">
       <div className="mx-auto max-w-[96rem]">
         <SectionHeader
-          index="07"
+          index="09"
           label="Start a project"
           meta="Replies personally"
           id="contact-title"
@@ -95,6 +96,15 @@ export function Contact() {
             </div>
 
             <div className="flex flex-col justify-between gap-8 lg:col-span-5">
+              <div className="flex items-center gap-4">
+                <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-lemon-400 ring-offset-4 ring-offset-navy-900">
+                  <Image src="/atreyapfp.webp" alt="Atreya Kamat" fill sizes="64px" className="object-cover" />
+                </span>
+                <p className="text-[15px] leading-snug text-paper">
+                  You&rsquo;ll hear back from <strong className="text-lemon-400">me</strong>, not a sales team.
+                  <span className="mt-1 block font-mono text-[10.5px] uppercase tracking-[0.18em] text-navy-300">Atreya Kamat · Goa</span>
+                </p>
+              </div>
               <div className="rounded-2xl border border-white/10 bg-navy-950/80 p-5 font-mono text-xs leading-relaxed text-navy-300">
                 <p className="text-[10.5px] uppercase tracking-[0.2em] text-lemon-400">Preview</p>
                 <p className="mt-3">

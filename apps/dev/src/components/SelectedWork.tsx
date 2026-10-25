@@ -18,7 +18,7 @@ export function SelectedWork() {
     <section id="work" aria-labelledby="work-title" className="px-5 py-28 md:px-10 md:py-40">
       <div className="mx-auto max-w-[96rem]">
         <SectionHeader
-          index="03"
+          index="04"
           label="Selected work"
           meta="Problem → Build → Outcome"
           id="work-title"

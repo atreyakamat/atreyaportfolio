@@ -5,8 +5,8 @@ import { personalInfo } from "@/data/portfolio";
 const links = [
   { label: "Services", href: "/#services" },
   { label: "System", href: "/#system" },
-  { label: "Work", href: "/#work" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "Proof", href: "/#proof" },
+  { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ];
 

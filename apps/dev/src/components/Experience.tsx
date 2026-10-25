@@ -7,7 +7,7 @@ export function Experience() {
     <section id="experience" aria-labelledby="experience-title" className="px-5 py-28 md:px-10 md:py-40">
       <div className="mx-auto max-w-[96rem]">
         <SectionHeader
-          index="05"
+          index="07"
           label="Experience log"
           meta="Since 2024"
           id="experience-title"

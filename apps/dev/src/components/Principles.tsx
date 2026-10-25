@@ -9,7 +9,7 @@ export function Principles() {
       <div className="mx-auto max-w-[96rem]">
         <SectionHeader
           tone="lemon"
-          index="04"
+          index="06"
           label="Operating principles"
           meta="Non-negotiable"
           id="principles-title"

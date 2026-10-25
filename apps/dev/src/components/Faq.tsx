@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/system/SectionHeader";
 import type { Faq as FaqItem } from "@/data/services";
 
 /** Accessible FAQ using native <details>. Pair with FAQPage JSON-LD on the page. */
-export function Faq({ items, index = "06", title }: { items: FaqItem[]; index?: string; title?: React.ReactNode }) {
+export function Faq({ items, index = "08", title }: { items: FaqItem[]; index?: string; title?: React.ReactNode }) {
   return (
     <section id="faq" aria-labelledby="faq-title" className="px-5 py-28 md:px-10 md:py-36">
       <div className="mx-auto max-w-[96rem]">
