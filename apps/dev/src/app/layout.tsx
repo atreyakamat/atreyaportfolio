@@ -10,13 +10,14 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { personalInfo } from "@/data/portfolio";
 
+const title = "Website & Software Developer in Goa | Atreya Kamat";
 const description =
-  "Software engineer who turns messy workflows into useful products across frontend, backend, data, automation and AI.";
+  "Freelance website and custom software developer in Goa. Websites, web apps, internal tools and AI automation for businesses across North and South Goa.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(personalInfo.siteUrl),
   title: {
-    default: "Atreya Kamat — Software Engineer",
+    default: title,
     template: "%s · Atreya Kamat",
   },
   description,
@@ -25,14 +26,26 @@ export const metadata: Metadata = {
     type: "website",
     url: personalInfo.siteUrl,
     siteName: "Atreya Kamat",
-    title: "Atreya Kamat — Software Engineer",
+    title,
     description,
+    locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Atreya Kamat — Software Engineer",
+    title,
     description,
   },
+  keywords: [
+    "website developer in Goa",
+    "web design Goa",
+    "software developer Goa",
+    "custom software development Goa",
+    "web app development Goa",
+    "AI automation Goa",
+    "freelance developer Goa",
+  ],
+  authors: [{ name: "Atreya Kamat", url: personalInfo.siteUrl }],
+  other: { "geo.region": "IN-GA", "geo.placename": "Goa" },
 };
 
 export const viewport: Viewport = {
@@ -42,7 +55,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body>
         <a
           href="#main"

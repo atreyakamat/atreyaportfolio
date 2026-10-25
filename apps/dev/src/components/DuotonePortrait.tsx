@@ -7,7 +7,16 @@ import type { PointerEvent } from "react";
  * Navy and lemon duotone portrait. The true-colour photo is revealed
  * through a soft circle that follows the cursor.
  */
-export function DuotonePortrait({ name, location }: { name: string; location: string }) {
+export function DuotonePortrait({
+  name,
+  location,
+  fill = false,
+}: {
+  name: string;
+  location: string;
+  /** Fill the parent (bento tile) instead of a fixed 3:4 frame. */
+  fill?: boolean;
+}) {
   const onMove = (e: PointerEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
     e.currentTarget.style.setProperty("--px", `${e.clientX - r.left}px`);
@@ -15,7 +24,7 @@ export function DuotonePortrait({ name, location }: { name: string; location: st
   };
 
   return (
-    <figure className="w-full max-w-sm">
+    <figure className={fill ? "flex h-full w-full flex-col" : "w-full max-w-sm"}>
       {/* Maps luminance to navy (dark) and lemon (light). */}
       <svg width="0" height="0" aria-hidden className="absolute">
         <filter id="duotone-lemon" colorInterpolationFilters="sRGB">
@@ -33,7 +42,11 @@ export function DuotonePortrait({ name, location }: { name: string; location: st
 
       <div
         onPointerMove={onMove}
-        className="group relative aspect-[3/4] overflow-hidden rounded-sm bg-navy-800 ring-1 ring-white/10"
+        className={
+          fill
+            ? "group relative min-h-[26rem] flex-1 overflow-hidden rounded-[1.1rem] bg-navy-800"
+            : "group relative aspect-[3/4] overflow-hidden rounded-sm bg-navy-800 ring-1 ring-white/10"
+        }
         style={{ ["--px" as string]: "50%", ["--py" as string]: "40%" }}
       >
         <Image
@@ -60,7 +73,7 @@ export function DuotonePortrait({ name, location }: { name: string; location: st
           }}
         />
       </div>
-      <figcaption className="mt-3 flex justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-navy-300">
+      <figcaption className="mt-3 flex px-1 justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-navy-300">
         <span className="text-paper">{name}</span>
         <span>{location}</span>
       </figcaption>

@@ -83,7 +83,7 @@ export const personalInfo = {
   headlinePrefix: "I build software to solve ",
   headlineHighlight: "real problems",
   headlineSuffix: ".",
-  bio: "Spreadsheets and WhatsApp threads are costing you money. I turn them into software your team actually uses.",
+  bio: "Spreadsheets, WhatsApp threads and copy-paste admin are quietly costing you money. I replace them with systems your team actually uses.",
   location: "GOA, INDIA",
   locationShort: "GOA, IN",
   statusShort: "TAKING PROJECTS · GOA, IN",
@@ -577,4 +577,70 @@ export const offers: Offer[] = [
     desc: "Document parsing, summaries, data pipelines. The boring work, done by software.",
     for: "Anyone drowning in repetitive admin",
   },
+];
+
+/* ───────────── v3 "Operating System" content ───────────── */
+
+export const nowFocus = "Shipping landing pages and internal tools for growing businesses.";
+
+export interface SystemStage {
+  code: string;
+  name: string;
+  line: string;
+  detail: string;
+  deliverables: string[];
+}
+
+/** The engagement process. Each stage names what the client actually receives. */
+export const systemStages: SystemStage[] = [
+  {
+    code: "01",
+    name: "Brief",
+    line: "Find the leak.",
+    detail: "A focused call to find where time and money are slipping: who is stuck, what they do by hand, and what 'done' looks like.",
+    deliverables: ["One-page problem brief", "Scope with clear in / out", "A plan and a quote"],
+  },
+  {
+    code: "02",
+    name: "Spec",
+    line: "Write it down.",
+    detail: "Screens, data and flows mapped before any code, so we agree on the system instead of arguing about a mockup later.",
+    deliverables: ["System map of data and flows", "Key screens wireframed", "Written spec you can share"],
+  },
+  {
+    code: "03",
+    name: "Build",
+    line: "Ship in slices.",
+    detail: "The smallest useful version first, on a private staging link. You click real software early and steer as it grows.",
+    deliverables: ["Private staging link", "Regular progress updates", "Working features, not slides"],
+  },
+  {
+    code: "04",
+    name: "Launch",
+    line: "Go live, properly.",
+    detail: "Production deploy with analytics, SEO and access set up in your name, plus a handover so you are never locked in.",
+    deliverables: ["Production deploy", "Analytics and SEO basics", "Handover doc and access"],
+  },
+  {
+    code: "05",
+    name: "Measure",
+    line: "Tighten the loop.",
+    detail: "Real usage tells us what to fix next. We keep what works, cut what does not, and the system gets sharper.",
+    deliverables: ["Usage review", "Prioritised fix list", "Next-phase plan"],
+  },
+];
+
+export interface Principle {
+  code: string;
+  title: string;
+  desc: string;
+}
+
+export const principles: Principle[] = [
+  { code: "P/01", title: "Systems, not pages.", desc: "Every build has data, flows and an owner. A pretty page that nobody can run is a liability." },
+  { code: "P/02", title: "Working software early.", desc: "You click something real long before launch, so feedback costs minutes, not rewrites." },
+  { code: "P/03", title: "One point of contact.", desc: "The person you brief is the person who builds. Nothing gets lost in handoffs." },
+  { code: "P/04", title: "Everything written down.", desc: "Specs, decisions and handover notes. Nothing important lives only in my head." },
+  { code: "P/05", title: "Yours, not mine.", desc: "Code, accounts and domain set up in your name. You can walk away any time." },
+  { code: "P/06", title: "Launch is the midpoint.", desc: "We measure real use after go-live and keep tightening what matters." },
 ];

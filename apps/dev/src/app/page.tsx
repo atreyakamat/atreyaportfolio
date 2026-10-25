@@ -1,33 +1,27 @@
-import { Capabilities } from "@/components/Capabilities";
 import { Contact } from "@/components/Contact";
 import { Experience } from "@/components/Experience";
+import { Faq } from "@/components/Faq";
 import { Hero } from "@/components/Hero";
-import { Offers } from "@/components/Offers";
 import { Marquee } from "@/components/Marquee";
-import { Pipeline } from "@/components/Pipeline";
+import { Principles } from "@/components/Principles";
 import { SelectedWork } from "@/components/SelectedWork";
-import { personalInfo } from "@/data/portfolio";
-
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Atreya Kamat",
-  jobTitle: "Software Engineer",
-  url: personalInfo.siteUrl,
-  sameAs: [personalInfo.githubUrl, personalInfo.linkedinUrl],
-};
+import { ServicesBento } from "@/components/ServicesBento";
+import { SystemDiagram } from "@/components/SystemDiagram";
+import { homeFaqs } from "@/data/services";
+import { businessLd, faqLd, graph, personLd } from "@/lib/jsonld";
 
 export default function HomePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: graph(personLd, businessLd, faqLd(homeFaqs)) }} />
       <Hero />
       <Marquee />
-      <Offers />
+      <ServicesBento />
+      <SystemDiagram />
       <SelectedWork />
-      <Pipeline />
+      <Principles />
       <Experience />
-      <Capabilities />
+      <Faq items={homeFaqs} />
       <Contact />
     </>
   );

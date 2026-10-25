@@ -4,9 +4,9 @@ import { personalInfo } from "@/data/portfolio";
 
 const links = [
   { label: "Services", href: "/#services" },
+  { label: "System", href: "/#system" },
   { label: "Work", href: "/#work" },
-  { label: "Approach", href: "/#approach" },
-  { label: "Experience", href: "/#experience" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -37,13 +37,12 @@ export function Header() {
           </span>
           {personalInfo.statusShort}
         </span>
-        <a
-          href={personalInfo.resumeUrl}
-          download="atreya_kamat_resume.pdf"
+        <Link
+          href="/#contact"
           className="rounded-full border border-lemon-400 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-lemon-400 transition-colors hover:bg-lemon-400 hover:text-navy-950"
         >
-          Resume
-        </a>
+          Start a project
+        </Link>
       </div>
     </header>
   );

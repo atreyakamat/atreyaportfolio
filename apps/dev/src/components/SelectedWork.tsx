@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useScroll } from "framer-motion";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
+import { SectionHeader } from "@/components/system/SectionHeader";
 import { archiveProjectsList, gridProjects, lawyerCrmProject, trackNowProject } from "@/data/portfolio";
 
 const featured = [trackNowProject, ...gridProjects, lawyerCrmProject];
@@ -15,13 +16,19 @@ export function SelectedWork() {
 
   return (
     <section id="work" aria-labelledby="work-title" className="px-5 py-28 md:px-10 md:py-40">
-      <div className="mx-auto max-w-7xl">
-        <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-lemon-400">01 / Selected work</p>
-          <h2 id="work-title" className="mt-4 max-w-4xl font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-paper md:text-8xl">
-            Four problems, <span className="font-serif font-normal italic text-lemon-400">built</span> and shipped.
-          </h2>
-        </Reveal>
+      <div className="mx-auto max-w-[96rem]">
+        <SectionHeader
+          index="03"
+          label="Selected work"
+          meta="Problem → Build → Outcome"
+          id="work-title"
+          title={
+            <>
+              Systems I&rsquo;ve <span className="font-serif font-normal italic text-lemon-400">built and shipped</span>.
+            </>
+          }
+          intro="Each project starts from a real problem. Here is what it was, what I built, and what changed."
+        />
 
         <div ref={stackRef} className="mt-20 flex flex-col gap-[18vh]">
           {featured.map((project, i) => (

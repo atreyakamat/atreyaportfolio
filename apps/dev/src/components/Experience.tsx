@@ -1,16 +1,23 @@
 import { Reveal } from "@/components/Reveal";
+import { SectionHeader } from "@/components/system/SectionHeader";
 import { educationEntries, experienceEntries } from "@/data/portfolio";
 
 export function Experience() {
   return (
     <section id="experience" aria-labelledby="experience-title" className="px-5 py-28 md:px-10 md:py-40">
-      <div className="mx-auto max-w-7xl">
-        <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-lemon-400">03 / Experience</p>
-          <h2 id="experience-title" className="mt-4 font-display text-5xl font-extrabold leading-[0.95] tracking-tight text-paper md:text-8xl">
-            Where I&rsquo;ve <span className="font-serif font-normal italic text-lemon-400">worked</span>.
-          </h2>
-        </Reveal>
+      <div className="mx-auto max-w-[96rem]">
+        <SectionHeader
+          index="05"
+          label="Experience log"
+          meta="Since 2024"
+          id="experience-title"
+          title={
+            <>
+              Where I&rsquo;ve <span className="font-serif font-normal italic text-lemon-400">worked</span>.
+            </>
+          }
+          intro="Production platforms, monitoring, AI and ML. The habits behind every client build came from here."
+        />
 
         <ul className="mt-16 border-t border-white/10">
           {experienceEntries.map((e, i) => (

@@ -66,3 +66,37 @@ html.lenis body {
     animation: none;
   }
 }
+
+/* System diagram: data packets travelling the bus */
+@keyframes packet {
+  0% { left: 0%; opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+.packet {
+  animation: packet 4.8s linear infinite;
+}
+
+/* Services bento micro-animations */
+@keyframes bar-grow {
+  0%, 12% { transform: scaleY(0.15); }
+  55%, 85% { transform: scaleY(1); }
+  100% { transform: scaleY(0.15); }
+}
+.bar-grow { transform-origin: bottom; animation: bar-grow 5s var(--ease-out-expo, ease-out) infinite; }
+
+@keyframes scan {
+  0% { transform: translateY(-10%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(1100%); opacity: 0; }
+}
+.scan { animation: scan 3.6s linear infinite; }
+
+@keyframes blink { 50% { opacity: 0; } }
+.caret { animation: blink 1s steps(1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .packet, .bar-grow, .scan, .caret { animation: none; }
+}
