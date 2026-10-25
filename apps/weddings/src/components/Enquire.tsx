@@ -7,8 +7,8 @@ import { Honeypot, useNetlifyForm } from "@atreya/ui/netlifyForm";
 import { site, type TrackId } from "@/data/site";
 import { mailLink, TRACK_EVENT, waLink } from "@/lib/contact";
 
-const ROLES = ["Couple", "Videographer / Photographer"] as const;
-const PACKAGES = ["Couple reels · ₹6,000–8,000", "Reel editing · from ₹2,500 per reel", "Not sure yet"] as const;
+const ROLES = ["Videographer / Photographer", "Couple"] as const;
+const PACKAGES = ["Reel editing · from ₹2,500 per reel", "Couple reels · ₹6,000–8,000", "Not sure yet"] as const;
 
 const field =
   "mt-2 w-full rounded-xl border border-salt/20 bg-tide-950/60 px-4 py-3.5 text-salt placeholder:text-tide-300/70 focus:border-sun-400 focus:outline-none";
@@ -39,7 +39,7 @@ function Chips<T extends string>({ name, options, value, onChange }: { name: str
 }
 
 export function Enquire() {
-  const [role, setRole] = useState<(typeof ROLES)[number]>("Couple");
+  const [role, setRole] = useState<(typeof ROLES)[number]>("Videographer / Photographer");
   const [pkg, setPkg] = useState<(typeof PACKAGES)[number]>(PACKAGES[0]);
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
@@ -54,10 +54,10 @@ export function Enquire() {
       const t = (e as CustomEvent<TrackId>).detail;
       if (t === "editors") {
         setRole("Videographer / Photographer");
-        setPkg(PACKAGES[1]);
+        setPkg(PACKAGES[0]);
       } else if (t === "couples") {
         setRole("Couple");
-        setPkg(PACKAGES[0]);
+        setPkg(PACKAGES[1]);
       }
     };
     window.addEventListener(TRACK_EVENT, apply);

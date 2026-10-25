@@ -12,7 +12,7 @@ export const site = {
   name: "Saltwater Studios",
   tagline: "Wedding reels, cut for the scroll.",
   description:
-    "Saltwater Studios makes vertical wedding reels in Goa: reels shot for couples at destination and local Goan weddings, and reel editing for videographers and photographers.",
+    "Saltwater Studios makes vertical wedding reels in Goa: reel editing for videographers and photographers, and reels shot for couples at destination and local Goan weddings.",
   email: "atkamat1204@gmail.com",
   whatsapp: "917744020601",
   whatsappDisplay: "+91 77440 20601",
@@ -37,23 +37,6 @@ export interface Track {
 
 export const tracks: Track[] = [
   {
-    id: "couples",
-    label: "For couples",
-    who: "Destination and local Goan weddings",
-    headline: "Your day, as reels you'll actually rewatch.",
-    pitch:
-      "I shoot your wedding for vertical: the glances, the noise, the light on the water. Then I cut it into reels made for your phone and your feed.",
-    price: { amount: "₹6,000–8,000", unit: "per wedding" },
-    priceNote: "Depends on the day. Includes 2 reels and a few posts.",
-    includes: ["2 wedding reels", "A few posts for your feed", "Shot vertical, on camera and phone", "Stabilised with a gimbal, clean audio with a shotgun mic"],
-    process: [
-      { title: "Enquire", body: "Send your date, venue and the feel you want. I reply personally." },
-      { title: "Plan the day", body: "We go through the schedule and the moments that matter most to you." },
-      { title: "Shoot", body: "I film vertical through the day, close to the moments, out of the way." },
-      { title: "Edit & deliver", body: "Your reels and posts, cut for the scroll, ready to share." },
-    ],
-  },
-  {
     id: "editors",
     label: "For videographers",
     who: "Videographers and photographers",
@@ -68,6 +51,23 @@ export const tracks: Track[] = [
       { title: "Send footage", body: "Share the footage, any must-have moments and the music direction." },
       { title: "Edit", body: "I cut the reels and send them over for your notes." },
       { title: "Deliver", body: "Final reels, ready for you to hand to your couple." },
+    ],
+  },
+  {
+    id: "couples",
+    label: "For couples",
+    who: "Destination and local Goan weddings",
+    headline: "Your day, as reels you'll actually rewatch.",
+    pitch:
+      "I shoot your wedding for vertical: the glances, the noise, the light on the water. Then I cut it into reels made for your phone and your feed.",
+    price: { amount: "₹6,000–8,000", unit: "per wedding" },
+    priceNote: "Depends on the day. Includes 2 reels and a few posts.",
+    includes: ["2 wedding reels", "A few posts for your feed", "Shot vertical, on camera and phone", "Stabilised with a gimbal, clean audio with a shotgun mic"],
+    process: [
+      { title: "Enquire", body: "Send your date, venue and the feel you want. I reply personally." },
+      { title: "Plan the day", body: "We go through the schedule and the moments that matter most to you." },
+      { title: "Shoot", body: "I film vertical through the day, close to the moments, out of the way." },
+      { title: "Edit & deliver", body: "Your reels and posts, cut for the scroll, ready to share." },
     ],
   },
 ];
@@ -118,4 +118,4 @@ export const faqs = [
   },
 ];
 
-export const marquee = ["Destination weddings", "Local Goan weddings", "Reels for couples", "Reel editing for videographers", "Vertical first", "Cut for the scroll"];
+export const marquee = ["Reel editing for videographers", "Partner with your studio", "Destination weddings", "Local Goan weddings", "Reels for couples", "Vertical first", "Cut for the scroll"];
