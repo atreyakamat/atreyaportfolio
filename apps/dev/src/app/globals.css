@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "@atreya/brand/tokens.css";
+
+/* Fonts come from next/font (see app/fonts.ts); map the brand font tokens to them. */
+@theme inline {
+  --font-display: var(--nf-display), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--nf-serif), Georgia, serif;
+  --font-mono: var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
+}
+@source "../../../../packages/brand/src";
+@source "../../../../packages/ui/src";
+
+html {
+  background: var(--color-navy-950);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-navy-700) var(--color-navy-950);
+}
+
+body {
+  margin: 0;
+  background: var(--color-navy-950);
+  color: var(--color-navy-100);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-lemon-400);
+  color: var(--color-navy-950);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lemon-400);
+  outline-offset: 3px;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Marquee: two identical tracks side by side, shifted by half the total width */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* System diagram: data packets travelling the bus */
+/* The packet wrapper spans the bus width, so translateX(100%) = one full bus length (compositor-only). */
+@keyframes packet {
+  0% { transform: translateX(0); opacity: 0; }
+  6% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+.packet {
+  animation: packet 4.8s linear infinite;
+}
+
+/* Services bento micro-animations */
+@keyframes bar-grow {
+  0%, 12% { transform: scaleY(0.15); }
+  55%, 85% { transform: scaleY(1); }
+  100% { transform: scaleY(0.15); }
+}
+.bar-grow { transform-origin: bottom; animation: bar-grow 5s var(--ease-out-expo, ease-out) infinite; }
+
+@keyframes scan {
+  0% { transform: translateY(-10%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(1100%); opacity: 0; }
+}
+.scan { animation: scan 3.6s linear infinite; }
+
+@keyframes blink { 50% { opacity: 0; } }
+.caret { animation: blink 1s steps(1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .packet, .bar-grow, .scan, .caret { animation: none; }
+}

@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "@atreya/brand/tokens.css";
+
+/* Fonts come from next/font (see app/fonts.ts); map the brand font tokens to them. */
+@theme inline {
+  --font-display: var(--nf-display), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--nf-serif), Georgia, serif;
+  --font-mono: var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
+}
+@source "../../../../packages/brand/src";
+@source "../../../../packages/ui/src";
+
+html {
+  background: var(--color-ink);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-acid) var(--color-ink);
+}
+
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-acid);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-acid);
+  outline-offset: 3px;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Halftone dots used as a texture on acid blocks */
+.halftone {
+  background-image: radial-gradient(rgba(10, 10, 10, 0.18) 1px, transparent 1.2px);
+  background-size: 9px 9px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* Reel edit timeline */
+@keyframes reel-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.reel-clip { animation: reel-pulse 2.4s ease-in-out infinite; }
+@keyframes reel-head {
+  from { left: 0%; }
+  to { left: 100%; }
+}
+.reel-head { animation: reel-head 4s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .reel-clip, .reel-head { animation: none; }
+}

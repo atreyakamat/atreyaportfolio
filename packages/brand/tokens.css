@@ -1,0 +1,83 @@
+/*
+  Atreya brand tokens: Midnight Citrus.
+  One lemon + navy core. Each site changes the ratio, not the palette.
+
+  Contrast notes (WCAG):
+  - lemon-400 on navy-950 is about 16.8:1. Lemon text is safe on navy only.
+  - lemon on paper/white is about 1.1:1 and fails. On light backgrounds lemon is
+    a fill behind navy text or a highlighter stroke, never text.
+  - navy-300 (muted text) on navy-950 is about 7:1.
+*/
+
+@theme {
+  /* Navy ladder */
+  --color-navy-950: #070b1f;
+  --color-navy-900: #0b1230;
+  --color-navy-800: #121a42;
+  --color-navy-700: #1c2757;
+  --color-navy-500: #4a5aa6;
+  --color-navy-300: #9aa4d0;
+  --color-navy-100: #dce1f5;
+
+  /* Lemon */
+  --color-lemon-300: #f8ff94;
+  --color-lemon-400: #f4ff5c;
+  --color-lemon-600: #c9d814;
+
+  /* Site accents (same family, different ratios per site) */
+  --color-cobalt-950: #06114a;
+  --color-cobalt-900: #0a1a6e;
+  --color-cobalt-700: #0e2499;
+  --color-cobalt-500: #1534d6;
+  --color-cobalt-300: #8fa0f0;
+  --color-lemonade: #fff59a;
+  --color-acid: #dfff00;
+  --color-sunlit: #fbfaf4;
+  --color-marker: #f2ff70;
+  --color-ink-navy: #101a3d;
+
+  /* Neutrals */
+  --color-paper: #f6f6f1;
+  --color-ink: #0a0a0a;
+
+  /* Type */
+  --font-display: "Bricolage Grotesque Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/*
+  Entrance animations that run in CSS, before JavaScript hydrates, so hero
+  text paints immediately (good LCP). Content starts at opacity 0.01, not 0,
+  so the browser still counts it as painted. Set --d for a delay.
+*/
+@keyframes rise-in {
+  from {
+    opacity: 0.01;
+    transform: translateY(var(--rise, 22px));
+  }
+}
+@keyframes letter-up {
+  from {
+    transform: translateY(112%);
+  }
+}
+.rise-in {
+  animation: rise-in 0.95s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+.letter-up {
+  display: inline-block;
+  animation: letter-up 1.05s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise-in,
+  .letter-up {
+    animation: none;
+  }
+}
