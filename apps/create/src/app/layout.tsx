@@ -8,9 +8,9 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/data/create";
 
-const title = "atreya.mp4 — Reels, brands, stickers & creative web by Atreya Kamat | Goa";
+const title = "atreya.mp4 — Tech content creator from Goa | Brand collaborations";
 const description =
-  "Creative work by Atreya Kamat in Goa: the Stix N Vibes sticker brand, art drawn in code, websites built as craft, and reel editing for brands.";
+  "atreya.mp4 by Atreya Kamat: short, useful tech reels on PC fixes, free tools, Linux and AI. Open to brand collaborations: dedicated reels, integrations, stories and UGC.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "atreya.mp4 — reels, brands, stickers and web by Atreya Kamat" }],
   },
   twitter: { card: "summary_large_image", title, description, images: ["/og/home.png"] },
-  keywords: ["atreya.mp4", "creative developer Goa", "reel editor Goa", "sticker brand Goa", "creative coding", "Stix N Vibes", "Atreya Kamat"],
+  keywords: ["atreya.mp4", "tech creator India", "tech influencer Goa", "brand collaboration", "UGC creator", "tech reels", "Atreya Kamat"],
   authors: [{ name: "Atreya Kamat", url: "https://atreyakamat.dev" }],
 };
 

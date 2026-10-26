@@ -18,7 +18,7 @@ OUT = APP / "public" / "og"
 
 CARDS = [
     # (file, kicker, title, accent, portrait)
-    ("home", "@atreya.mp4 · Atreya Kamat", "atreya.mp4: reels, brands, stickers and the web,", "made in Goa.", True),
+    ("home", "@atreya.mp4 · tech creator · brand collabs", "Tech, made simple,", "in under a minute.", True),
 ]
 
 MONOGRAM = """<svg viewBox="0 0 64 64" width="56" height="56" fill="none"><g stroke="#f6f6f1" stroke-linecap="round" stroke-linejoin="round">
