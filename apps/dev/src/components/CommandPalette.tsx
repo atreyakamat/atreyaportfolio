@@ -61,6 +61,8 @@ export function CommandPalette() {
       { id: "proof", group: "Go to", label: "Proof of work", keywords: "live sites portfolio", run: () => go("/#proof") },
       { id: "about", group: "Go to", label: "About Atreya", run: () => go("/#about") },
       { id: "faq", group: "Go to", label: "FAQ", run: () => go("/#faq") },
+      { id: "pass", group: "Go to", label: "Get your project pass", keywords: "id card ticket enquiry", run: () => go("/#pass") },
+      { id: "badge", group: "Go to", label: "Atreya's ID card", keywords: "badge lanyard qr whatsapp", run: () => go("/#about") },
       { id: "contact", group: "Go to", label: "Start a project", keywords: "contact enquiry hire quote", run: () => go("/#contact") },
       { id: "blog", group: "Go to", label: "Blog", keywords: "articles writing", run: () => go("/blog/") },
       ...services.map((s) => ({
