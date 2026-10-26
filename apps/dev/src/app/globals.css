@@ -7,6 +7,26 @@
   --font-serif: var(--nf-serif), Georgia, serif;
   --font-mono: var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
 }
+/*
+  atreyakamat.dev palette (refined navy + lemon, coral for small highlights).
+  Overrides the shared tokens for this site only.
+  Contrast: lemon-400 on navy-950 ≈ 17:1; coral-400 on navy-950 ≈ 7.6:1; navy-300 on navy-950 ≈ 7.4:1.
+*/
+@theme {
+  --color-navy-950: #070b1a;
+  --color-navy-900: #111836;
+  --color-navy-800: #182148;
+  --color-navy-700: #232e5e;
+  --color-navy-500: #4f5ea8;
+  --color-navy-300: #a3acd4;
+  --color-navy-100: #e1e5f4;
+  --color-lemon-300: #f3ff9a;
+  --color-lemon-400: #e9ff4f;
+  --color-lemon-600: #c4d61a;
+  --color-paper: #f5f1e8;
+  --color-coral-400: #ff7a59;
+  --color-coral-300: #ffa58e;
+}
 @source "../../../../packages/brand/src";
 @source "../../../../packages/ui/src";
 
@@ -108,4 +128,19 @@ html.lenis body {
 
 @media (prefers-reduced-motion: reduce) {
   .packet, .bar-grow, .scan, .caret { animation: none; }
+}
+
+/* Lanyard badge: gentle idle sway from the clip. */
+@keyframes badge-sway {
+  0%,
+  100% {
+    transform: rotate(-1.6deg);
+  }
+  50% {
+    transform: rotate(1.6deg);
+  }
+}
+.badge-idle {
+  transform-origin: 50% -6rem;
+  animation: badge-sway 4.8s ease-in-out infinite;
 }

@@ -82,7 +82,7 @@ export function Contact() {
     <section id="contact" aria-labelledby="contact-title" className="px-5 py-28 md:px-10 md:py-36">
       <div className="mx-auto max-w-[96rem]">
         <SectionHeader
-          index="09"
+          index="10"
           label="Start a project"
           meta="Replies personally"
           id="contact-title"

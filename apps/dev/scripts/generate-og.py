@@ -28,10 +28,10 @@ CARDS = [
     ("blog-custom-vs-off-the-shelf", "Blog · Software · Decisions", "Custom software vs off-the-shelf:", "an honest guide.", False),
 ]
 
-MONOGRAM = """<svg viewBox="0 0 64 64" width="56" height="56" fill="none"><g stroke="#f6f6f1" stroke-linecap="round" stroke-linejoin="round">
+MONOGRAM = """<svg viewBox="0 0 64 64" width="56" height="56" fill="none"><g stroke="#f5f1e8" stroke-linecap="round" stroke-linejoin="round">
 <line x1="16" y1="48" x2="34" y2="16" stroke-width="5"/><line x1="34" y1="16" x2="34" y2="48" stroke-width="5"/>
 <line x1="23" y1="34" x2="34" y2="34" stroke-width="4.5"/><line x1="34" y1="32" x2="48" y2="16" stroke-width="5"/>
-<line x1="34" y1="32" x2="48" y2="48" stroke-width="5"/></g><circle cx="51" cy="13" r="3" fill="#f4ff5c"/></svg>"""
+<line x1="34" y1="32" x2="48" y2="48" stroke-width="5"/></g><circle cx="51" cy="13" r="3" fill="#e9ff4f"/></svg>"""
 
 
 def data_uri(path: pathlib.Path, mime: str) -> str:
@@ -56,7 +56,7 @@ def page(kicker: str, title: str, accent: str, portrait: bool) -> str:
 @font-face {{ font-family: InstrSerif; font-style: italic; src: url({SERIF}); }}
 @font-face {{ font-family: Mono; src: url({MONO}); font-weight: 100 800; }}
 * {{ margin:0; box-sizing:border-box; }}
-body {{ width:1200px; height:630px; background:#070b1f; color:#f6f6f1; font-family:Bricolage; overflow:hidden; position:relative; }}
+body {{ width:1200px; height:630px; background:#070b1a; color:#f5f1e8; font-family:Bricolage; overflow:hidden; position:relative; }}
 .grid {{ position:absolute; inset:0; background-image:linear-gradient(to right,rgba(154,164,208,.08) 1px,transparent 1px),linear-gradient(to bottom,rgba(154,164,208,.08) 1px,transparent 1px); background-size:48px 48px; }}
 .glow {{ position:absolute; inset:0; background:radial-gradient(620px circle at 18% 22%, rgba(244,255,92,.14), transparent 62%); }}
 .frame {{ position:absolute; inset:28px; border:1px solid rgba(255,255,255,.12); border-radius:28px; }}
@@ -64,13 +64,13 @@ body {{ width:1200px; height:630px; background:#070b1f; color:#f6f6f1; font-fami
 .wrap {{ position:absolute; inset:28px; padding:52px 60px; display:flex; flex-direction:column; justify-content:space-between; }}
 .mono {{ font-family:Mono; font-size:17px; letter-spacing:.2em; text-transform:uppercase; color:#9aa4d0; }}
 .top {{ display:flex; justify-content:space-between; }}
-.top .l {{ color:#f4ff5c; }}
+.top .l {{ color:#e9ff4f; }}
 h1 {{ font-weight:800; font-size:{title_size}px; line-height:.95; letter-spacing:-.035em; max-width:{'700px' if portrait else '1000px'}; }}
-h1 em {{ font-family:InstrSerif; font-weight:400; font-style:italic; color:#f4ff5c; letter-spacing:-.01em; }}
+h1 em {{ font-family:InstrSerif; font-weight:400; font-style:italic; color:#e9ff4f; letter-spacing:-.01em; }}
 .bottom {{ display:flex; align-items:center; justify-content:space-between; }}
 .who {{ display:flex; align-items:center; gap:18px; font-size:26px; font-weight:700; }}
 .who span {{ display:block; font-family:Mono; font-weight:400; font-size:15px; letter-spacing:.2em; color:#9aa4d0; text-transform:uppercase; margin-top:4px; }}
-.pill {{ background:#f4ff5c; color:#070b1f; border-radius:999px; padding:14px 26px; font-family:Mono; font-weight:700; font-size:16px; letter-spacing:.18em; text-transform:uppercase; }}
+.pill {{ background:#e9ff4f; color:#070b1a; border-radius:999px; padding:14px 26px; font-family:Mono; font-weight:700; font-size:16px; letter-spacing:.18em; text-transform:uppercase; }}
 .pic {{ position:absolute; right:60px; top:60px; width:300px; height:400px; border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,.12); }}
 .pic img {{ width:100%; height:100%; object-fit:cover; }}
 </style></head><body>

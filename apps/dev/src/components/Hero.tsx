@@ -65,7 +65,7 @@ export function Hero() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
-        style={{ background: "radial-gradient(700px circle at var(--mx) var(--my), rgba(244,255,92,0.12), transparent 60%)" }}
+        style={{ background: "radial-gradient(700px circle at var(--mx) var(--my), rgba(233,255,79,0.12), transparent 60%)" }}
       />
 
       <motion.div style={{ y: lift }} className="mx-auto grid max-w-[96rem] gap-3 lg:min-h-[calc(100svh-6.5rem)] lg:grid-cols-12 lg:grid-rows-[1fr_auto]">
