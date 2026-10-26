@@ -1,21 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
 import clsx from "clsx";
 import { motion, useReducedMotion } from "framer-motion";
-import { heroStickers } from "@/data/create";
+import { heroBits } from "@/data/create";
+import { WebBit } from "@/components/WebBits";
 
 const WORD = "atreya.mp4";
 
 /**
- * Hero: giant acid type plus a field of real Stix N Vibes stickers that can be
- * grabbed, dragged and thrown around the hero. The grabbed sticker rises to the top.
+ * Hero: giant type plus a field of little "bits of the internet" (terminal, file,
+ * keys, cursor…) that can be grabbed, dragged and thrown. The grabbed one rises to the top.
  */
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const [order, setOrder] = useState<number[]>(() => heroStickers.map((_, i) => i));
+  const [order, setOrder] = useState<number[]>(() => heroBits.map((_, i) => i));
   const [touched, setTouched] = useState(false);
 
   const raise = (i: number) => {
@@ -32,7 +32,7 @@ export function Hero() {
       {/* grid + corner marks */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(223,255,0,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(223,255,0,0.07)_1px,transparent_1px)] bg-[size:80px_80px]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,107,26,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,107,26,0.07)_1px,transparent_1px)] bg-[size:80px_80px]"
       />
 
       <div className="relative z-10 mx-auto w-full max-w-[96rem]">
@@ -58,16 +58,16 @@ export function Hero() {
           </p>
           <div style={{ ["--d" as string]: "1.2s", ["--rise" as string]: "0px" }} className="rise-in flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-paper/60 md:justify-end">
             <span aria-hidden className="inline-block h-2 w-2 animate-pulse bg-acid motion-reduce:animate-none" />
-            {touched ? "Nice throw. Keep going." : "Grab a sticker. Throw it."}
+            {touched ? "Nice throw. Keep going." : "Grab anything. Throw it."}
           </div>
         </div>
       </div>
 
-      {/* Draggable sticker field (decorative; the content above stays readable) */}
+      {/* Draggable web-object field (decorative; the content above stays readable) */}
       <div aria-hidden className="absolute inset-x-0 top-0 z-20 h-[56%] md:h-full">
-        {heroStickers.map((s, i) => (
+        {heroBits.map((s, i) => (
           <motion.div
-            key={s.src}
+            key={s.kind}
             drag
             dragConstraints={ref}
             dragElastic={0.18}
@@ -79,17 +79,20 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1, rotate: s.r }}
             transition={{ type: "spring", stiffness: 220, damping: 16, delay: 0.5 + i * 0.07 }}
             className={clsx(
-              "absolute cursor-grab touch-none drop-shadow-[0_14px_22px_rgba(0,0,0,0.55)]",
+              "absolute left-[var(--bmx)] top-[var(--bmy)] cursor-grab touch-none md:left-[var(--bx)] md:top-[var(--by)]",
               !s.mobile && "hidden md:block",
             )}
             style={{
-              left: `${s.x}%`,
-              top: `${s.y}%`,
-              width: `clamp(5.5rem, ${s.w}vw, 12rem)`,
+              ["--bx" as string]: `${s.x}%`,
+              ["--by" as string]: `${s.y}%`,
+              ["--bmx" as string]: `${s.mobile?.x ?? s.x}%`,
+              ["--bmy" as string]: `${s.mobile?.y ?? s.y}%`,
               zIndex: 20 + order.indexOf(i),
             }}
           >
-            <Image src={s.src} alt="" width={420} height={380} draggable={false} className="pointer-events-none h-auto w-full select-none" priority={i < 4} />
+            <div className="pointer-events-none select-none">
+              <WebBit kind={s.kind} />
+            </div>
           </motion.div>
         ))}
       </div>

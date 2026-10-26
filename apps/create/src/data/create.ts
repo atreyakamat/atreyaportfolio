@@ -13,18 +13,25 @@ export const site = {
   handleUrl: "https://www.instagram.com/atreya.mp4/" as string | null,
 };
 
-/** Sticker designs from Stix N Vibes (transparent webp), with a hero position (percent) and tilt. */
-export const heroStickers: { src: string; x: number; y: number; r: number; w: number; mobile?: boolean }[] = [
-  { src: "/stickers/lofi-14.webp", x: 6, y: 16, r: -10, w: 13, mobile: true },
-  { src: "/stickers/lofi-06.webp", x: 78, y: 12, r: 9, w: 11, mobile: true },
-  { src: "/stickers/lofi-16.webp", x: 62, y: 58, r: -6, w: 12 },
-  { src: "/stickers/lofi-10.webp", x: 86, y: 52, r: 7, w: 10, mobile: true },
-  { src: "/stickers/lofi-09.webp", x: 38, y: 8, r: -4, w: 10 },
-  { src: "/stickers/lofi-02.webp", x: 18, y: 62, r: 12, w: 11, mobile: true },
-  { src: "/stickers/lofi-11.webp", x: 26, y: 26, r: -14, w: 9 },
-  { src: "/stickers/lofi-04.webp", x: 70, y: 30, r: 5, w: 9 },
-  { src: "/stickers/lofi-13.webp", x: 45, y: 66, r: -8, w: 10, mobile: true },
-  { src: "/stickers/lofi-07.webp", x: 90, y: 78, r: 10, w: 9 },
+/** Draggable web/tech objects in the hero, with position (percent) and tilt. */
+export const heroBits: {
+  kind: import("@/components/WebBits").BitKind;
+  x: number;
+  y: number;
+  r: number;
+  /** Phone position (percent of the top hero area); omit to hide on phones. */
+  mobile?: { x: number; y: number };
+}[] = [
+  { kind: "terminal", x: 4, y: 12, r: -6, mobile: { x: 4, y: 16 } },
+  { kind: "file", x: 70, y: 9, r: 5 },
+  { kind: "keys", x: 36, y: 8, r: -3, mobile: { x: 18, y: 50 } },
+  { kind: "disk", x: 75, y: 34, r: 4 },
+  { kind: "cursor", x: 60, y: 22, r: -8, mobile: { x: 76, y: 34 } },
+  { kind: "browser", x: 22, y: 30, r: 3 },
+  { kind: "toast", x: 52, y: 42, r: -4, mobile: { x: 42, y: 76 } },
+  { kind: "scrubber", x: 3, y: 33, r: 5 },
+  { kind: "render", x: 83, y: 21, r: -6 },
+  { kind: "wifi", x: 44, y: 28, r: 8 },
 ];
 
 export const allStickers = Array.from({ length: 17 }, (_, i) => `/stickers/lofi-${String(i + 1).padStart(2, "0")}.webp`);

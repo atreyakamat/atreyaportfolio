@@ -7,6 +7,17 @@
   --font-serif: var(--nf-serif), Georgia, serif;
   --font-mono: var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
 }
+
+/*
+  atreya.mp4 palette: orange on black. The token keeps the name "acid" so
+  every component picks it up; orange on #0a0a0a is about 6.9:1 (WCAG AA).
+*/
+@theme {
+  --color-acid: #ff6b1a;
+  /* Shared components (section index, site switcher) use lemon-400: orange here too. */
+  --color-lemon-400: #ff6b1a;
+}
+
 @source "../../../../packages/brand/src";
 @source "../../../../packages/ui/src";
 
@@ -82,4 +93,12 @@ html.lenis body {
 .reel-head { animation: reel-head 4s linear infinite; }
 @media (prefers-reduced-motion: reduce) {
   .reel-clip, .reel-head { animation: none; }
+}
+
+/* Instagram embeds size themselves; keep them inside their grid cell. */
+#top-reels iframe.instagram-media,
+#top-reels blockquote.instagram-media {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
 }
