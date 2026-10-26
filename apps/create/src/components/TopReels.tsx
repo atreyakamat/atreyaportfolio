@@ -12,6 +12,7 @@ declare global {
 }
 
 const EMBED_SRC = "https://www.instagram.com/embed.js";
+const COUNT_WORDS = ["No", "One", "Two", "Three", "Four", "Five", "Six"];
 
 /**
  * Top reels from @atreya.mp4 as official Instagram embeds. Instagram's script is
@@ -51,7 +52,7 @@ export function TopReels() {
           id="top-reels-title"
           title={
             <>
-              Six cuts from <span className="font-serif font-normal italic text-acid">@{instagram.handle}</span>.
+              {COUNT_WORDS[Math.min(topReels.length, 6)]} cuts from <span className="font-serif font-normal italic text-acid">@{instagram.handle}</span>.
             </>
           }
         />
