@@ -35,8 +35,8 @@ function makeCells(seed: number): Cell[] {
 }
 
 function Tile({ c }: { c: Cell }) {
-  const fg = c.fill ? "#0A0A0A" : "#DFFF00";
-  const bg = c.fill ? "#DFFF00" : "#0A0A0A";
+  const fg = c.fill ? "#0A0A0A" : "#ff6b1a";
+  const bg = c.fill ? "#ff6b1a" : "#0A0A0A";
   return (
     <g transform={`rotate(${c.rot} ${S / 2} ${S / 2})`}>
       <rect width={S} height={S} fill={bg} shapeRendering="crispEdges" />

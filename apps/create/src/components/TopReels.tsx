@@ -58,7 +58,7 @@ export function TopReels() {
         />
         <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {topReels.slice(0, 6).map((url) => (
-            <li key={url} className="overflow-hidden border-2 border-acid/40 bg-ink">
+            <li key={url} className="min-w-0 overflow-hidden border-2 border-acid/40 bg-ink">
               <blockquote
                 className="instagram-media"
                 data-instgrm-permalink={url}

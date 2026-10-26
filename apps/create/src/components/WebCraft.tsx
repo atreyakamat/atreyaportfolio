@@ -45,7 +45,7 @@ export function WebCraft() {
                   <span
                     aria-hidden
                     className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    style={{ background: "radial-gradient(380px circle at var(--gx) var(--gy), rgba(223,255,0,0.16), transparent 60%)" }}
+                    style={{ background: "radial-gradient(380px circle at var(--gx) var(--gy), rgba(255,107,26,0.16), transparent 60%)" }}
                   />
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
