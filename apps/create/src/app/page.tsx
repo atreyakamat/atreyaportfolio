@@ -1,3 +1,4 @@
+import { Arcade } from "@/components/Arcade";
 import { TopReels } from "@/components/TopReels";
 import { Collabs } from "@/components/Collabs";
 import { Commission } from "@/components/Commission";
@@ -38,6 +39,7 @@ export default function CreatePage() {
       <TopReels />
       <Collabs />
       <Commission />
+      <Arcade />
       <StixStrip />
       <CreativeCoding />
       <WebCraft />

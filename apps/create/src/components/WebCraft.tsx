@@ -18,7 +18,7 @@ export function WebCraft() {
     <section id="web" aria-labelledby="web-title" className="border-t-2 border-acid bg-ink px-5 py-28 md:px-10 md:py-36">
       <div className="mx-auto max-w-[96rem]">
         <SectionHeader
-          index="05"
+          index="06"
           label="Web as craft"
           meta={`${webWorks.length} live sites`}
           id="web-title"

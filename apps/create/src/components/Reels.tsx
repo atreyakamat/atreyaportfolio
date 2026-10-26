@@ -57,7 +57,7 @@ export function Reels() {
       <div className="mx-auto max-w-[96rem]">
         <SectionHeader
           tone="lemon"
-          index="06"
+          index="07"
           label="Video editing & reels"
           meta="Now booking"
           id="reels-title"
