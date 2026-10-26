@@ -3,10 +3,10 @@ import { Monogram } from "@atreya/brand/monogram";
 import { EcosystemNav } from "@atreya/ui/EcosystemNav";
 
 const links = [
+  { label: "Reels", href: "/#top-reels" },
+  { label: "Collabs", href: "/#collabs" },
   { label: "Stix", href: "/#stix" },
   { label: "Code", href: "/#code" },
-  { label: "Web", href: "/#web" },
-  { label: "Reels", href: "/#reels" },
 ];
 
 export function Header() {
@@ -31,7 +31,7 @@ export function Header() {
         href="/#commission"
         className="bg-acid px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.16em] text-ink transition-transform hover:-translate-y-0.5"
       >
-        Commission
+        Work with me
       </Link>
     </header>
   );

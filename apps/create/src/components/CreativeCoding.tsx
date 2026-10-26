@@ -101,7 +101,7 @@ export function CreativeCoding() {
     <section id="code" aria-labelledby="code-title" className="bg-ink px-5 py-28 md:px-10 md:py-36">
       <div className="mx-auto max-w-[96rem]">
         <SectionHeader
-          index="02"
+          index="04"
           label="Creative coding"
           meta="Art that is also software"
           id="code-title"

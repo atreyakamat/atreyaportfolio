@@ -37,8 +37,8 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-[96rem]">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.2em]">
-          <span className="bg-acid px-2 py-1 text-ink">@atreya.mp4 · Atreya Kamat&rsquo;s creator studio</span>
-          <span className="text-paper/60">Brands · stickers · motion · web — Goa, IN</span>
+          <span className="bg-acid px-2 py-1 text-ink">@atreya.mp4 · creator · open to brand collabs</span>
+          <span className="text-paper/60">Tech · tools · Linux · AI — Goa, IN</span>
         </div>
 
         <h1 id="hero-title" className="pointer-events-none select-none font-display font-extrabold leading-[0.78] tracking-[-0.06em] text-acid">
@@ -54,7 +54,7 @@ export function Hero() {
 
         <div className="mt-8 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end">
           <p style={{ ["--d" as string]: "0.7s", ["--rise" as string]: "20px" }} className="rise-in max-w-2xl font-serif text-4xl leading-[1.02] text-paper md:text-6xl">
-            Reels, brands, stickers and the web, <em className="text-acid">made in Goa.</em>
+            Tech, made simple, <em className="text-acid">in under a minute.</em>
           </p>
           <div style={{ ["--d" as string]: "1.2s", ["--rise" as string]: "0px" }} className="rise-in flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-paper/60 md:justify-end">
             <span aria-hidden className="inline-block h-2 w-2 animate-pulse bg-acid motion-reduce:animate-none" />

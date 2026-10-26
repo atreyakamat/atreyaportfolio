@@ -98,3 +98,50 @@ export const topReels: string[] = [
 ];
 
 export const instagram = { handle: "atreya.mp4", url: "https://www.instagram.com/atreya.mp4/" };
+
+/* ───────────── Creator / brand collabs ───────────── */
+
+/** What the channel is about. Edit freely. */
+export const creatorPitch = {
+  line: "Tech, made simple, in under a minute.",
+  pillars: ["PC fixes & free tools", "Linux & open source", "AI tools you can actually use", "Behind the scenes"],
+};
+
+export interface CollabFormat {
+  code: string;
+  title: string;
+  desc: string;
+}
+
+export const collabFormats: CollabFormat[] = [
+  { code: "C/01", title: "Dedicated reel", desc: "A full reel built around your product: the problem, the fix, your tool doing the work on screen." },
+  { code: "C/02", title: "Integration", desc: "Your product woven into a reel my audience already wants to watch, shown where it genuinely helps." },
+  { code: "C/03", title: "Story set", desc: "A short run of stories with a swipe-up or link, for launches, offers and app downloads." },
+  { code: "C/04", title: "UGC / product demo", desc: "Vertical demo videos you can run on your own channels and ads. Scripted, shot and edited by me." },
+  { code: "C/05", title: "Launch or event coverage", desc: "On-the-ground reels from launches and events in Goa, cut fast for same-week posting." },
+];
+
+/** Why brands work with me: facts only. */
+export const collabReasons = [
+  { title: "Script, shoot, edit: one person", desc: "I plan, film and edit every reel myself, so briefs don't get lost between people." },
+  { title: "I understand the product", desc: "I'm a working software engineer, so tech products get explained correctly, not just read off a script." },
+  { title: "Native, not a billboard", desc: "Your product shows up the way my usual content does: useful first, so people keep watching." },
+  { title: "Clear deliverables", desc: "Formats, dates and usage rights agreed in writing before anything goes live." },
+];
+
+/**
+ * Media-kit numbers. Fill these from Instagram Insights (Professional dashboard).
+ * Anything left null stays hidden; the whole block hides while all are null.
+ */
+export const creatorStats: { label: string; value: string | null }[] = [
+  { label: "Followers", value: null },
+  { label: "Avg. reel views", value: null },
+  { label: "Accounts reached (30 days)", value: null },
+  { label: "Top audience city", value: null },
+];
+
+/** Brands worked with. Names only with permission. Hidden while empty. */
+export const pastBrands: { name: string; url?: string }[] = [];
+
+/** Optional downloadable media kit, e.g. "/media-kit.pdf". Hidden while null. */
+export const mediaKitUrl: string | null = null;

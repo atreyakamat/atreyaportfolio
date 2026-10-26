@@ -62,7 +62,7 @@ export function StixStrip() {
         <div className="mx-auto max-w-[96rem]">
           <SectionHeader
             tone="lemon"
-            index="01"
+            index="03"
             label="Stix N Vibes"
             meta="My sticker & print brand"
             id="stix-title"

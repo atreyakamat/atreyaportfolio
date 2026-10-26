@@ -1,4 +1,5 @@
 import { TopReels } from "@/components/TopReels";
+import { Collabs } from "@/components/Collabs";
 import { Commission } from "@/components/Commission";
 import { CreativeCoding } from "@/components/CreativeCoding";
 import { Hero } from "@/components/Hero";
@@ -17,11 +18,11 @@ const jsonLd = {
       url: "https://atreyakamat.dev",
       email: `mailto:${site.email}`,
       address: { "@type": "PostalAddress", addressRegion: "Goa", addressCountry: "IN" },
-      sameAs: ["https://github.com/atreyakamat", "https://linkedin.com/in/atreya-kamat", site.url],
+      sameAs: ["https://github.com/atreyakamat", "https://linkedin.com/in/atreya-kamat", "https://www.instagram.com/atreya.mp4/", site.url],
     },
     {
       "@type": "CollectionPage",
-      name: "Creative work by Atreya Kamat",
+      name: "atreya.mp4 — creator and brand collaborations",
       url: site.url,
       author: { "@id": "https://atreyakamat.dev/#person" },
       hasPart: webWorks.map((w) => ({ "@type": "WebSite", name: w.name, url: w.url })),
@@ -34,12 +35,13 @@ export default function CreatePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
+      <TopReels />
+      <Collabs />
+      <Commission />
       <StixStrip />
       <CreativeCoding />
       <WebCraft />
       <Reels />
-      <TopReels />
-      <Commission />
     </>
   );
 }
