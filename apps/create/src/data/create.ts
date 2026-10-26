@@ -91,6 +91,10 @@ export const showreel: { src: string | null; poster: string | null; caption: str
  * Paste each reel's link, e.g. "https://www.instagram.com/reel/ABC123xyz/".
  * The section stays hidden while this list is empty.
  */
-export const topReels: string[] = [];
+export const topReels: string[] = [
+  "https://www.instagram.com/reel/DahFOYbsUst/",
+  "https://www.instagram.com/reel/DaUWxIQzlVW/",
+  "https://www.instagram.com/reel/DZwTVIzi288/",
+];
 
 export const instagram = { handle: "atreya.mp4", url: "https://www.instagram.com/atreya.mp4/" };
