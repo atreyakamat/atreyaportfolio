@@ -102,3 +102,11 @@ html.lenis body {
   min-width: 0 !important;
   max-width: 100% !important;
 }
+
+/* Arcade: score flash on each cut. */
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+  }
+}
