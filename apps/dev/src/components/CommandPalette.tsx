@@ -9,7 +9,6 @@ import { CONTACT_EMAIL, whatsappLink } from "@atreya/ui/contact";
 import { SITES } from "@atreya/ui/EcosystemNav";
 import { allProjects, personalInfo } from "@/data/portfolio";
 import { services } from "@/data/services";
-import { posts } from "@/data/posts";
 import { caseStudies } from "@/data/caseStudies";
 
 type Item = {
@@ -62,7 +61,7 @@ export function CommandPalette() {
       { id: "about", group: "Go to", label: "About Atreya", run: () => go("/#about") },
       { id: "faq", group: "Go to", label: "FAQ", run: () => go("/#faq") },
       { id: "contact", group: "Go to", label: "Start a project", keywords: "contact enquiry hire quote", run: () => go("/#contact") },
-      { id: "blog", group: "Go to", label: "Blog", keywords: "articles writing", run: () => go("/blog/") },
+      { id: "blog", group: "Go to", label: "Blog", hint: "blog.atreyakamat.dev", keywords: "articles writing notes", run: () => go("https://blog.atreyakamat.dev") },
       ...services.map((s) => ({
         id: `svc-${s.slug}`,
         group: "Services" as const,
@@ -83,13 +82,6 @@ export function CommandPalette() {
         group: "Work" as const,
         label: `Case study: ${c.title}`,
         run: () => go(`/work/${c.slug}/`),
-      })),
-      ...posts.map((p) => ({
-        id: `post-${p.slug}`,
-        group: "Writing" as const,
-        label: p.title,
-        keywords: p.description,
-        run: () => go(`/blog/${p.slug}/`),
       })),
       ...SITES.filter((s) => s.id !== "dev").map((s) => ({
         id: `site-${s.id}`,

@@ -1,0 +1,8 @@
+# Netlify build for blog.atreyakamat.dev.
+# Base directory for this site is the repo root; the build runs from there.
+[build]
+  command = "npm run build:blog"
+  publish = "apps/blog/out"
+
+[build.environment]
+  NODE_VERSION = "22"
