@@ -1,0 +1,295 @@
+@import "tailwindcss";
+@import "@atreya/brand/tokens.css";
+
+/* Fonts come from next/font (see app/fonts.ts); map the brand font tokens to them. */
+@theme inline {
+  --font-display: var(--nf-display), "Helvetica Neue", Arial, sans-serif;
+  --font-serif: var(--nf-serif), Georgia, serif;
+  --font-mono: var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Semantic surfaces, so one set of classes works in both themes. */
+  --color-page: var(--c-page);
+  --color-card: var(--c-card);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-rule: var(--c-rule);
+  --color-accent: var(--c-accent);
+  --color-link: var(--c-link);
+  --color-link-hover: var(--c-link-hover);
+}
+@source "../../../../packages/brand/src";
+@source "../../../../packages/ui/src";
+
+/*
+  A blog is for reading, so the default is warm paper with ink type: easier on
+  the eyes over 1500 words than the dark portfolio. Dark is one tap away and is
+  remembered. Contrast (WCAG AA): ink 15.8:1, muted 7.1:1 on paper;
+  ink 15.2:1, muted 7.4:1 on navy. Lemon is a fill or highlighter, never text
+  on paper, where it is about 1.1:1.
+*/
+:root {
+  --c-page: #f5f1e8;
+  --c-card: #fffdf6;
+  --c-ink: #11162e;
+  --c-muted: #4e5570;
+  --c-rule: rgba(17, 22, 46, 0.16);
+  --c-accent: #e9ff4f;
+  --c-link: #14318f;
+  --c-link-hover: #a63718;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --c-page: #070b1a;
+  --c-card: #111836;
+  --c-ink: #f5f1e8;
+  --c-muted: #a9b2d8;
+  --c-rule: rgba(255, 255, 255, 0.16);
+  --c-accent: #e9ff4f;
+  --c-link: #e9ff4f;
+  --c-link-hover: #ff9c7f;
+  color-scheme: dark;
+}
+
+html {
+  background: var(--c-page);
+  scrollbar-color: var(--c-muted) var(--c-page);
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  background: var(--c-page);
+  color: var(--c-ink);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--c-accent);
+  color: #11162e;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-link);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Entrance animation that runs in CSS, before hydration, so text paints at once. */
+@keyframes rise-in {
+  from {
+    opacity: 0.01;
+    transform: translateY(var(--rise, 18px));
+  }
+}
+.rise-in {
+  animation: rise-in 0.8s var(--ease-out-expo) both;
+  animation-delay: var(--d, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* A highlighter stroke behind a word, the way lemon works on paper. */
+.marker {
+  background-image: linear-gradient(transparent 58%, var(--c-accent) 58%, var(--c-accent) 92%, transparent 92%);
+  padding-inline: 0.08em;
+}
+
+/* ── The article body ──────────────────────────────────────────── */
+
+.prose {
+  font-size: 1.1875rem;
+  line-height: 1.72;
+  color: var(--c-ink);
+}
+.prose > * + * {
+  margin-top: 1.35em;
+}
+.prose p {
+  margin: 0;
+  text-wrap: pretty;
+}
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  scroll-margin-top: 6rem;
+  text-wrap: balance;
+}
+.prose h2 {
+  margin-top: 2.4em;
+  font-size: 2rem;
+}
+.prose h3 {
+  margin-top: 2em;
+  font-size: 1.4rem;
+}
+.prose h4 {
+  margin-top: 1.8em;
+  font-size: 1.15rem;
+}
+.prose h2 + *,
+.prose h3 + *,
+.prose h4 + * {
+  margin-top: 0.75em;
+}
+.prose a {
+  color: var(--c-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.prose a:hover {
+  color: var(--c-link-hover);
+}
+.prose strong {
+  font-weight: 700;
+}
+.prose ul,
+.prose ol {
+  margin: 0;
+  padding-left: 1.3em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+.prose ul {
+  list-style: none;
+  padding-left: 0;
+}
+.prose ul > li {
+  padding-left: 1.6em;
+  position: relative;
+}
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.35em;
+  top: 0.72em;
+  width: 0.42em;
+  height: 0.42em;
+  border-radius: 1px;
+  background: var(--c-link);
+  transform: rotate(45deg);
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose ol > li::marker {
+  color: var(--c-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+.prose blockquote {
+  margin: 2em 0;
+  padding: 1.25em 1.5em;
+  border-radius: 1rem;
+  background: var(--c-card);
+  border: 1px solid var(--c-rule);
+  border-left: 4px solid var(--c-accent);
+  font-family: var(--font-serif);
+  font-size: 1.22em;
+  line-height: 1.5;
+}
+.prose blockquote > * + * {
+  margin-top: 0.6em;
+}
+.prose blockquote strong {
+  font-family: var(--font-display);
+  font-size: 0.72em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: block;
+  color: var(--c-muted);
+}
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--c-card);
+  border: 1px solid var(--c-rule);
+  border-radius: 0.35rem;
+  padding: 0.12em 0.36em;
+}
+.prose pre {
+  margin: 2em 0;
+  padding: 1.25em;
+  border-radius: 1rem;
+  background: #0b1024;
+  color: #e6e9f5;
+  border: 1px solid var(--c-rule);
+  overflow-x: auto;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.prose pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+.prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  border: 1px solid var(--c-rule);
+}
+.prose hr {
+  margin: 3em 0;
+  border: 0;
+  border-top: 1px solid var(--c-rule);
+}
+.prose .table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--c-rule);
+  border-radius: 1rem;
+  background: var(--c-card);
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.prose th,
+.prose td {
+  padding: 0.85em 1em;
+  text-align: left;
+  border-bottom: 1px solid var(--c-rule);
+}
+.prose th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  white-space: nowrap;
+}
+.prose tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* First paragraph of an article reads as a standfirst. */
+.prose > p:first-child {
+  font-size: 1.32rem;
+  line-height: 1.55;
+  color: var(--c-muted);
+}
+.prose > p:first-child + * {
+  margin-top: 1.9em;
+}

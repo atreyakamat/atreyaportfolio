@@ -1,0 +1,134 @@
+# Decap CMS for blog.atreyakamat.dev — https://decapcms.org/docs/
+# Login: GitHub, through Netlify's OAuth provider (one-time setup in content/README.md).
+# Saving a post commits a markdown file to apps/blog/content/posts on main; Netlify rebuilds the site.
+
+backend:
+  name: github
+  repo: atreyakamat/atreyaportfolio
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  commit_messages:
+    create: "blog: add {{slug}}"
+    update: "blog: update {{slug}}"
+    delete: "blog: delete {{slug}}"
+    uploadMedia: "blog: upload {{path}}"
+    deleteMedia: "blog: delete {{path}}"
+
+# Drafts and reviews become pull requests until you hit "Publish".
+publish_mode: editorial_workflow
+
+site_url: https://blog.atreyakamat.dev
+display_url: https://blog.atreyakamat.dev
+logo_url: https://blog.atreyakamat.dev/icon.svg
+
+media_folder: apps/blog/public/uploads
+public_folder: /uploads
+
+collections:
+  - name: posts
+    label: Posts
+    label_singular: Post
+    description: >-
+      Everything on blog.atreyakamat.dev. Only Title, Slug, Date, Topic and Body are required —
+      the rest helps with search and sharing. For a quick note, pick the "Notes" topic and write.
+    folder: apps/blog/content/posts
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    preview_path: "{{slug}}/"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: [date, title]
+    view_groups:
+      - label: Topic
+        field: category
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        hint: "Under 60 characters. For a searchable post, lead with the phrase people would type."
+      - label: URL slug
+        name: slug
+        widget: string
+        pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "Lowercase words joined by hyphens, e.g. villa-website-goa"]
+        hint: "Becomes blog.atreyakamat.dev/<slug>/. Never change it after publishing (old links would break)."
+      - label: Topic
+        name: category
+        widget: select
+        default: notes
+        options:
+          - { label: "Build log — what I shipped", value: build-log }
+          - { label: "Goa business — advice for clients", value: goa-business }
+          - { label: "Tools — Linux, free and AI tools", value: tools }
+          - { label: "Notes — anything else", value: notes }
+      - label: Short description
+        name: description
+        widget: text
+        required: false
+        hint: "Shown under the title, in Google and in link previews. Aim for 120-155 characters."
+      - label: Published date
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: YYYY-MM-DD
+        time_format: false
+      - label: Last updated
+        name: updated
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: YYYY-MM-DD
+        time_format: false
+        required: false
+        hint: "Set this when you make a real update; it shows as the modified date."
+      - label: Feature on the homepage
+        name: featured
+        widget: boolean
+        default: false
+        required: false
+        hint: "Pins this post to the big card at the top. Only the newest featured post wins."
+      - label: Tags
+        name: tags
+        widget: list
+        allow_add: true
+        default: []
+        required: false
+        hint: "Optional. 2-4 lowercase topics, e.g. linux, pricing."
+      - label: Related service (adds a hire-me box)
+        name: service
+        widget: select
+        default: none
+        required: false
+        options:
+          - { label: "Website development in Goa", value: website-development-goa }
+          - { label: "Custom software in Goa", value: custom-software-development-goa }
+          - { label: "AI & automation in Goa", value: ai-automation-goa }
+          - { label: "None", value: none }
+      - label: Cover image
+        name: cover
+        widget: image
+        required: false
+        hint: "Optional. 1200×630 works best; also used as the share image."
+      - label: Cover image alt text
+        name: coverAlt
+        widget: string
+        required: false
+        hint: "Describe the image for people who can't see it."
+      - label: Draft
+        name: draft
+        widget: boolean
+        default: false
+        hint: "Drafts are not built or listed."
+      - label: FAQ
+        name: faq
+        widget: list
+        required: false
+        summary: "{{fields.q}}"
+        hint: "Optional. Adds a Questions section and FAQ rich results in Google."
+        fields:
+          - { label: Question, name: q, widget: string }
+          - { label: Answer, name: a, widget: text }
+      - label: Body
+        name: body
+        widget: markdown
+        hint: "Use '## ' for section headings — they build the table of contents on the right."

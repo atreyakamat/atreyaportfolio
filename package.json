@@ -2,7 +2,7 @@
   "name": "atreya-web-ecosystem",
   "private": true,
   "version": "0.0.0",
-  "description": "Personal web ecosystem: atreyakamat.dev plus teach, create and speak subdomains",
+  "description": "Personal web ecosystem: atreyakamat.dev plus the blog, teach, create, speak and weddings sites",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -12,14 +12,16 @@
     "build": "npm run build -w apps/dev",
     "lint": "npm run lint --workspaces --if-present",
     "legacy:build": "npm --prefix legacy/vite-site ci && npm --prefix legacy/vite-site run build",
+    "dev:blog": "npm run dev -w apps/blog",
+    "build:blog": "npm run build -w apps/blog",
     "dev:speak": "npm run dev -w apps/speak",
     "build:speak": "npm run build -w apps/speak",
     "dev:teach": "npm run dev -w apps/teach",
     "build:teach": "npm run build -w apps/teach",
     "dev:create": "npm run dev -w apps/create",
     "build:create": "npm run build -w apps/create",
-    "build:all": "npm run build --workspaces --if-present",
     "dev:weddings": "npm run dev -w apps/weddings",
-    "build:weddings": "npm run build -w apps/weddings"
+    "build:weddings": "npm run build -w apps/weddings",
+    "build:all": "npm run build --workspaces --if-present"
   }
 }
