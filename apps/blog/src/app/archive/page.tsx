@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { PostList } from "@/components/PostList";
 import { posts } from "@/data/posts";
+import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "All posts",
-  description: "Everything published on blog.atreyakamat.dev: build logs, Goa business advice, tools and notes.",
-  alternates: { canonical: "/archive/" },
+  description: "Everything published on atreyakamat.dev/blog: build logs, Goa business advice, tools and notes.",
+  alternates: { canonical: `${site.url}/archive/` },
 };
 
 export default function ArchivePage() {

@@ -1,6 +1,6 @@
 /** One place for the things that appear in metadata, the footer and the feed. */
 export const site = {
-  url: "https://blog.atreyakamat.dev",
+  url: "https://atreyakamat.dev/blog",
   mainSite: "https://atreyakamat.dev",
   name: "Atreya Kamat",
   title: "Atreya Kamat — notes, build logs and tools",
@@ -17,7 +17,7 @@ export const site = {
 
 export const sites = [
   { label: "dev", href: "https://atreyakamat.dev", blurb: "Software & systems" },
-  { label: "blog", href: "https://blog.atreyakamat.dev", blurb: "Writing", current: true },
+  { label: "blog", href: "https://atreyakamat.dev/blog", blurb: "Writing", current: true },
   { label: "teach", href: "https://teach.atreyakamat.dev", blurb: "Tuition & workshops" },
   { label: "speak", href: "https://speak.atreyakamat.dev", blurb: "Talks" },
   { label: "create", href: "https://create.atreyakamat.dev", blurb: "Creator work" },

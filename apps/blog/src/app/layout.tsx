@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   description: site.description,
   alternates: {
-    canonical: "/",
+    canonical: `${site.url}/`,
     types: { "application/rss+xml": `${site.url}/feed.xml` },
   },
   openGraph: {
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     title: site.title,
     description: site.description,
     locale: site.locale,
-    images: [{ url: "/og/blog.png", width: 1200, height: 630, alt: site.title }],
+    images: [{ url: `${site.url}/og/blog.png`, width: 1200, height: 630, alt: site.title }],
   },
-  twitter: { card: "summary_large_image", title: site.title, description: site.description, images: ["/og/blog.png"] },
+  twitter: { card: "summary_large_image", title: site.title, description: site.description, images: [`${site.url}/og/blog.png`] },
   authors: [{ name: site.author, url: site.mainSite }],
   other: { "geo.region": "IN-GA", "geo.placename": "Goa" },
 };
@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en-IN" data-theme="light" className={`${display.variable} ${serif.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <link rel="alternate" type="application/rss+xml" title={`${site.name} — blog`} href="/feed.xml" />
+        <link rel="alternate" type="application/rss+xml" title={`${site.name} — blog`} href={`${site.url}/feed.xml`} />
       </head>
       <body>
         <a

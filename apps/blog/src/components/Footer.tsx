@@ -48,7 +48,7 @@ export function Footer() {
                 </li>
               ))}
             <li>
-              <a href="/feed.xml" className="transition-colors hover:text-link">
+              <a href={`${site.url}/feed.xml`} className="transition-colors hover:text-link">
                 RSS feed
               </a>
             </li>

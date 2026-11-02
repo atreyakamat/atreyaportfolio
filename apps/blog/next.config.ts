@@ -4,6 +4,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Static export: Netlify serves ./out with no server runtime.
   output: "export",
+  // Lives at atreyakamat.dev/blog: the main site copies this build into out/blog.
+  basePath: "/blog",
   trailingSlash: true,
   images: { unoptimized: true },
   transpilePackages: ["@atreya/brand", "@atreya/ui"],

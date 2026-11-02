@@ -1,4 +1,4 @@
-# Decap CMS for blog.atreyakamat.dev — https://decapcms.org/docs/
+# Decap CMS for atreyakamat.dev/blog — https://decapcms.org/docs/
 # Login: GitHub, through Netlify's OAuth provider (one-time setup in content/README.md).
 # Saving a post commits a markdown file to apps/blog/content/posts on main; Netlify rebuilds the site.
 
@@ -18,19 +18,19 @@ backend:
 # Drafts and reviews become pull requests until you hit "Publish".
 publish_mode: editorial_workflow
 
-site_url: https://blog.atreyakamat.dev
-display_url: https://blog.atreyakamat.dev
-logo_url: https://blog.atreyakamat.dev/icon.svg
+site_url: https://atreyakamat.dev/blog
+display_url: https://atreyakamat.dev/blog
+logo_url: https://atreyakamat.dev/blog/icon.svg
 
 media_folder: apps/blog/public/uploads
-public_folder: /uploads
+public_folder: /blog/uploads
 
 collections:
   - name: posts
     label: Posts
     label_singular: Post
     description: >-
-      Everything on blog.atreyakamat.dev. Only Title, Slug, Date, Topic and Body are required —
+      Everything on atreyakamat.dev/blog. Only Title, Slug, Date, Topic and Body are required —
       the rest helps with search and sharing. For a quick note, pick the "Notes" topic and write.
     folder: apps/blog/content/posts
     create: true
@@ -52,7 +52,7 @@ collections:
         name: slug
         widget: string
         pattern: ["^[a-z0-9]+(-[a-z0-9]+)*$", "Lowercase words joined by hyphens, e.g. villa-website-goa"]
-        hint: "Becomes blog.atreyakamat.dev/<slug>/. Never change it after publishing (old links would break)."
+        hint: "Becomes atreyakamat.dev/blog/<slug>/. Never change it after publishing (old links would break)."
       - label: Topic
         name: category
         widget: select

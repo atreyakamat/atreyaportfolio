@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: cat.label,
     description: `${cat.blurb} Posts on ${cat.label.toLowerCase()} by ${site.author}.`,
-    alternates: { canonical: `/topics/${cat.slug}/` },
+    alternates: { canonical: `${site.url}/topics/${cat.slug}/` },
   };
 }
 

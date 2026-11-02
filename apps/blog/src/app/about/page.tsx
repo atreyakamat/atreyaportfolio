@@ -5,8 +5,8 @@ import { CATEGORIES } from "@/data/categories";
 
 export const metadata: Metadata = {
   title: "About this blog",
-  description: `Who writes blog.atreyakamat.dev, what goes on it, and how to get in touch. By ${site.author}, product engineer in Goa.`,
-  alternates: { canonical: "/about/" },
+  description: `Who writes atreyakamat.dev/blog, what goes on it, and how to get in touch. By ${site.author}, product engineer in Goa.`,
+  alternates: { canonical: `${site.url}/about/` },
 };
 
 export default function AboutPage() {
@@ -39,7 +39,7 @@ export default function AboutPage() {
           If you want something built, <a href={site.mainSite}>atreyakamat.dev</a> is the place to start.
         </p>
         <p>
-          Posts are also available as an <a href="/feed.xml">RSS feed</a>.
+          Posts are also available as an <a href={`${site.url}/feed.xml`}>RSS feed</a>.
         </p>
       </div>
 

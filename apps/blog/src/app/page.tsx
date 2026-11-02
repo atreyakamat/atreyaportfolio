@@ -19,7 +19,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-8 md:pb-20 md:pt-24">
         <p style={{ ["--d" as string]: "0.05s" }} className="rise-in font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-          blog.atreyakamat.dev
+          atreyakamat.dev/blog
         </p>
         <h1
           style={{ ["--d" as string]: "0.12s" }}

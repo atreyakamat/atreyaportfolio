@@ -8,7 +8,7 @@ const links = [
   { label: "System", href: "/#system" },
   { label: "Proof", href: "/#proof" },
   { label: "About", href: "/#about" },
-  { label: "Blog", href: "https://blog.atreyakamat.dev" },
+  { label: "Blog", href: "/blog/" },
   { label: "Contact", href: "/#contact" },
 ];
 

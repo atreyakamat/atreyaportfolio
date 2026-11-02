@@ -40,28 +40,14 @@
   to = "/atreya_kamat_resume.pdf"
   status = 301
 
-# The blog moved to its own site (apps/blog) at blog.atreyakamat.dev.
-# 301 so Google transfers the ranking and old links keep working.
-[[redirects]]
-  from = "/blog"
-  to = "https://blog.atreyakamat.dev/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog/*"
-  to = "https://blog.atreyakamat.dev/:splat"
-  status = 301
-  force = true
-
+# The blog is its own app (apps/blog) built into out/blog. The old feed and
+# admin URLs point at their new homes.
 [[redirects]]
   from = "/feed.xml"
-  to = "https://blog.atreyakamat.dev/feed.xml"
+  to = "/blog/feed.xml"
   status = 301
-  force = true
 
 [[redirects]]
   from = "/admin/*"
-  to = "https://blog.atreyakamat.dev/admin/"
+  to = "/blog/admin/"
   status = 301
-  force = true

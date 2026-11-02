@@ -21,11 +21,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  const url = `/${post.slug}/`;
+  const url = `${site.url}/${post.slug}/`;
+  const image = post.ogImage.startsWith("http") ? post.ogImage : `${site.url}${post.ogImage}`;
   return {
     title: { absolute: `${post.title} | ${site.name}` },
     description: post.description,
-    alternates: { canonical: url, types: { "application/rss+xml": [{ url: "/feed.xml", title: `${site.name} — blog` }] } },
+    alternates: { canonical: url, types: { "application/rss+xml": [{ url: `${site.url}/feed.xml`, title: `${site.name} — blog` }] } },
     keywords: post.tags,
     authors: [{ name: site.author, url: site.mainSite }],
     openGraph: {
@@ -39,9 +40,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: [site.author],
       tags: post.tags,
       section: post.categoryLabel,
-      images: [{ url: post.ogImage, width: 1200, height: 630, alt: post.coverAlt ?? post.title }],
+      images: [{ url: image, width: 1200, height: 630, alt: post.coverAlt ?? post.title }],
     },
-    twitter: { card: "summary_large_image", title: post.title, description: post.description, images: [post.ogImage] },
+    twitter: { card: "summary_large_image", title: post.title, description: post.description, images: [image] },
   };
 }
 

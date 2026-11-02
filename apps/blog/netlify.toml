@@ -1,5 +1,5 @@
-# Netlify build for blog.atreyakamat.dev.
-# Base directory for this site is the repo root; the build runs from there.
+# Standalone preview build of the blog (served under /blog on the main site).
+# Production is built by the root netlify.toml, which includes this app.
 [build]
   command = "npm run build:blog"
   publish = "apps/blog/out"

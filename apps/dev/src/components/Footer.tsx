@@ -32,7 +32,7 @@ export function Footer() {
             ["Work", "/#work"],
             ["Experience", "/#experience"],
             ["FAQ", "/#faq"],
-            ["Blog", "https://blog.atreyakamat.dev"],
+            ["Blog", "/blog/"],
           ].map(([l, h]) => (
             <Link key={h} href={h} className="block transition-colors hover:text-lemon-400">
               {l}

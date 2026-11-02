@@ -61,7 +61,7 @@ export function CommandPalette() {
       { id: "about", group: "Go to", label: "About Atreya", run: () => go("/#about") },
       { id: "faq", group: "Go to", label: "FAQ", run: () => go("/#faq") },
       { id: "contact", group: "Go to", label: "Start a project", keywords: "contact enquiry hire quote", run: () => go("/#contact") },
-      { id: "blog", group: "Go to", label: "Blog", hint: "blog.atreyakamat.dev", keywords: "articles writing notes", run: () => go("https://blog.atreyakamat.dev") },
+      { id: "blog", group: "Go to", label: "Blog", keywords: "articles writing notes", run: () => go("/blog/") },
       ...services.map((s) => ({
         id: `svc-${s.slug}`,
         group: "Services" as const,
