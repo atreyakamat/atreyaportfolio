@@ -31,3 +31,12 @@ export const mono = localFont({
   preload: false,
   fallback: ["ui-monospace", "Menlo", "monospace"],
 });
+
+/* Body text: Roboto, the clean workhorse Odoo uses. Headlines stay Bricolage. */
+export const body = localFont({
+  src: "../../../../node_modules/@fontsource-variable/roboto/files/roboto-latin-wght-normal.woff2",
+  weight: "100 900",
+  variable: "--nf-body",
+  display: "swap",
+  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
+});

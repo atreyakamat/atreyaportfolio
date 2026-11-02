@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CommandPaletteTrigger } from "@/components/CommandPalette";
 import { Monogram } from "@atreya/brand/monogram";
+import { ThemeToggle } from "@atreya/ui/ThemeToggle";
 import { personalInfo } from "@/data/portfolio";
 
 const links = [
@@ -33,6 +34,7 @@ export function Header() {
 
       <div className="flex items-center gap-5">
         <CommandPaletteTrigger className="hidden md:flex" />
+        <ThemeToggle className="border-white/15 text-navy-300 hover:border-lemon-400 hover:text-lemon-400" />
         <span className="hidden items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-navy-300 lg:flex">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lemon-400 opacity-60 motion-reduce:animate-none" />

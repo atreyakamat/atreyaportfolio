@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { display, mono, serif } from "./fonts";
+import { body, display, mono, serif } from "./fonts";
+import { THEME_SCRIPT } from "@atreya/ui/theme";
 import { Analytics } from "@atreya/ui/Analytics";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -38,17 +39,11 @@ export const viewport: Viewport = {
   ],
 };
 
-/*
-  Runs before first paint so the saved theme is applied with no flash.
-  Falls back to the system setting, then to paper.
-*/
-const themeScript = `(function(){try{var t=localStorage.getItem("ak-theme");if(!t)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="light"}})()`;
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" data-theme="light" className={`${display.variable} ${serif.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en-IN" data-theme="light" className={`${display.variable} ${serif.variable} ${mono.variable} ${body.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <link rel="alternate" type="application/rss+xml" title={`${site.name} — blog`} href={`${site.url}/feed.xml`} />
       </head>
       <body>

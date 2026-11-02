@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Monogram } from "@atreya/brand/monogram";
 import { CATEGORIES } from "@/data/categories";
 import { site } from "@/data/site";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { ThemeToggle } from "@atreya/ui/ThemeToggle";
 
 export function Header() {
   return (
@@ -28,7 +28,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          <ThemeToggle serverTheme="light" className="border-rule text-ink hover:border-link hover:text-link" />
           <a
             href={site.mainSite}
             className="rounded-full bg-ink px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-page transition-opacity hover:opacity-85"

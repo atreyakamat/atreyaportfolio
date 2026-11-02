@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ScrollProgress } from "@atreya/ui/ScrollProgress";
+import { AuthorCard } from "@/components/AuthorCard";
+import { ShareRow } from "@/components/ShareRow";
 import { Toc } from "@/components/Toc";
 import { Subscribe } from "@/components/Subscribe";
 import { formatDate } from "@/data/posts";
@@ -75,6 +78,7 @@ export default async function PostPage({ params }: Props) {
         }}
       />
 
+      <ScrollProgress className="bg-accent" />
       <article className="mx-auto max-w-6xl px-5 pt-12 md:px-8 md:pt-16">
         <header className="mx-auto max-w-3xl">
           <nav aria-label="Breadcrumb" className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-muted">
@@ -135,8 +139,16 @@ export default async function PostPage({ params }: Props) {
               </ul>
             )}
 
+            <div className="mt-10 border-t border-rule pt-8">
+              <ShareRow url={`${site.url}/${post.slug}/`} title={post.title} />
+            </div>
+
+            <div className="mt-8">
+              <AuthorCard />
+            </div>
+
             {post.service && (
-              <aside className="mt-12 rounded-[1.5rem] border border-rule bg-card p-7">
+              <aside className="mt-6 rounded-[1.5rem] border border-rule bg-card p-7">
                 <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted">Want this done for you?</p>
                 <p className="mt-3 text-xl font-bold leading-snug">
                   I do this work in Goa:{" "}

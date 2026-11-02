@@ -1,0 +1,92 @@
+/*
+  Light mode for the dark-first sites (dev, teach, speak, create, weddings).
+
+  The components are written for navy with lemon. Rather than rewrite every
+  class, this sheet remaps the handful of colour utilities they use when
+  <html data-theme="light">. The attribute selector outranks Tailwind's
+  single-class utilities, so no !important is needed.
+
+  Palette: warm paper #f5f1e8, cards #fffdf6, inset panels #ece8dc,
+  ink #11162e (15.8:1 on paper), muted #4e5570 (7.1:1), lemon-as-text
+  #5c6600 (6.6:1). Lemon fills stay lemon: their navy text is still dark.
+*/
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+[data-theme="light"],
+[data-theme="light"] body {
+  background: #f5f1e8;
+  color: #1c2342;
+}
+[data-theme="light"] {
+  scrollbar-color: #9aa4d0 #f5f1e8;
+}
+
+/* ── Surfaces ── */
+[data-theme="light"] .bg-navy-950 { background-color: #ece8dc; }
+[data-theme="light"] .bg-navy-900,
+[data-theme="light"] .bg-navy-900\/80,
+[data-theme="light"] .bg-navy-900\/70 { background-color: #fffdf6; }
+[data-theme="light"] .bg-navy-800 { background-color: #e2ddcf; }
+[data-theme="light"] .bg-navy-700 { background-color: #cfc9b8; }
+[data-theme="light"] .bg-navy-500 { background-color: #9aa4d0; }
+[data-theme="light"] .bg-navy-950\/90,
+[data-theme="light"] .bg-navy-950\/85,
+[data-theme="light"] .bg-navy-950\/80 { background-color: rgba(245, 241, 232, 0.88); }
+[data-theme="light"] .bg-navy-950\/70 { background-color: rgba(236, 232, 220, 0.8); }
+[data-theme="light"] .bg-navy-950\/20 { background-color: rgba(17, 22, 46, 0.1); }
+[data-theme="light"] .bg-navy-950\/10 { background-color: rgba(17, 22, 46, 0.06); }
+[data-theme="light"] .bg-white\/10 { background-color: rgba(17, 22, 46, 0.06); }
+[data-theme="light"] .bg-white\/5 { background-color: rgba(17, 22, 46, 0.035); }
+[data-theme="light"] .bg-paper\/80,
+[data-theme="light"] .bg-paper\/95 { background-color: #ffffff; }
+
+/* ── Lines ── */
+[data-theme="light"] .border-white\/5 { border-color: rgba(17, 22, 46, 0.07); }
+[data-theme="light"] .border-white\/10 { border-color: rgba(17, 22, 46, 0.12); }
+[data-theme="light"] .border-white\/15 { border-color: rgba(17, 22, 46, 0.16); }
+[data-theme="light"] .border-white\/20 { border-color: rgba(17, 22, 46, 0.2); }
+[data-theme="light"] .border-white\/25 { border-color: rgba(17, 22, 46, 0.25); }
+[data-theme="light"] .border-white\/30 { border-color: rgba(17, 22, 46, 0.3); }
+[data-theme="light"] .border-navy-700 { border-color: #cfc9b8; }
+[data-theme="light"] .ring-white\/10 { --tw-ring-color: rgba(17, 22, 46, 0.12); }
+[data-theme="light"] .ring-offset-navy-900 { --tw-ring-offset-color: #fffdf6; }
+[data-theme="light"] .divide-white\/10 > :not(:last-child) { border-color: rgba(17, 22, 46, 0.12); }
+
+/* ── Type ── */
+[data-theme="light"] .text-paper { color: #11162e; }
+[data-theme="light"] .text-navy-100,
+[data-theme="light"] .text-navy-100\/90 { color: #1c2342; }
+[data-theme="light"] .text-navy-300 { color: #4e5570; }
+[data-theme="light"] .text-lemon-400,
+[data-theme="light"] .text-lemon-300,
+[data-theme="light"] .text-marker { color: #5c6600; }
+[data-theme="light"] .text-lemon-400\/60 { color: rgba(92, 102, 0, 0.6); }
+[data-theme="light"] .placeholder\:text-navy-300::placeholder { color: #6b7290; }
+
+/* Lemon fills keep their dark text, and lemon text on them stays readable. */
+[data-theme="light"] .bg-lemon-400 .text-lemon-400,
+[data-theme="light"] .bg-lemon-300 .text-lemon-400 { color: #11162e; }
+
+/* ── Hover states ── */
+[data-theme="light"] .hover\:text-lemon-400:hover,
+[data-theme="light"] .group:hover .group-hover\:text-lemon-400,
+[data-theme="light"] .hover\:text-paper:hover { color: #5c6600; }
+[data-theme="light"] .hover\:text-paper:hover { color: #11162e; }
+[data-theme="light"] .hover\:bg-lemon-400:hover { background-color: #e9ff4f; color: #11162e; }
+[data-theme="light"] .hover\:text-navy-950:hover { color: #11162e; }
+
+/* ── Selection & focus ── */
+[data-theme="light"] ::selection { background: #e9ff4f; color: #11162e; }
+[data-theme="light"] :focus-visible { outline-color: #14318f; }
+
+/* Lemon outlines are near-invisible on paper: darken them like lemon text. */
+[data-theme="light"] .border-lemon-400 { border-color: #5c6600; }
+[data-theme="light"] .border-lemon-400\/70 { border-color: rgba(92, 102, 0, 0.7); }
+[data-theme="light"] .border-lemon-400\/60 { border-color: rgba(92, 102, 0, 0.6); }
+[data-theme="light"] .border-lemon-400\/40 { border-color: rgba(92, 102, 0, 0.4); }
+[data-theme="light"] .hover\:border-lemon-400:hover,
+[data-theme="light"] .hover\:border-lemon-400\/60:hover { border-color: #5c6600; }
+[data-theme="light"] .ring-lemon-400 { --tw-ring-color: #5c6600; }
+[data-theme="light"] .focus\:border-lemon-400:focus { border-color: #14318f; }

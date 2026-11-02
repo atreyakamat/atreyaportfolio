@@ -5,6 +5,7 @@
   "description": "Shared interactive components for the atreyakamat.dev sites: tiles, section headers, reveals, tilt, spotlight, tickers",
   "exports": {
     "./contact": "./src/contact.ts",
+    "./theme": "./src/theme.ts",
     "./*": "./src/*.tsx"
   },
   "dependencies": {
