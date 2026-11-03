@@ -1,6 +1,7 @@
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
 import { CaseStudies } from "@/components/CaseStudies";
+import { ProjectPass } from "@/components/ProjectPass";
 import { ProofWall } from "@/components/ProofWall";
 import { Testimonials } from "@/components/Testimonials";
 import { TrustBar } from "@/components/TrustBar";
@@ -32,6 +33,7 @@ export default function HomePage() {
       <Principles />
       <Experience />
       <Faq items={homeFaqs} />
+      <ProjectPass />
       <Contact />
     </>
   );
