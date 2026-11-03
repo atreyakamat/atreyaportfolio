@@ -33,9 +33,9 @@ export function DuotonePortrait({
             values="0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0"
           />
           <feComponentTransfer>
-            <feFuncR type="table" tableValues="0.027 0.957" />
+            <feFuncR type="table" tableValues="0.027 0.914" />
             <feFuncG type="table" tableValues="0.043 1" />
-            <feFuncB type="table" tableValues="0.122 0.361" />
+            <feFuncB type="table" tableValues="0.102 0.31" />
           </feComponentTransfer>
         </filter>
       </svg>

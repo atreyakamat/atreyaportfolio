@@ -76,7 +76,7 @@ export function SystemDiagram() {
               <div aria-hidden className="absolute left-[10%] right-[10%] top-6 hidden md:block">
                 {[0, 1, 2].map((k) => (
                   <span key={k} className="packet absolute inset-x-0 -top-[3px] h-[7px]" style={{ animationDelay: `${k * 1.6}s` }}>
-                    <span className="block h-[7px] w-[7px] rounded-full bg-lemon-400 shadow-[0_0_14px_rgba(244,255,92,0.9)]" />
+                    <span className="block h-[7px] w-[7px] rounded-full bg-lemon-400 shadow-[0_0_14px_rgba(233,255,79,0.9)]" />
                   </span>
                 ))}
               </div>
@@ -98,7 +98,7 @@ export function SystemDiagram() {
                       <span
                         className={clsx(
                           "relative flex h-12 w-12 items-center justify-center rounded-full border font-mono text-xs transition-all duration-500",
-                          on && "scale-110 border-lemon-400 bg-lemon-400 text-navy-950 shadow-[0_0_0_8px_rgba(244,255,92,0.12)]",
+                          on && "scale-110 border-lemon-400 bg-lemon-400 text-navy-950 shadow-[0_0_0_8px_rgba(233,255,79,0.12)]",
                           done && "border-lemon-400/70 bg-navy-900 text-lemon-400",
                           !on && !done && "border-navy-700 bg-navy-950 text-navy-300 group-hover:border-lemon-400/60",
                         )}
