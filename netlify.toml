@@ -39,3 +39,15 @@
   from = "/resume"
   to = "/atreya_kamat_resume.pdf"
   status = 301
+
+# The blog is its own app (apps/blog) built into out/blog. The old feed and
+# admin URLs point at their new homes.
+[[redirects]]
+  from = "/feed.xml"
+  to = "/blog/feed.xml"
+  status = 301
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/blog/admin/"
+  status = 301
