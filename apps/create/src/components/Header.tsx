@@ -5,6 +5,7 @@ import { EcosystemNav } from "@atreya/ui/EcosystemNav";
 const links = [
   { label: "Reels", href: "/#top-reels" },
   { label: "Collabs", href: "/#collabs" },
+  { label: "Arcade", href: "/#arcade" },
   { label: "Stix", href: "/#stix" },
   { label: "Code", href: "/#code" },
 ];
