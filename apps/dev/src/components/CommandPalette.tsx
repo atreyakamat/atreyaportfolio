@@ -106,7 +106,8 @@ export function CommandPalette() {
         },
       },
       ...(wa ? [{ id: "wa", group: "Actions" as const, label: "Message on WhatsApp", run: () => go(wa) }] : []),
-      { id: "resume", group: "Actions", label: "Download résumé", keywords: "cv resume pdf", run: () => go(personalInfo.resumeUrl) },
+      { id: "resume", group: "Actions", label: "View résumé", keywords: "cv resume", run: () => go("/resume/") },
+      { id: "resume-pdf", group: "Actions", label: "Download résumé (PDF)", keywords: "cv resume pdf download", run: () => go(personalInfo.resumeUrl) },
       { id: "github", group: "Actions", label: "GitHub", run: () => go(personalInfo.githubUrl) },
       { id: "linkedin", group: "Actions", label: "LinkedIn", run: () => go(personalInfo.linkedinUrl) },
     ];

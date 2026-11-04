@@ -50,8 +50,8 @@ export function Footer() {
           <a href={personalInfo.linkedinUrl} target="_blank" rel="noopener noreferrer" className="block hover:text-lemon-400">
             LinkedIn ↗
           </a>
-          <a href={personalInfo.resumeUrl} download="atreya_kamat_resume.pdf" className="block hover:text-lemon-400">
-            Resume ↓
+          <a href="/resume/" className="block hover:text-lemon-400">
+            Resume
           </a>
         </div>
       </div>
