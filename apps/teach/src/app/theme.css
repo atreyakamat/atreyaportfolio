@@ -1,0 +1,35 @@
+/*
+  teach: Sunlit Ink is paper-native. Dark mode flips the two base tokens, so every
+  text-ink-navy / border-ink-navy / bg-sunlit follows. Fills that pair ink-navy
+  with lemon text become raised navy panels with a lemon edge.
+*/
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-sunlit: #0b1030;
+  --color-ink-navy: #eef0fa;
+  scrollbar-color: #4a5aa6 #0b1030;
+}
+[data-theme="dark"] .bg-ink-navy { background-color: #161f4d; box-shadow: inset 0 0 0 1px rgba(242, 255, 112, 0.3); }
+[data-theme="dark"] .bg-sunlit\/85 { background-color: rgba(11, 16, 48, 0.88); }
+/* highlighter fills keep dark text */
+[data-theme="dark"] .bg-marker,
+[data-theme="dark"] .bg-marker\/90 { color: #101a3d; }
+[data-theme="dark"] .bg-marker .text-ink-navy,
+[data-theme="dark"] .bg-marker.text-ink-navy { color: #101a3d; }
+[data-theme="dark"] ::selection { background: #f2ff70; color: #101a3d; }
+[data-theme="dark"] :focus-visible { outline-color: #f2ff70; }
+[data-theme="dark"] .text-red-700 { color: #ff8f8f; }
+
+/* Shared SectionHeader paints its "light" tone with fixed navy text; flip it unless it sits on a fill. */
+[data-theme="dark"] .text-navy-950:not([class*="bg-"]),
+[data-theme="dark"] .text-navy-800:not([class*="bg-"]) { color: #eef0fa; }
+[data-theme="dark"] .border-navy-950\/25 { border-color: rgba(238, 240, 250, 0.25); }
+/* paper cards and form fields become raised navy */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-white\/80,
+[data-theme="dark"] .bg-white\/75,
+[data-theme="dark"] .bg-white\/70,
+[data-theme="dark"] .bg-white\/60 { background-color: rgba(255, 255, 255, 0.06); }
+[data-theme="dark"] .placeholder\:text-ink-navy\/40::placeholder,
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder { color: rgba(238, 240, 250, 0.45); }

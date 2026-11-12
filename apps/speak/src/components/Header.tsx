@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Monogram } from "@atreya/brand/monogram";
+import { ThemeToggle } from "@atreya/ui/ThemeToggle";
 import { EcosystemNav } from "@atreya/ui/EcosystemNav";
 
 const links = [
@@ -27,6 +28,7 @@ export function Header() {
 
       <div className="flex items-center gap-4">
         <EcosystemNav current="speak" className="hidden xl:flex" />
+        <ThemeToggle className="border-white/20 text-cobalt-300 hover:border-lemonade hover:text-lemonade" />
         <Link
           href="/#book"
           className="rounded-full bg-lemonade px-4 py-2 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-cobalt-950 transition-colors hover:bg-white"

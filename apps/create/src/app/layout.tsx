@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { display, mono, serif } from "./fonts";
+import { body, display, mono, serif } from "./fonts";
+import { THEME_SCRIPT } from "@atreya/ui/theme";
 import { Analytics } from "@atreya/ui/Analytics";
 import { Providers } from "@atreya/ui/Providers";
 import { ScrollProgress } from "@atreya/ui/ScrollProgress";
@@ -32,13 +33,19 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0A",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f6f3ec" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${display.variable} ${serif.variable} ${mono.variable}`}>
+    <html lang="en-IN" className={`${display.variable} ${serif.variable} ${mono.variable} ${body.variable}`} data-theme="dark" suppressHydrationWarning>
+      <head>
+        {/* Applies the saved or system theme before first paint: no flash. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body>
         <a
           href="#main"

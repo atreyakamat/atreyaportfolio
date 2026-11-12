@@ -1,8 +1,10 @@
 @import "tailwindcss";
 @import "@atreya/brand/tokens.css";
+@import "./theme.css";
 
 /* Fonts come from next/font (see app/fonts.ts); map the brand font tokens to them. */
 @theme inline {
+  --font-body: var(--nf-body), Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display: var(--nf-display), "Helvetica Neue", Arial, sans-serif;
   --font-serif: var(--nf-serif), Georgia, serif;
   --font-mono: var(--nf-mono), ui-monospace, "SF Mono", Menlo, monospace;
@@ -21,9 +23,16 @@ body {
   margin: 0;
   background: var(--color-sunlit);
   color: var(--color-ink-navy);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
 }
 
 ::selection {

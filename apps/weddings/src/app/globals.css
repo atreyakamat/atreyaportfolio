@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "@atreya/brand/tokens.css";
+@import "@atreya/brand/light.css";
+@import "./theme.css";
 @source "../../../../packages/ui/src";
 
 /*
@@ -9,8 +11,9 @@
   - On salt, accent text uses sun-700 (≈ 5.4:1); sun-400 is a fill only.
 */
 @theme inline {
+  --font-body: var(--nf-body), Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display: var(--nf-serif), Georgia, "Times New Roman", serif;
-  --font-sans: var(--nf-display), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--nf-body), Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: var(--nf-mono), ui-monospace, Menlo, monospace;
 }
 
