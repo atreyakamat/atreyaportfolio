@@ -3,6 +3,7 @@
 import { useState } from "react";
 import clsx from "clsx";
 import { useMotionValueEvent, useScroll } from "framer-motion";
+import { ThemeToggle } from "@atreya/ui/ThemeToggle";
 import { Mark } from "@/components/Mark";
 
 const links = [
@@ -42,12 +43,15 @@ export function Header() {
           </a>
         ))}
       </nav>
+      <div className="flex items-center gap-3">
+      <ThemeToggle className="border-salt/25 text-salt/80 hover:border-sun-400 hover:text-sun-400" />
       <a
         href="#enquire"
         className="rounded-full bg-salt px-5 py-2.5 text-sm font-semibold text-tide-950 transition-colors hover:bg-sun-400"
       >
         Start a project
       </a>
+      </div>
     </header>
   );
 }
